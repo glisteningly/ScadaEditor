@@ -1,0 +1,59 @@
+@import './variables.scss';
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin scrollBar {
+  &::-webkit-scrollbar-track-piece {
+    background: #d3dce6;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #99a9bf;
+    border-radius: 20px;
+  }
+}
+
+@mixin relative {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin al-scrollbar {
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(50, 65, 87, 0.2);
+    outline: 1px solid slategrey;
+  }
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+}
+
+@mixin al-scroll-container {
+  overflow-y: auto;
+  border: solid 1px rgb(223, 230, 236);
+ @include al-scrollbar;
+}
+
+@mixin al-toolbar {
+  background: $light_bgcolor;
+  padding: 10px;
+  //margin: 10px 0;
+}
+
+@mixin al-title-hint {
+  border-left: 3px solid $prime_color;
+}

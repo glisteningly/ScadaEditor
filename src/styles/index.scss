@@ -1,0 +1,94 @@
+@import './element-ui.scss';
+@import './mixin.scss';
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: sans-serif, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+//vue router transition css
+.fade-enter-active,
+.fade-leave-active {
+  transition: all .2s ease
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+
+//main-container全局样式
+.app-main {
+  //min-height: 100%
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.app-container {
+  padding: 20px;
+}
+
+.svg-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.vue-grid-item.vue-grid-placeholder {
+  background: #339fff;
+  border-radius: 4px;
+}
+
+.Resizer {
+  background-color: #dfe4ed !important;
+  &.vertical {
+    width: 5px !important;
+    border: none !important;
+  }
+}
