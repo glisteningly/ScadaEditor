@@ -8,7 +8,7 @@ export default {
         height: 20
       },
       imgUrl: '',
-      attrs: [{ name: 'val1', label: 'Text', type: 'String', value: 'label', bind: '' }],
+      attrs: [{ name: 'val1', label: 'Text', type: 'String', value: 'label' }],
       params: []
     },
     {
@@ -19,7 +19,7 @@ export default {
         height: 75
       },
       imgUrl: '',
-      attrs: [{ name: 'val1', label: '指示值', type: 'Number', value: 42, bind: '' }],
+      attrs: [{ name: 'val1', label: '指示值', type: 'Number', value: 42 }],
       params: []
     },
     {
@@ -30,7 +30,7 @@ export default {
         height: 100
       },
       imgUrl: '',
-      attrs: [{ name: 'val1', label: '显示值', type: 'Number', value: 33, bind: '' }],
+      attrs: [{ name: 'val1', label: '显示值', type: 'Number', value: 33 }],
       params: [{ name: 'fill', label: '填充色', type: 'Color', value: '#43b5ff' },
         { name: 'background', label: '背景色', type: 'Color', value: '#CCC' }]
     }

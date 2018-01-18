@@ -11,7 +11,7 @@
                 <el-dropdown-item command="load">读取</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
-            <el-button plain size="small" @click="">设置</el-button>
+            <el-button plain size="small" @click="" icon="el-icon-setting"></el-button>
           </div>
         </el-col>
         <el-col :span="2">
@@ -22,7 +22,7 @@
             </div>
           </div>
         </el-col>
-        <el-col :span="16">
+        <el-col :span="15">
           <div>
             <!--<el-button type="prime" size="small" @click="addCompSvg(demoSvg)" icon="el-icon-plus">测试svg</el-button>-->
             <el-button-group>
@@ -44,10 +44,10 @@
               <el-button plain size="small" @click="moveToFront" icon="el-icon-upload2"></el-button>
               <el-button plain size="small" @click="moveToBack" icon="el-icon-download"></el-button>
             </el-button-group>
-
           </div>
         </el-col>
-        <el-col :span="3">
+        <el-col :span="4">
+          <el-button plain size="small" @click="" icon="el-icon-news">数据源</el-button>
           <el-button plain type="primary" size="small" @click="" icon="el-icon-upload">发布</el-button>
         </el-col>
       </el-row>
@@ -72,7 +72,7 @@
       </div>
       <div id="pre_view" v-show="isShowPreview">
         <div id="scada_container">
-          <component :is="previewCompName" id="scada_view" :value="{val1:66}"></component>
+          <component :is="previewCompName" id="scada_view" :value="testBindData"></component>
         </div>
       </div>
       <div id="workarea" v-show="isShowEditor">
@@ -112,23 +112,27 @@
             <div class="panel-content">
               <template v-for="attr in currentAttrs">
                 <div class="ctrl-item">
+                  <label class="bind-label">{{attr.label}}</label>
                   <el-row>
-                    <el-col :span="6"><label>{{attr.label}}</label></el-col>
-                    <el-col :span="18">
-                      <component
-                        :is="getCtrlTyp(attr.type)"
-                        v-model="attr.value"
-                        @change="attrValChanged"
-                      />
+                    <el-col :span="24">
+                      <el-cascader
+                        placeholder="请选择数据点"
+                        :visible-arrow="false"
+                        :options="options2"
+                        @active-item-change=""
+                        @change="compValInputChanged"
+                        v-model="attr.bind"
+                        :props="props"/>
                     </el-col>
                   </el-row>
                   <el-row>
-                    <el-col :span="6"><label>数据点</label></el-col>
-                    <el-col :span="18">
-                      <el-input
-                        v-model="attr.bind"
-                        @change="attrBindChanged"/>
+                    <el-col :span="12">
+                      <el-input class="attr-input"
+                                v-model="attr.value"
+                                @change="compValInputChanged"
+                      />
                     </el-col>
+                    <el-col :span="12"><label class="label-preview">[ 预览值 ]</label></el-col>
                   </el-row>
                 </div>
               </template>
@@ -178,7 +182,7 @@
                       <component
                         :is="getCtrlTyp(ctrl.type)"
                         v-model="ctrl.value"
-                        @change="paramValChanged"
+                        @change="compValInputChanged"
                       />
                     </el-col>
                   </el-row>
@@ -186,8 +190,29 @@
               </template>
             </div>
           </section>
-
         </div>
+        <section id="test_panel" v-show="isShowPreview">
+          <div class="title-label">数据测试</div>
+          <div class="panel-content">
+            <!--<template v-for="ctrl in currentCtrls">-->
+            <div class="ctrl-item">
+              <el-row>
+                <el-col :span="6"><label>field1</label></el-col>
+                <el-col :span="18">
+                  <el-input v-model="testBindData.datamodel1.field1"/>
+                </el-col>
+              </el-row>
+              <el-row>
+                <el-col :span="6"><label>field2</label></el-col>
+                <el-col :span="18">
+                  <el-input v-model="testBindData.datamodel1.field2"/>
+                </el-col>
+              </el-row>
+            </div>
+
+            <!--</template>-->
+          </div>
+        </section>
       </div>
     </div>
     <div id="bottom_bar"></div>
@@ -228,8 +253,32 @@
         canvasW: 1200,
         canvasH: 700,
         compTools: [],
-        color1: '#409EFF'
-//        curCompParams: {}
+        color1: '#409EFF',
+        bindField: 'value',
+        testBindData: { datamodel1: { field1: 33, field2: 44 }, datamodel2: { field3: 55, field4: 66 } },
+        options2: [{
+          label: 'datamodel1',
+          cities: [{
+            value: 'field1',
+            label: 'field1'
+          }, {
+            value: 'field2',
+            label: 'field2'
+          }]
+        }, {
+          label: 'datamodel2',
+          cities: [{
+            value: 'field3',
+            label: 'field3'
+          }, {
+            value: 'field4',
+            label: 'field4'
+          }]
+        }],
+        props: {
+          value: 'label',
+          children: 'cities'
+        }
       }
     },
     methods: {
@@ -238,6 +287,7 @@
         this.onActivate(guid)
         const v = {}
         attrs.forEach((attr) => {
+          attr.bind = []
           Object.assign(v, { [attr.name]: attr.value })
         })
         const p = {}
@@ -253,7 +303,7 @@
           value: v,
           paramControls: params,
           params: p,
-          bind: null
+          bind: {}
         })
       },
       handleCompDrop(data, e) {
@@ -299,14 +349,17 @@
         }
       },
       onActivate(guid) {
-        this.curActivedId = guid
+        // 同步之前选中组件的数值
+        if (this.currentCompIndex !== -1) {
+          this.syncCompValues(this.components[this.currentCompIndex])
+        }
         this.components.forEach((item) => {
           if (item.guid !== guid) {
             item.active = false
           }
         })
         this.isCompEditing = true
-//        this.curActivedId = guid
+        this.curActivedId = guid
       },
       onDeactivate() {
         this.curActivedId = -1
@@ -336,6 +389,7 @@
       },
       getTemplate() {
         const comps = []
+//        this.syncAllCompValues()
         this.components.forEach((item) => {
           if (item.type === 'scada-svg') {
             const el = document.getElementById(item.id)
@@ -356,16 +410,22 @@
               _content: innerSvg
             })
           } else {
+            const attrs = {
+              'x': item.layout.x,
+              'y': item.layout.y,
+              'width': item.layout.width,
+              'height': item.layout.height
+//              ':params': JSON.stringify(item.params).replace(/\"/g, "'")
+            }
+            if (Object.getOwnPropertyNames(item.params).length > 1) {
+              Object.assign(attrs, { ':params': JSON.stringify(item.params).replace(/\"/g, "'") })
+            }
+            if (Object.getOwnPropertyNames(item.bind).length > 1) {
+              Object.assign(attrs, { ':value': JSON.stringify(item.bind).replace(/\"/g, '') })
+            }
             comps.push({
               _name: item.type,
-              _attrs: {
-                'x': item.layout.x,
-                'y': item.layout.y,
-                'width': item.layout.width,
-                'height': item.layout.height,
-                ':params': JSON.stringify(item.params).replace(/\"/g, "'"),
-                ':value': '{val1 : value.val1}'
-              }
+              _attrs: attrs
             })
           }
         })
@@ -453,35 +513,38 @@
             return 'el-input'
         }
       },
-      // 参数值改变
-      paramValChanged() {
-        if (this.currentCompIndex !== -1) {
-          const p = {}
-          this.components[this.currentCompIndex].paramControls.forEach((param) => {
-            Object.assign(p, { [param.name]: param.value })
-          })
-          this.components[this.currentCompIndex].params = p
-        }
-      },
-      // 属性值改变
-      attrValChanged() {
-        if (this.currentCompIndex !== -1) {
-          const v = {}
-          this.components[this.currentCompIndex].attrs.forEach((attr) => {
-            Object.assign(v, { [attr.name]: attr.value })
-          })
-          this.components[this.currentCompIndex].value = v
-        }
-      },
-      attrBindChanged() {
-        if (this.currentCompIndex !== -1) {
-          const b = {}
-          this.components[this.currentCompIndex].attrs.forEach((attr) => {
-            Object.assign(b, { [attr.name]: attr.bind })
-          })
-          this.components[this.currentCompIndex].bind = b
-        }
-      },
+//      // 参数值改变
+//      paramValChanged() {
+//        if (this.currentCompIndex !== -1) {
+//          const p = {}
+//          this.components[this.currentCompIndex].paramControls.forEach((param) => {
+//            Object.assign(p, { [param.name]: param.value })
+//          })
+//          this.components[this.currentCompIndex].params = p
+//        }
+//      },
+//      // 属性值改变
+//      attrValChanged() {
+//        if (this.currentCompIndex !== -1) {
+//          const v = {}
+//          this.components[this.currentCompIndex].attrs.forEach((attr) => {
+//            Object.assign(v, { [attr.name]: attr.value })
+//          })
+//          this.components[this.currentCompIndex].value = v
+//        }
+//      },
+//      // 绑定改变
+//      attrBindChanged() {
+//        if (this.currentCompIndex !== -1) {
+//          const b = {}
+//          this.components[this.currentCompIndex].attrs.forEach((attr) => {
+//            if (attr.bind !== '') {
+//              Object.assign(b, { [attr.name]: `${this.bindField}.${attr.bind}` })
+//            }
+//          })
+//          this.components[this.currentCompIndex].bind = b
+//        }
+//      },
       handleMenuCommand(cmd) {
         switch (cmd) {
           case 'save':
@@ -492,6 +555,42 @@
             break
           default:
             break
+        }
+      },
+      syncCompValues(comp) {
+        const p = {}
+        const v = {}
+        const b = {}
+        if (comp.paramControls) {
+          comp.paramControls.forEach((param) => {
+            Object.assign(p, { [param.name]: param.value })
+          })
+          comp.params = p
+        }
+        if (comp.attrs) {
+          comp.attrs.forEach((attr) => {
+            console.log(attr.bind)
+            if (attr.bind.length > 0) {
+              let bindStr = `${this.bindField}`
+              attr.bind.forEach((f) => {
+                bindStr += `.${f}`
+              })
+              Object.assign(b, { [attr.name]: bindStr })
+            }
+            Object.assign(v, { [attr.name]: attr.value })
+          })
+          comp.bind = b
+          comp.value = v
+        }
+      },
+      syncAllCompValues() {
+        this.components.forEach((comp) => {
+          this.syncCompValues(comp)
+        })
+      },
+      compValInputChanged() {
+        if (this.currentCompIndex !== -1) {
+          this.syncCompValues(this.components[this.currentCompIndex])
         }
       }
     },
@@ -714,7 +813,9 @@
   }
 
   code {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    min-height: 600px;
+    user-select: text;
   }
 
   pre {
@@ -745,7 +846,8 @@
       color: #333;
     }
     .panel-content {
-      padding: 6px 6px 24px 6px;
+      padding: 12px 6px 12px 6px;
+      border-bottom: 1px solid #CCC;
     }
   }
 
@@ -791,16 +893,27 @@
   }
 
   .ctrl-item {
-    margin: 8px 4px;
+    margin: 4px 4px;
     label {
       display: block;
       margin-top: 6px;
+      padding-left: 2px;
     }
-    input {
+    label.bind-label {
+      margin-bottom: 6px;
+    }
+    label.label-preview {
+      color: #666;
+    }
+    .attr-input input {
       max-width: 100px !important;
     }
     .el-col {
       margin-bottom: 4px;
+    }
+    .el-cascader {
+      width: 100%;
+      margin-bottom: 2px;
     }
   }
 

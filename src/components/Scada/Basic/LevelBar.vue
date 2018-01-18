@@ -20,10 +20,10 @@
         id="rect74"
         width="100%"
         height="60%"
-        :height="value.val1 + '%'"
+        :height="barHeight"
         x="0"
         y="40%"
-        :y="(100-value.val1) + '%'"
+        :y="barY"
       />
       <rect
         style="fill:none;stroke:#005b97;stroke-width:3"
@@ -35,7 +35,7 @@
       />
       <text x="50%" y="55%"
             style="font-size:12px; font-weight: bold; fill:#FFF; text-anchor: middle; text-shadow: 0 0 3px #666;"
-      >{{value.val1}}%
+      >{{ labelNum }}
       </text>
     </g>
   </svg>
@@ -51,7 +51,7 @@
         type: Object,
         default: function () {
           return {
-            val1: 50
+            val1: 0
           }
         }
       },
@@ -68,7 +68,17 @@
     data() {
       return {}
     },
-    computed: {}
+    computed: {
+      labelNum() {
+        return (this.value.val1 || 0) + '%'
+      },
+      barHeight() {
+        return (this.value.val1 || 0) + '%'
+      },
+      barY() {
+        return (100 - (this.value.val1 || 0)) + '%'
+      }
+    }
   }
 </script>
 

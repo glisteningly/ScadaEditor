@@ -23,7 +23,7 @@
         type: Object,
         default: function () {
           return {
-            val1: 50
+            val1: 0
           }
         }
       }
@@ -33,7 +33,7 @@
     },
     computed: {
       valRotate() {
-        const d = -90 + 180 * (this.value.val1 / 100)
+        const d = -90 + 180 * ((this.value.val1 || 0) / 100)
         return `rotate(${d} 50 50)`
       }
     }

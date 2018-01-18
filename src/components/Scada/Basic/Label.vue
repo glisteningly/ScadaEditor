@@ -8,7 +8,8 @@
       />
       <text x="50%" y="50%" alignment-baseline="middle"
             style="font-size:14px; font-weight: bold; fill:#000000; text-anchor: middle;"
-      >{{value.val1}}</text>
+      >{{labelText}}
+      </text>
     </g>
   </svg>
 </template>
@@ -34,7 +35,11 @@
     data() {
       return {}
     },
-    computed: {}
+    computed: {
+      labelText() {
+        return (this.value.val1 || '[LABEL]')
+      }
+    }
   }
 </script>
 
