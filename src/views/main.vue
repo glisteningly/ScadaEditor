@@ -1,71 +1,21 @@
 <template>
   <div id="scade_editor">
-    <div id="top_bar">
-      <el-row>
-        <el-col :span="3">
-          <div>
-            <el-dropdown size="medium" @command="handleMenuCommand">
-              <el-button plain size="small" @click="" icon="el-icon-menu">文档</el-button>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item command="save">保存</el-dropdown-item>
-                <el-dropdown-item command="load">读取</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-            <el-button plain size="small" @click="" icon="el-icon-setting"></el-button>
-          </div>
-        </el-col>
-        <el-col :span="2">
-          <div>
-            <div class="upload-btn-wrapper">
-              <el-button type="prime" size="small" icon="el-icon-plus">导入svg</el-button>
-              <input type="file" name="myfile" @change="onImportSvg" ref="uploadSvg"/>
-            </div>
-          </div>
-        </el-col>
-        <el-col :span="15">
-          <div>
-            <!--<el-button type="prime" size="small" @click="addCompSvg(demoSvg)" icon="el-icon-plus">测试svg</el-button>-->
-            <el-button-group>
-              <el-button plain size="small" @click="showEditor" :class="{isActiveBtn: isShowEditor}">
-                <i class="el-icon-edit-outline"></i> 设计
-              </el-button>
-              <el-button plain size="small" @click="showPreview" :class="{isActiveBtn: isShowPreview}">
-                <i class="el-icon-view"></i> 预览
-              </el-button>
-              <el-button plain size="small" @click="showCodeView" :class="{isActiveBtn: isShowCode}">
-                <> 代码
-              </el-button>
-            </el-button-group>
-            <el-button-group>
-              <el-button plain type="danger" size="small" @click="removeCurrentComp" icon="el-icon-delete"></el-button>
-              <el-button plain size="small" @click="duplicateCurrentComp" icon="el-icon-plus"></el-button>
-            </el-button-group>
-            <el-button-group>
-              <el-button plain size="small" @click="moveToFront" icon="el-icon-upload2"></el-button>
-              <el-button plain size="small" @click="moveToBack" icon="el-icon-download"></el-button>
-            </el-button-group>
-          </div>
-        </el-col>
-        <el-col :span="4">
-          <el-button plain size="small" @click="" icon="el-icon-news">数据源</el-button>
-          <el-button plain type="primary" size="small" @click="" icon="el-icon-upload">发布</el-button>
-        </el-col>
-      </el-row>
-    </div>
+    <action-bar :isShowCode="isShowCode"
+                :isShowPreview="isShowPreview"
+                :isShowEditor="isShowEditor"
+                @actionSaveDoc="onActionSaveDoc"
+                @actionLoadDoc="onActionLoadDoc"
+                @actionImportSvg="onActionImportSvg"
+                @actionShowEditor="onShowEditor"
+                @actionShowPreview="onShowPreview"
+                @actionShowCodeView="onShowCodeView"
+                @actionRemoveCurrentComp="onRemoveCurrentComp"
+                @actionDuplicateCurrentComp="onDuplicateCurrentComp"
+                @actionMoveToFront="onMoveToFront"
+                @actionMoveToBack="onMoveToBack"/>
     <div class="main">
       <div id="left_panel" class="tools_panel">
-        <div v-show="isShowEditor">
-          <div class="title-label">基础组件</div>
-          <div class="panel-content">
-            <div class="comp-list">
-              <drag v-for="tool in compTools" class="comp-item" :key="tool.id"
-                    :transferData="{type:tool.name, size:tool.defaultSize, attrs:tool.attrs, params:tool.params }">
-                <img class="comp-icon"
-                     :src="`http://10.0.0.126/static/img/scada/${tool.name}.png`" :alt="tool.type">
-              </drag>
-            </div>
-          </div>
-        </div>
+        <tools-panel v-show="isShowEditor"/>
       </div>
       <div id="pre_code" v-show="isShowCode">
         <pre v-highlightjs="scadaTemplate"><code class="html"></code></pre>
@@ -228,19 +178,20 @@
   import scadaLevelbar from '@/components/Scada/Basic/LevelBar.vue'
   import scadaLabel from '@/components/Scada/Basic/Label.vue'
   import scadaSvg from '@/components/Scada/Basic/Svg.vue'
-  //  import svgStr from '@/api/getSvg2'
   import Guid from '@/utils/guid'
   import _ from 'lodash'
   // 代码高亮样式
   import '@/assets/css/highlight/default.css'
   import '@/assets/css/highlight/Atom-One-Light.css'
   import { Drag, Drop } from 'vue-drag-drop'
-  import scadaComps from '@/components/Scada/Basic'
 
   const jstoxml = require('jstoxml')
 
+  import ActionBar from './actionBar.vue'
+  import ToolsPanel from './toolsPanel.vue'
+
   export default {
-    components: { Dragger, scadaGuage, scadaLevelbar, scadaLabel, scadaSvg, Drag, Drop },
+    components: { ActionBar, ToolsPanel, Dragger, scadaGuage, scadaLevelbar, scadaLabel, scadaSvg, Drag, Drop },
     data() {
       return {
         components: [],
@@ -254,7 +205,6 @@
         previewCompName: 'div',
         canvasW: 1200,
         canvasH: 700,
-        compTools: [],
         color1: '#409EFF',
         bindField: 'value',
         testBindData: { datamodel1: { field1: 33, field2: 44 }, datamodel2: { field3: 55, field4: 66 } },
@@ -284,7 +234,7 @@
       }
     },
     methods: {
-      addComp(compName, layout = { x: 0, y: 0, width: 100, height: 100 }, attrs, params) {
+      addComp(compName, layout = { x: 0, y: 0, width: 100, height: 100 }, attrs = [], params = []) {
         const guid = Guid()
         this.onActivate(guid)
         const v = {}
@@ -318,7 +268,7 @@
         }
         this.addComp(d.type, layout, d.attrs, d.params)
       },
-      removeCurrentComp() {
+      onRemoveCurrentComp() {
         if (this.isCompEditing) {
           const index = _.findIndex(this.components, { id: this.curActivedId })
           if (index >= 0) {
@@ -326,24 +276,28 @@
           }
         }
       },
-      duplicateCurrentComp() {
+      onDuplicateCurrentComp() {
         const index = _.findIndex(this.components, { id: this.curActivedId })
         if (index >= 0) {
           const clonedComp = _.cloneDeep(this.components[index])
           const layout = clonedComp.layout
           layout.x += 10
           layout.y += 10
-          this.addComp(clonedComp.type, layout, clonedComp.attrs, clonedComp.paramControls)
+          if (clonedComp.type === 'scada-svg') {
+            this.addCompSvg(layout, clonedComp.inner)
+          } else {
+            this.addComp(clonedComp.type, layout, clonedComp.attrs, clonedComp.paramControls)
+          }
         }
       },
-      moveToFront() {
+      onMoveToFront() {
         if (this.currentCompIndex !== -1) {
           const c = this.components[this.currentCompIndex]
           this.components.splice(this.currentCompIndex, 1)
           this.components.push(c)
         }
       },
-      moveToBack() {
+      onMoveToBack() {
         if (this.currentCompIndex !== -1) {
           const c = this.components[this.currentCompIndex]
           this.components.splice(this.currentCompIndex, 1)
@@ -433,18 +387,18 @@
         })
         return comps
       },
-      showEditor() {
+      onShowEditor() {
         this.isShowPreview = false
         this.isShowCode = false
         this.isShowEditor = true
       },
-      showCodeView() {
+      onShowCodeView() {
         this.isShowPreview = false
         this.isShowEditor = false
         this.isShowCode = true
         this.scadaTemplate = this.$prettyDom(jstoxml.toXML(this.getTemplate()))
       },
-      showPreview() {
+      onShowPreview() {
         this.isShowCode = false
         this.isShowEditor = false
         this.isShowPreview = true
@@ -463,39 +417,28 @@
         this.previewCompName = 'ScadaView'
       },
       handleKeyup(e) {
-//        console.log(e.which)
         switch (e.which) {
           case 8:
           case 46: {
-            this.removeCurrentComp()
+            this.onRemoveCurrentComp()
             break
           }
         }
       },
-      addCompSvg(svg) {
+      addCompSvg(layout = { x: 100, y: 100, width: 400, height: 400 }, svgStr) {
         const guid = Guid()
         this.onActivate(guid)
         this.components.push({
           id: guid,
           type: 'scada-svg',
           active: true,
-          layout: { x: 200, y: 200, width: 400, height: 400 },
+          layout: layout,
           value: null,
-          inner: svg
+          inner: svgStr
         })
       },
-      onImportSvg(e) {
-        const files = e.target.files || e.dataTransfer.files
-        if (!files.length) {
-          return
-        }
-        const reader = new FileReader()
-        reader.onload = (e) => {
-//          console.log(e.target.result)
-          this.addCompSvg(e.target.result)
-          this.$refs.uploadSvg.value = ''
-        }
-        reader.readAsText(files[0])
+      onActionImportSvg(svgStr) {
+        this.addCompSvg({ x: 100, y: 100, width: 400, height: 400 }, svgStr)
       },
       onInputFocus(e) {
         if (e.target.nodeName === 'INPUT') {
@@ -515,49 +458,11 @@
             return 'el-input'
         }
       },
-//      // 参数值改变
-//      paramValChanged() {
-//        if (this.currentCompIndex !== -1) {
-//          const p = {}
-//          this.components[this.currentCompIndex].paramControls.forEach((param) => {
-//            Object.assign(p, { [param.name]: param.value })
-//          })
-//          this.components[this.currentCompIndex].params = p
-//        }
-//      },
-//      // 属性值改变
-//      attrValChanged() {
-//        if (this.currentCompIndex !== -1) {
-//          const v = {}
-//          this.components[this.currentCompIndex].attrs.forEach((attr) => {
-//            Object.assign(v, { [attr.name]: attr.value })
-//          })
-//          this.components[this.currentCompIndex].value = v
-//        }
-//      },
-//      // 绑定改变
-//      attrBindChanged() {
-//        if (this.currentCompIndex !== -1) {
-//          const b = {}
-//          this.components[this.currentCompIndex].attrs.forEach((attr) => {
-//            if (attr.bind !== '') {
-//              Object.assign(b, { [attr.name]: `${this.bindField}.${attr.bind}` })
-//            }
-//          })
-//          this.components[this.currentCompIndex].bind = b
-//        }
-//      },
-      handleMenuCommand(cmd) {
-        switch (cmd) {
-          case 'save':
-            localStorage.setItem('savedComps', JSON.stringify(this.components))
-            break
-          case 'load':
-            this.components = JSON.parse(localStorage.getItem('savedComps'))
-            break
-          default:
-            break
-        }
+      onActionSaveDoc() {
+        localStorage.setItem('savedComps', JSON.stringify(this.components))
+      },
+      onActionLoadDoc() {
+        this.components = JSON.parse(localStorage.getItem('savedComps'))
       },
       syncCompValues(comp) {
         const p = {}
@@ -571,7 +476,6 @@
         }
         if (comp.attrs) {
           comp.attrs.forEach((attr) => {
-            console.log(attr.bind)
             if (attr.bind.length > 0) {
               let bindStr = `${this.bindField}`
               attr.bind.forEach((f) => {
@@ -700,7 +604,6 @@
       document.documentElement.addEventListener('keyup', this.handleKeyup)
       document.documentElement.addEventListener('focus', this.onInputFocus, true)
       document.documentElement.addEventListener('blur', this.onInputBlur, true)
-      this.compTools = scadaComps.tools
     },
     beforeMount() {
     },
@@ -723,14 +626,6 @@
     background-color: #DDD;
   }
 
-  #top_bar {
-    width: 100%;
-    height: 54px;
-    background-color: #EEE;
-    border-bottom: 1px solid #AAA;
-    padding: 10px;
-  }
-
   #bottom_bar {
     width: 100%;
     height: 24px;
@@ -745,27 +640,24 @@
     flex-grow: 1;
   }
 
+  .tools_panel {
+    font-size: 12px;
+    .title-label {
+      font-size: 12px;
+      background-color: #CCC;
+      padding: 6px;
+      color: #333;
+    }
+    .panel-content {
+      padding: 12px 6px 12px 6px;
+      border-bottom: 1px solid #BBB;
+    }
+  }
+
   #left_panel {
     width: 180px;
     background-color: #EEE;
     border-right: 1px solid #AAA;
-    .comp-list {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-auto-rows: 56px;
-      /*grid-template-rows: repeat(3, 1fr);*/
-      grid-column-gap: 2px;
-      grid-row-gap: 2px;
-      .comp-item {
-        font-size: 12px;
-        line-height: 52px;
-        background-color: #FFF;
-        text-align: center;
-        cursor: pointer;
-        border: 1px solid #DDD;
-        color: #20a0ff;
-      }
-    }
   }
 
   #right_panel {
@@ -839,20 +731,6 @@
 
   }
 
-  .tools_panel {
-    font-size: 12px;
-    .title-label {
-      font-size: 12px;
-      background-color: #cccccc;
-      padding: 6px;
-      color: #333;
-    }
-    .panel-content {
-      padding: 12px 6px 12px 6px;
-      border-bottom: 1px solid #CCC;
-    }
-  }
-
   .upload-btn-wrapper {
     position: relative;
     overflow: hidden;
@@ -886,10 +764,6 @@
     box-shadow: 1px 1px 5px #999;
   }
 
-  .isActiveBtn {
-    color: #409EFF;
-  }
-
   .comp-icon {
     width: 100%;
   }
@@ -918,5 +792,4 @@
       margin-bottom: 2px;
     }
   }
-
 </style>
