@@ -119,6 +119,8 @@
                         placeholder="请选择数据点"
                         :visible-arrow="false"
                         :options="options2"
+                        :separator="'.'"
+                        :clearable="true"
                         @active-item-change=""
                         @change="compValInputChanged"
                         v-model="attr.bind"
