@@ -107,4 +107,20 @@
     color: #409EFF;
     border-bottom-color: #409EFF;
   }
+
+  .upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .upload-btn-wrapper input[type=file] {
+    /*font-size: 100px;*/
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    height: 28px;
+    width: 100px
+  }
 </style>

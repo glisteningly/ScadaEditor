@@ -17,44 +17,14 @@
       <div id="left_panel" class="tools_panel">
         <tools-panel v-show="isShowEditor"/>
       </div>
-      <div id="pre_code" v-show="isShowCode">
-        <pre v-highlightjs="scadaTemplate"><code class="html"></code></pre>
-      </div>
-      <div id="pre_view" v-show="isShowPreview">
-        <div id="scada_container">
-          <component :is="previewCompName" id="scada_view" :value="testBindData"></component>
-        </div>
-      </div>
-      <div id="workarea" v-show="isShowEditor">
-        <drop id="canvas" :style="canvasStyle" @drop="handleCompDrop">
-          <dragger v-for="component in components"
-                   :id="component.id"
-                   :key="component.id"
-                   :active.sync="component.active"
-                   :w="component.layout.width"
-                   :h="component.layout.height"
-                   :x="component.layout.x"
-                   :y="component.layout.y"
-                   class="drag-box"
-                   :parent="true"
-                   @activated="onActivate(component.id)"
-                   @deactivated="onDeactivate"
-                   @init="onDraggerChanged"
-                   @resizestop="onDraggerChanged"
-                   @dragstop="onDraggerChanged">
-            <component v-if="component.type === 'scada-svg'"
-                       :is="'scada-svg'"
-                       class="scada-svg-wrapper"
-                       v-html="component.inner"/>
-            <component v-else
-                       :is="component.type"
-                       :value="component.value"
-                       :params="component.params"
-                       width="100%"
-                       height="100%"/>
-          </dragger>
-        </drop>
-      </div>
+      <work-area v-show="isShowEditor"
+                 :components="components"
+                 :canvasStyle="canvasStyle"
+                 @addDropedComp="onAddDropedComp"
+                 @activated="onActivate"
+                 @compLayoutChanged="onDraggerChanged"/>
+      <preview-code v-if="isShowCode" :scadaTemplate="scadaTemplate"/>
+      <preview-scada v-if="isShowPreview" :initiated="isSvgViewInitiated" :testData="testBindData"/>
       <div id="right_panel" class="tools_panel">
         <div v-show="(this.currentCompIndex !== -1) && isShowEditor">
           <section id="attr_panel" v-show="isShowAttrPanel">
@@ -81,8 +51,7 @@
                     <el-col :span="12">
                       <el-input class="attr-input"
                                 v-model="attr.value"
-                                @change="compValInputChanged"
-                      />
+                                @change="compValInputChanged"/>
                     </el-col>
                     <el-col :span="12"><label class="label-preview">[ 预览值 ]</label></el-col>
                   </el-row>
@@ -146,23 +115,20 @@
         <section id="test_panel" v-show="isShowPreview">
           <div class="title-label">数据测试</div>
           <div class="panel-content">
-            <!--<template v-for="ctrl in currentCtrls">-->
-            <div class="ctrl-item">
-              <el-row>
-                <el-col :span="6"><label>field1</label></el-col>
-                <el-col :span="18">
-                  <el-input v-model="testBindData.datamodel1.field1"/>
-                </el-col>
-              </el-row>
-              <el-row>
-                <el-col :span="6"><label>field2</label></el-col>
-                <el-col :span="18">
-                  <el-input v-model="testBindData.datamodel1.field2"/>
-                </el-col>
-              </el-row>
-            </div>
-
-            <!--</template>-->
+            <template v-for="(val1, key1) in testBindData">
+              <div class="ctrl-item">
+                <label class="bind-label">{{`[ ${key1} ]`}}</label>
+                <template v-for="(val2, key2) in val1">
+                  <el-row>
+                    <el-col :span="6"><label>{{`• ${key2}`}}</label></el-col>
+                    <el-col :span="18">
+                      <el-input v-model="val1[key2]"/>
+                      <!--<label>{{val}}</label>-->
+                    </el-col>
+                  </el-row>
+                </template>
+              </div>
+            </template>
           </div>
         </section>
       </div>
@@ -173,25 +139,32 @@
 
 <script>
   import Vue from 'vue'
-  import Dragger from '../components/Dragger/dragger.vue'
   import scadaGuage from '@/components/Scada/Basic/Guage.vue'
   import scadaLevelbar from '@/components/Scada/Basic/LevelBar.vue'
   import scadaLabel from '@/components/Scada/Basic/Label.vue'
-  import scadaSvg from '@/components/Scada/Basic/Svg.vue'
   import Guid from '@/utils/guid'
   import _ from 'lodash'
-  // 代码高亮样式
-  import '@/assets/css/highlight/default.css'
-  import '@/assets/css/highlight/Atom-One-Light.css'
-  import { Drag, Drop } from 'vue-drag-drop'
 
   const jstoxml = require('jstoxml')
-
   import ActionBar from './actionBar.vue'
   import ToolsPanel from './toolsPanel.vue'
+  import PreviewCode from './previewCode.vue'
+  import PreviewScada from './previewScada.vue'
+  import WorkArea from './workArea.vue'
 
   export default {
-    components: { ActionBar, ToolsPanel, Dragger, scadaGuage, scadaLevelbar, scadaLabel, scadaSvg, Drag, Drop },
+    components: {
+      ActionBar,
+      ToolsPanel,
+      PreviewCode,
+      PreviewScada,
+      WorkArea,
+      scadaGuage,
+      scadaLevelbar,
+      scadaLabel
+//      scadaSvg,
+
+    },
     data() {
       return {
         components: [],
@@ -200,9 +173,9 @@
         isShowCode: false,
         isShowPreview: false,
         isShowEditor: true,
-//        demoSvg: svgStr,
         isCompEditing: false,
         previewCompName: 'div',
+        isSvgViewInitiated: false,
         canvasW: 1200,
         canvasH: 700,
         color1: '#409EFF',
@@ -258,15 +231,8 @@
           bind: {}
         })
       },
-      handleCompDrop(data, e) {
-        const d = _.cloneDeep(data)
-        const layout = {
-          x: e.offsetX,
-          y: e.offsetY,
-          width: d.size.width,
-          height: d.size.height
-        }
-        this.addComp(d.type, layout, d.attrs, d.params)
+      onAddDropedComp(d) {
+        this.addComp(d.type, d.layout, d.attrs, d.params)
       },
       onRemoveCurrentComp() {
         if (this.isCompEditing) {
@@ -334,13 +300,13 @@
 //          this.components[this.currentCompIndex].layout.y = y
 //        }
 //      },
-      onDraggerChanged(guid, x, y, w, h) {
-        const index = _.findIndex(this.components, { id: guid })
+      onDraggerChanged(d) {
+        const index = _.findIndex(this.components, { id: d.guid })
         if (index !== -1) {
-          this.components[index].layout.x = x
-          this.components[index].layout.y = y
-          this.components[index].layout.width = w
-          this.components[index].layout.height = h
+          this.components[index].layout.x = d.x
+          this.components[index].layout.y = d.y
+          this.components[index].layout.width = d.w
+          this.components[index].layout.height = d.h
         }
       },
       getTemplate() {
@@ -402,6 +368,8 @@
         this.isShowCode = false
         this.isShowEditor = false
         this.isShowPreview = true
+//        this.isSvgViewInitiated = false
+//        Vue.component('ScadaView', {})
         const compStr = jstoxml.toXML(this.getTemplate())
         const templateStr = `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${this.canvasW} ${this.canvasH}" preserveAspectRatio="xMidYMid meet"
 	                          >${compStr}</svg>`
@@ -414,7 +382,8 @@
           template: templateStr,
           components: { scadaGuage, scadaLevelbar, scadaLabel }
         })
-        this.previewCompName = 'ScadaView'
+//        this.previewCompName = 'ScadaView'
+        this.isSvgViewInitiated = true
       },
       handleKeyup(e) {
         switch (e.which) {
@@ -598,7 +567,6 @@
       }
     },
     created: function () {
-//      window.addEventListener('keyup', this.handleKeyup)
     },
     mounted() {
       document.documentElement.addEventListener('keyup', this.handleKeyup)
@@ -649,74 +617,29 @@
       color: #333;
     }
     .panel-content {
-      padding: 12px 6px 12px 6px;
+      padding: 6px 6px 12px 6px;
       border-bottom: 1px solid #BBB;
     }
   }
 
   #left_panel {
     width: 180px;
+    flex: 0 0 180px;
     background-color: #EEE;
     border-right: 1px solid #AAA;
   }
 
   #right_panel {
     width: 250px;
-    /*flex-basis: 200px;*/
+    flex: 0 0 250px;
     background-color: #EEE;
     border-left: 1px solid #AAA;
-    /*flex-grow: 1;*/
-  }
-
-  #workarea {
-    flex-grow: 1;
-    background-color: #BBB;
-    overflow: auto;
-    //    @include scrollBar;
-  }
-
-  #pre_code {
-    flex-grow: 1;
-    padding-bottom: 6em;
-    background-color: #fafafa;
-    overflow: auto;
-    /*height: 100px;*/
-  }
-
-  #canvas {
-    margin: 10px;
-    background-color: #FFF;
-    border: 1px solid #999;
-    /*width: 1200px;*/
-    /*height: 700px;*/
-    position: relative;
-    box-shadow: 1px 1px 5px #999;
-    .scada-svg-wrapper {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  .drag-box {
-    border: 1px solid transparent;
-  }
-
-  .active {
-    /*box-sizing: content-box;*/
-    border: 1px dashed #43b5ff;
-  }
-
-  code {
-    font-size: 0.8rem;
-    min-height: 600px;
-    user-select: text;
-  }
-
-  pre {
-    margin: 0;
   }
 
   #layout_panel {
+    .panel-content {
+      margin-top: 4px;
+    }
     input {
       text-align: center !important;
     }
@@ -728,44 +651,12 @@
       display: block;
       text-align: center;
     }
-
   }
 
-  .upload-btn-wrapper {
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-  }
-
-  .upload-btn-wrapper input[type=file] {
-    /*font-size: 100px;*/
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
-    height: 28px;
-    width: 100px
-  }
-
-  #pre_view {
-    flex-grow: 1;
-    overflow: auto;
-  }
-
-  #scada_container {
-    margin: 20px auto;
-    width: 95%;
-  }
-
-  #scada_view {
-    width: 100%;
-    background-color: #FFF;
-    border: 1px solid #999;
-    box-shadow: 1px 1px 5px #999;
-  }
-
-  .comp-icon {
-    width: 100%;
+  #attr_panel {
+    .panel-content {
+      padding-top: 0;
+    }
   }
 
   .ctrl-item {
@@ -777,6 +668,7 @@
     }
     label.bind-label {
       margin-bottom: 6px;
+      margin-top: 10px;
     }
     label.label-preview {
       color: #666;

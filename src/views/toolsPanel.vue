@@ -52,4 +52,8 @@
       color: #20a0ff;
     }
   }
+
+  .comp-icon {
+    width: 100%;
+  }
 </style>
