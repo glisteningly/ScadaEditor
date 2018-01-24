@@ -9,6 +9,7 @@
                :h="component.layout.height"
                :x="component.layout.x"
                :y="component.layout.y"
+               :ratio="component.layout.ratio"
                class="drag-box"
                :parent="true"
                @activated="$emit('activated', component.id)"
@@ -18,7 +19,8 @@
         <component v-if="component.type === 'scada-svg'"
                    :is="'scada-svg'"
                    class="scada-svg-wrapper"
-                   v-html="component.inner"/>
+                   :svg="component.innerSvg"
+                   :params="component.params"/>
         <component v-else
                    :is="component.type"
                    :value="component.value"
@@ -58,11 +60,13 @@
     methods: {
       handleCompDrop(data, e) {
         const d = _.cloneDeep(data)
+        const r = (d.size.keepRatio) ? (d.size.height / d.size.width) : 0
         const layout = {
           x: e.offsetX,
           y: e.offsetY,
           width: d.size.width,
-          height: d.size.height
+          height: d.size.height,
+          ratio: r
         }
         d.layout = layout
 //        this.addComp(d.type, layout, d.attrs, d.params)

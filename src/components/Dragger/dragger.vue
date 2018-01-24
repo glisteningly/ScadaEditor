@@ -30,69 +30,69 @@
       w: {
         type: Number,
         default: 200,
-        validator: function (val) {
+        validator(val) {
           return val > 0
         }
       },
       h: {
         type: Number,
         default: 200,
-        validator: function (val) {
+        validator(val) {
           return val > 0
         }
       },
       minw: {
         type: Number,
         default: 10,
-        validator: function (val) {
+        validator(val) {
           return val > 0
         }
       },
       minh: {
         type: Number,
         default: 10,
-        validator: function (val) {
+        validator(val) {
           return val > 0
         }
       },
       x: {
         type: Number,
         default: 0,
-        validator: function (val) {
+        validator(val) {
           return typeof val === 'number'
         }
       },
       y: {
         type: Number,
         default: 0,
-        validator: function (val) {
+        validator(val) {
           return typeof val === 'number'
         }
       },
       z: {
         type: [String, Number],
         default: 'auto',
-        validator: function (val) {
+        validator(val) {
 //          const valid = (typeof val === 'string') ? val === 'auto' : val >= 0
           return (typeof val === 'string') ? val === 'auto' : val >= 0
         }
       },
-      handles: {
-        type: Array,
-        default: function () {
-          return ['tl', 'tm', 'tr', 'mr', 'br', 'bm', 'bl', 'ml']
-        }
-      },
+//      handles: {
+//        type: Array,
+//        default() {
+//          return ['tl', 'tm', 'tr', 'mr', 'br', 'bm', 'bl', 'ml']
+//        }
+//      },
       axis: {
         type: String,
         default: 'both',
-        validator: function (val) {
+        validator(val) {
           return ['x', 'y', 'both'].indexOf(val) !== -1
         }
       },
       grid: {
         type: Array,
-        default: function () {
+        default() {
           return [1, 1]
         }
       },
@@ -101,12 +101,15 @@
       },
       maximize: {
         type: Boolean, default: false
+      },
+      ratio: {
+        type: Number, default: 0
       }
 //      guid: {
 //        type: String
 //      }
     },
-    created: function () {
+    created() {
       this.parentX = 0
       this.parentW = 9999
       this.parentY = 0
@@ -127,7 +130,7 @@
       this.elmW = 0
       this.elmH = 0
     },
-    mounted: function () {
+    mounted() {
       document.documentElement.addEventListener('mousemove', this.handleMove, true)
       document.documentElement.addEventListener('mousedown', this.deselect, true)
       document.documentElement.addEventListener('mouseup', this.handleUp, true)
@@ -139,12 +142,12 @@
 
       this.reviewDimensions()
     },
-    beforeDestroy: function () {
+    beforeDestroy() {
       document.documentElement.removeEventListener('mousemove', this.handleMove, true)
       document.documentElement.removeEventListener('mousedown', this.deselect, true)
       document.documentElement.removeEventListener('mouseup', this.handleUp, true)
     },
-    data: function () {
+    data() {
       return {
         top: this.y,
         left: this.x,
@@ -155,6 +158,7 @@
         enabled: this.active,
         handle: null,
         zIndex: this.z
+//        ratio: 0.75
       }
     },
     methods: {
@@ -222,7 +226,7 @@
 //          }
 //        }
       },
-      handleDown: function (handle, e) {
+      handleDown(handle, e) {
         this.handle = handle
 
         if (e.stopPropagation) e.stopPropagation()
@@ -230,7 +234,7 @@
 
         this.resizing = true
       },
-      handleMove: function (e) {
+      handleMove(e) {
         this.mouseX = e.pageX || e.clientX + document.documentElement.scrollLeft
         this.mouseY = e.pageY || e.clientY + document.documentElement.scrollTop
 
@@ -251,12 +255,15 @@
             else if (this.elmY + dY < this.parentY) this.mouseOffY = (dY - (diffY = this.parentY - this.elmY))
             this.elmY += diffY
             this.elmH -= diffY
+
+//            this.elmW = this.elmH / this.ratio
           }
 
           if (this.handle.indexOf('b') >= 0) {
             if (this.elmH + dY < this.minh) this.mouseOffY = (dY - (diffY = this.minh - this.elmH))
             else if (this.elmY + this.elmH + dY > this.parentH) this.mouseOffY = (dY - (diffY = this.parentH - this.elmY - this.elmH))
             this.elmH += diffY
+//            this.elmW = this.elmH / this.ratio
           }
 
           if (this.handle.indexOf('l') >= 0) {
@@ -264,19 +271,26 @@
             else if (this.elmX + dX < this.parentX) this.mouseOffX = (dX - (diffX = this.parentX - this.elmX))
             this.elmX += diffX
             this.elmW -= diffX
+
+//            this.elmH = (this.elmW + diffX) * this.ratio
           }
 
           if (this.handle.indexOf('r') >= 0) {
             if (this.elmW + dX < this.minw) this.mouseOffX = (dX - (diffX = this.minw - this.elmW))
             else if (this.elmX + this.elmW + dX > this.parentW) this.mouseOffX = (dX - (diffX = this.parentW - this.elmX - this.elmW))
             this.elmW += diffX
+//            this.elmH = (this.elmW + diffX) * this.ratio
           }
 
           this.left = (Math.round(this.elmX / this.grid[0]) * this.grid[0])
           this.top = (Math.round(this.elmY / this.grid[1]) * this.grid[1])
 
           this.width = (Math.round(this.elmW / this.grid[0]) * this.grid[0])
-          this.height = (Math.round(this.elmH / this.grid[1]) * this.grid[1])
+          if (this.ratio > 0) {
+            this.height = (Math.round(this.elmW * this.ratio / this.grid[1]) * this.grid[1])
+          } else {
+            this.height = (Math.round(this.elmH / this.grid[1]) * this.grid[1])
+          }
 
 //          this.$emit('resizing', this.left, this.top, this.width, this.height)
         } else if (this.dragging) {
@@ -304,7 +318,7 @@
 //          this.$emit('dragging', this.left, this.top)
         }
       },
-      handleUp: function (e) {
+      handleUp(e) {
         this.handle = null
         if (this.resizing) {
           this.resizing = false
@@ -322,7 +336,7 @@
       }
     },
     computed: {
-      style: function () {
+      style() {
         return {
           top: this.top + 'px',
           left: this.left + 'px',
@@ -330,13 +344,20 @@
           height: this.height + 'px',
           zIndex: this.zIndex
         }
+      },
+      handles() {
+        if (this.ratio > 0) {
+          return ['br']
+        } else {
+          return ['tl', 'tm', 'tr', 'mr', 'br', 'bm', 'bl', 'ml']
+        }
       }
     },
     watch: {
-      active: function (val) {
+      active(val) {
         this.enabled = val
       },
-      z: function (val) {
+      z(val) {
         if (val >= 0 || val === 'auto') {
           this.zIndex = val
         }

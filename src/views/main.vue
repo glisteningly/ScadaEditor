@@ -17,14 +17,16 @@
       <div id="left_panel" class="tools_panel">
         <tools-panel v-show="isShowEditor"/>
       </div>
+
+      <preview-code v-if="isShowCode" :scadaTemplate="scadaTemplate"/>
+      <preview-scada v-if="isShowPreview" :tplStr="scadaTplStr" :initiated="isSvgViewInitiated"
+                     :testData="testBindData"/>
       <work-area v-show="isShowEditor"
                  :components="components"
                  :canvasStyle="canvasStyle"
                  @addDropedComp="onAddDropedComp"
                  @activated="onActivate"
                  @compLayoutChanged="onDraggerChanged"/>
-      <preview-code v-if="isShowCode" :scadaTemplate="scadaTemplate"/>
-      <preview-scada v-if="isShowPreview" :initiated="isSvgViewInitiated" :testData="testBindData"/>
       <div id="right_panel" class="tools_panel">
         <div v-show="(this.currentCompIndex !== -1) && isShowEditor">
           <section id="attr_panel" v-show="isShowAttrPanel">
@@ -138,14 +140,13 @@
 </template>
 
 <script>
-  import Vue from 'vue'
   import scadaGuage from '@/components/Scada/Basic/Guage.vue'
   import scadaLevelbar from '@/components/Scada/Basic/LevelBar.vue'
   import scadaLabel from '@/components/Scada/Basic/Label.vue'
   import Guid from '@/utils/guid'
   import _ from 'lodash'
 
-  const jstoxml = require('jstoxml')
+  import ScadaVueTpl from '@/utils/scadaVueTpl'
   import ActionBar from './actionBar.vue'
   import ToolsPanel from './toolsPanel.vue'
   import PreviewCode from './previewCode.vue'
@@ -174,10 +175,10 @@
         isShowPreview: false,
         isShowEditor: true,
         isCompEditing: false,
-        previewCompName: 'div',
         isSvgViewInitiated: false,
-        canvasW: 1200,
-        canvasH: 700,
+        scadaTplStr: null,
+        canvasW: 1920,
+        canvasH: 1080,
         color1: '#409EFF',
         bindField: 'value',
         testBindData: { datamodel1: { field1: 33, field2: 44 }, datamodel2: { field3: 55, field4: 66 } },
@@ -207,7 +208,7 @@
       }
     },
     methods: {
-      addComp(compName, layout = { x: 0, y: 0, width: 100, height: 100 }, attrs = [], params = []) {
+      addComp(compName, layout = { x: 0, y: 0, width: 100, height: 100, ratio: 0 }, attrs = [], params = [], innerSvg) {
         const guid = Guid()
         this.onActivate(guid)
         const v = {}
@@ -219,7 +220,7 @@
         params.forEach((param) => {
           Object.assign(p, { [param.name]: param.value })
         })
-        this.components.push({
+        const newComp = {
           id: guid,
           type: compName,
           active: true,
@@ -229,10 +230,15 @@
           paramControls: params,
           params: p,
           bind: {}
-        })
+        }
+        if (innerSvg) {
+          Object.assign(newComp, { innerSvg })
+        }
+        this.components.push(newComp)
       },
       onAddDropedComp(d) {
         this.addComp(d.type, d.layout, d.attrs, d.params)
+        console.log(d.layout)
       },
       onRemoveCurrentComp() {
         if (this.isCompEditing) {
@@ -250,7 +256,7 @@
           layout.x += 10
           layout.y += 10
           if (clonedComp.type === 'scada-svg') {
-            this.addCompSvg(layout, clonedComp.inner)
+            this.addCompSvg(layout, clonedComp.innerSvg)
           } else {
             this.addComp(clonedComp.type, layout, clonedComp.attrs, clonedComp.paramControls)
           }
@@ -283,9 +289,6 @@
         this.isCompEditing = true
         this.curActivedId = guid
       },
-      onDeactivate() {
-        this.curActivedId = -1
-      },
 //      onResizing(x, y, w, h) {
 //        if (this.currentCompIndex !== -1) {
 //          this.components[this.currentCompIndex].layout.width = w
@@ -309,50 +312,6 @@
           this.components[index].layout.height = d.h
         }
       },
-      getTemplate() {
-        const comps = []
-//        this.syncAllCompValues()
-        this.components.forEach((item) => {
-          if (item.type === 'scada-svg') {
-            const el = document.getElementById(item.id)
-            if (!el) {
-              return
-            }
-            const elSvg = el.getElementsByTagName('svg')
-            const innerSvg = elSvg[0].innerHTML
-            comps.push({
-              _name: 'svg',
-              _attrs: {
-                'x': item.layout.x,
-                'y': item.layout.y,
-                'width': item.layout.width,
-                'height': item.layout.height,
-                'viewBox': elSvg[0].getAttribute('viewBox')
-              },
-              _content: innerSvg
-            })
-          } else {
-            const attrs = {
-              'x': item.layout.x,
-              'y': item.layout.y,
-              'width': item.layout.width,
-              'height': item.layout.height
-//              ':params': JSON.stringify(item.params).replace(/\"/g, "'")
-            }
-            if (Object.getOwnPropertyNames(item.params).length > 1) {
-              Object.assign(attrs, { ':params': JSON.stringify(item.params).replace(/\"/g, "'") })
-            }
-            if (Object.getOwnPropertyNames(item.bind).length > 1) {
-              Object.assign(attrs, { ':value': JSON.stringify(item.bind).replace(/\"/g, '') })
-            }
-            comps.push({
-              _name: item.type,
-              _attrs: attrs
-            })
-          }
-        })
-        return comps
-      },
       onShowEditor() {
         this.isShowPreview = false
         this.isShowCode = false
@@ -362,27 +321,13 @@
         this.isShowPreview = false
         this.isShowEditor = false
         this.isShowCode = true
-        this.scadaTemplate = this.$prettyDom(jstoxml.toXML(this.getTemplate()))
+        this.scadaTemplate = this.$prettyDom(ScadaVueTpl.getCompStr(this.components))
       },
       onShowPreview() {
         this.isShowCode = false
         this.isShowEditor = false
         this.isShowPreview = true
-//        this.isSvgViewInitiated = false
-//        Vue.component('ScadaView', {})
-        const compStr = jstoxml.toXML(this.getTemplate())
-        const templateStr = `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${this.canvasW} ${this.canvasH}" preserveAspectRatio="xMidYMid meet"
-	                          >${compStr}</svg>`
-        Vue.component('ScadaView', {
-          props: {
-            value: {
-              type: Object
-            }
-          },
-          template: templateStr,
-          components: { scadaGuage, scadaLevelbar, scadaLabel }
-        })
-//        this.previewCompName = 'ScadaView'
+        ScadaVueTpl.initScadaComp(this.components, { w: this.canvasW, h: this.canvasH })
         this.isSvgViewInitiated = true
       },
       handleKeyup(e) {
@@ -395,16 +340,19 @@
         }
       },
       addCompSvg(layout = { x: 100, y: 100, width: 400, height: 400 }, svgStr) {
-        const guid = Guid()
-        this.onActivate(guid)
-        this.components.push({
-          id: guid,
-          type: 'scada-svg',
-          active: true,
-          layout: layout,
-          value: null,
-          inner: svgStr
-        })
+//        const guid = Guid()
+//        this.onActivate(guid)
+//        this.components.push({
+//          id: guid,
+//          type: 'scada-svg',
+//          active: true,
+//          layout: layout,
+//          value: null,
+//          innerSvg: svgStr
+//        })
+        layout.ratio = 1
+        const params = [{ name: 'rotate', label: '旋转角度', type: 'Number', value: '0' }]
+        this.addComp('scada-svg', layout, [], params, svgStr)
       },
       onActionImportSvg(svgStr) {
         this.addCompSvg({ x: 100, y: 100, width: 400, height: 400 }, svgStr)
@@ -610,6 +558,7 @@
 
   .tools_panel {
     font-size: 12px;
+    color: #333;
     .title-label {
       font-size: 12px;
       background-color: #CCC;
@@ -683,5 +632,10 @@
       width: 100%;
       margin-bottom: 2px;
     }
+  }
+
+  svg.r90 > svg > g {
+    transform: rotate(90deg);
+    transform-origin: 50% 50%;
   }
 </style>

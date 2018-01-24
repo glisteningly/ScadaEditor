@@ -8,14 +8,13 @@
 <script>
   export default {
     props: {
-//      previewCompName: 'div',
       initiated: false,
+      tplStr: null,
       testData: {}
     },
     data() {
       return {
-//        previewCompName: 'div'
-//        testBindData: { datamodel1: { field1: 33, field2: 44 }, datamodel2: { field3: 55, field4: 66 } }
+        inited: false
       }
     },
     computed: {
@@ -27,11 +26,11 @@
         }
       },
       testBindData() {
-//        return { datamodel1: { field1: 33, field2: 44 }, datamodel2: { field3: 55, field4: 66 } }
         return this.testData
       }
     },
-    methods: {}
+    methods: {},
+    watch: {}
   }
 </script>
 <style lang="scss">
@@ -41,8 +40,8 @@
   }
 
   #scada_container {
-    margin: 20px auto;
-    width: 95%;
+    margin: 10px auto;
+    width: 96%;
   }
 
   #scada_view {

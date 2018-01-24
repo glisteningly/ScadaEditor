@@ -1,4 +1,5 @@
-<template v-html="svg" v-once class="scada-svg-editor">
+<template>
+  <svg v-html="svg" width="100%" height="100%" :transform="valRotate"></svg>
 </template>
 <script>
   export default {
@@ -6,12 +7,24 @@
     props: {
       svg: {
         type: String
+      },
+      params: {
+        type: Object,
+        default: function () {
+          return {
+            rotate: 0
+          }
+        }
       }
     },
     data() {
       return {}
     },
-    computed: {}
+    computed: {
+      valRotate() {
+        return `rotate(${this.params.rotate})`
+      }
+    }
   }
 </script>
 <style>
@@ -25,9 +38,5 @@
     user-select: none;
   }
 
-  .scada-svg-editor {
-    width: 100%;
-    height: 100%;
-  }
 </style>
 

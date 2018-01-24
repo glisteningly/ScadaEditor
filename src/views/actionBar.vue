@@ -31,7 +31,7 @@
               <i class="el-icon-view"></i> 预览
             </el-button>
             <el-button plain size="small" @click="$emit('actionShowCodeView')" :class="{isActiveBtn: isShowCode}">
-              <> 代码
+              <i class="el-icon-tickets"></i> 代码
             </el-button>
           </el-button-group>
           <el-button-group>
