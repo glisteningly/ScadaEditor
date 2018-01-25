@@ -29,110 +29,16 @@
                  @compLayoutChanged="onDraggerChanged"/>
       <div id="right_panel" class="tools_panel">
         <div v-show="(this.currentCompIndex !== -1) && isShowEditor">
-          <section id="attr_panel" v-show="isShowAttrPanel">
-            <div class="title-label">数据绑定</div>
-            <div class="panel-content">
-              <template v-for="attr in currentAttrs">
-                <div class="ctrl-item">
-                  <label class="bind-label">{{attr.label}}</label>
-                  <el-row>
-                    <el-col :span="24">
-                      <el-cascader
-                        placeholder="请选择数据点"
-                        :visible-arrow="false"
-                        :options="options2"
-                        :separator="'.'"
-                        :clearable="true"
-                        @active-item-change=""
-                        @change="compValInputChanged"
-                        v-model="attr.bind"
-                        :props="props"/>
-                    </el-col>
-                  </el-row>
-                  <el-row>
-                    <el-col :span="12">
-                      <el-input class="attr-input"
-                                v-model="attr.value"
-                                @change="compValInputChanged"/>
-                    </el-col>
-                    <el-col :span="12"><label class="label-preview">[ 预览值 ]</label></el-col>
-                  </el-row>
-                </div>
-              </template>
-            </div>
-          </section>
-          <section id="layout_panel">
-            <div class="title-label">位置尺寸</div>
-            <div class="panel-content">
-              <el-row>
-                <el-col :span="6">
-                  <el-input-number :controls=false v-model="curCompX"></el-input-number>
-                </el-col>
-                <el-col :span="6">
-                  <el-input-number :controls=false v-model="curCompY"></el-input-number>
-                </el-col>
-                <el-col :span="6">
-                  <el-input-number :controls=false v-model="curCompW"></el-input-number>
-                </el-col>
-                <el-col :span="6">
-                  <el-input-number :controls=false v-model="curCompH"></el-input-number>
-                </el-col>
-              </el-row>
-              <el-row>
-                <el-col :span="6">
-                  <span>X</span>
-                </el-col>
-                <el-col :span="6">
-                  <span>Y</span>
-                </el-col>
-                <el-col :span="6">
-                  <span>W</span>
-                </el-col>
-                <el-col :span="6">
-                  <span>H</span>
-                </el-col>
-              </el-row>
-            </div>
-          </section>
-          <section id="param_panel" v-show="isShowCtrlPanel">
-            <div class="title-label">组件参数</div>
-            <div class="panel-content">
-              <template v-for="ctrl in currentCtrls">
-                <div class="ctrl-item">
-                  <el-row>
-                    <el-col :span="6"><label>{{ctrl.label}}</label></el-col>
-                    <el-col :span="6">
-                      <component
-                        :is="getCtrlTyp(ctrl.type)"
-                        v-model="ctrl.value"
-                        @change="compValInputChanged"
-                      />
-                    </el-col>
-                  </el-row>
-                </div>
-              </template>
-            </div>
-          </section>
+          <attrs-panel v-show="isShowAttrPanel"
+                       :compAttrs="currentAttrs"
+                       :dataBinds="optionsDemo"
+                       @compValInputChanged="compValInputChanged"/>
+          <layout-panel v-if="this.currentCompIndex > -1" :layout="components[this.currentCompIndex].layout"/>
+          <params-panel v-show="isShowCtrlPanel"
+                        :compAttrs="currentCtrls"
+                        @compValInputChanged="compValInputChanged"/>
         </div>
-        <section id="test_panel" v-show="isShowPreview">
-          <div class="title-label">数据测试</div>
-          <div class="panel-content">
-            <template v-for="(val1, key1) in testBindData">
-              <div class="ctrl-item">
-                <label class="bind-label">{{`[ ${key1} ]`}}</label>
-                <template v-for="(val2, key2) in val1">
-                  <el-row>
-                    <el-col :span="6"><label>{{`• ${key2}`}}</label></el-col>
-                    <el-col :span="18">
-                      <el-input v-model="val1[key2]"/>
-                      <!--<label>{{val}}</label>-->
-                    </el-col>
-                  </el-row>
-                </template>
-              </div>
-            </template>
-          </div>
-        </section>
+        <test-panel v-show="isShowPreview" :bindData="testBindData"/>
       </div>
     </div>
     <div id="bottom_bar"></div>
@@ -140,9 +46,6 @@
 </template>
 
 <script>
-  import scadaGuage from '@/components/Scada/Basic/Guage.vue'
-  import scadaLevelbar from '@/components/Scada/Basic/LevelBar.vue'
-  import scadaLabel from '@/components/Scada/Basic/Label.vue'
   import Guid from '@/utils/guid'
   import _ from 'lodash'
 
@@ -152,6 +55,10 @@
   import PreviewCode from './previewCode.vue'
   import PreviewScada from './previewScada.vue'
   import WorkArea from './workArea.vue'
+  import LayoutPanel from './layoutPanel.vue'
+  import AttrsPanel from './attrsPanel.vue'
+  import ParamsPanel from './paramsPanel.vue'
+  import TestPanel from './testPanel.vue'
 
   export default {
     components: {
@@ -160,11 +67,10 @@
       PreviewCode,
       PreviewScada,
       WorkArea,
-      scadaGuage,
-      scadaLevelbar,
-      scadaLabel
-//      scadaSvg,
-
+      LayoutPanel,
+      AttrsPanel,
+      ParamsPanel,
+      TestPanel
     },
     data() {
       return {
@@ -177,12 +83,12 @@
         isCompEditing: false,
         isSvgViewInitiated: false,
         scadaTplStr: null,
-        canvasW: 1920,
-        canvasH: 1080,
+        canvasW: 1000,
+        canvasH: 600,
         color1: '#409EFF',
         bindField: 'value',
         testBindData: { datamodel1: { field1: 33, field2: 44 }, datamodel2: { field3: 55, field4: 66 } },
-        options2: [{
+        optionsDemo: [{
           label: 'datamodel1',
           cities: [{
             value: 'field1',
@@ -200,11 +106,7 @@
             value: 'field4',
             label: 'field4'
           }]
-        }],
-        props: {
-          value: 'label',
-          children: 'cities'
-        }
+        }]
       }
     },
     methods: {
@@ -238,7 +140,7 @@
       },
       onAddDropedComp(d) {
         this.addComp(d.type, d.layout, d.attrs, d.params)
-        console.log(d.layout)
+//        console.log(d.layout)
       },
       onRemoveCurrentComp() {
         if (this.isCompEditing) {
@@ -255,11 +157,7 @@
           const layout = clonedComp.layout
           layout.x += 10
           layout.y += 10
-          if (clonedComp.type === 'scada-svg') {
-            this.addCompSvg(layout, clonedComp.innerSvg)
-          } else {
-            this.addComp(clonedComp.type, layout, clonedComp.attrs, clonedComp.paramControls)
-          }
+          this.addComp(clonedComp.type, layout, clonedComp.attrs, clonedComp.paramControls, clonedComp.innerSvg)
         }
       },
       onMoveToFront() {
@@ -340,16 +238,6 @@
         }
       },
       addCompSvg(layout = { x: 100, y: 100, width: 400, height: 400 }, svgStr) {
-//        const guid = Guid()
-//        this.onActivate(guid)
-//        this.components.push({
-//          id: guid,
-//          type: 'scada-svg',
-//          active: true,
-//          layout: layout,
-//          value: null,
-//          innerSvg: svgStr
-//        })
         layout.ratio = 1
         const params = [{ name: 'rotate', label: '旋转角度', type: 'Number', value: '0' }]
         this.addComp('scada-svg', layout, [], params, svgStr)
@@ -364,16 +252,6 @@
       },
       onInputBlur() {
         this.isCompEditing = true
-      },
-      getCtrlTyp(type) {
-        switch (type) {
-          case 'Color' :
-            return 'el-color-picker'
-          case 'Number':
-            return 'el-input'
-          default:
-            return 'el-input'
-        }
       },
       onActionSaveDoc() {
         localStorage.setItem('savedComps', JSON.stringify(this.components))
@@ -426,54 +304,6 @@
       },
       currentCompIndex() {
         return _.findIndex(this.components, { id: this.curActivedId })
-      },
-      curCompX: {
-        set(v) {
-          if (this.currentCompIndex !== -1) {
-            this.components[this.currentCompIndex].layout.x = Math.round(v)
-          }
-        },
-        get() {
-          if (this.currentCompIndex !== -1) {
-            return this.components[this.currentCompIndex].layout.x
-          }
-        }
-      },
-      curCompY: {
-        set(v) {
-          if (this.currentCompIndex !== -1) {
-            this.components[this.currentCompIndex].layout.y = Math.round(v)
-          }
-        },
-        get() {
-          if (this.currentCompIndex !== -1) {
-            return this.components[this.currentCompIndex].layout.y
-          }
-        }
-      },
-      curCompW: {
-        set(v) {
-          if (this.currentCompIndex !== -1) {
-            this.components[this.currentCompIndex].layout.width = Math.round(v)
-          }
-        },
-        get() {
-          if (this.currentCompIndex !== -1) {
-            return this.components[this.currentCompIndex].layout.width
-          }
-        }
-      },
-      curCompH: {
-        set(v) {
-          if (this.currentCompIndex !== -1) {
-            this.components[this.currentCompIndex].layout.height = Math.round(v)
-          }
-        },
-        get() {
-          if (this.currentCompIndex !== -1) {
-            return this.components[this.currentCompIndex].layout.height
-          }
-        }
       },
       currentCtrls: {
         get() {
@@ -583,59 +413,5 @@
     flex: 0 0 250px;
     background-color: #EEE;
     border-left: 1px solid #AAA;
-  }
-
-  #layout_panel {
-    .panel-content {
-      margin-top: 4px;
-    }
-    input {
-      text-align: center !important;
-    }
-    .el-col {
-      padding: 0 4px;
-    }
-    .el-col > span {
-      padding-top: 4px;
-      display: block;
-      text-align: center;
-    }
-  }
-
-  #attr_panel {
-    .panel-content {
-      padding-top: 0;
-    }
-  }
-
-  .ctrl-item {
-    margin: 4px 4px;
-    label {
-      display: block;
-      margin-top: 6px;
-      padding-left: 2px;
-    }
-    label.bind-label {
-      margin-bottom: 6px;
-      margin-top: 10px;
-    }
-    label.label-preview {
-      color: #666;
-    }
-    .attr-input input {
-      max-width: 100px !important;
-    }
-    .el-col {
-      margin-bottom: 4px;
-    }
-    .el-cascader {
-      width: 100%;
-      margin-bottom: 2px;
-    }
-  }
-
-  svg.r90 > svg > g {
-    transform: rotate(90deg);
-    transform-origin: 50% 50%;
   }
 </style>

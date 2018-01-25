@@ -79,7 +79,7 @@
 //  border: none;
 //}
 
-.el-button+.el-button {
+.el-button + .el-button {
   margin-left: 6px;
 }
 
@@ -143,4 +143,8 @@
 
 .el-cascader__label {
   padding: 0 7px;
+}
+
+.popper__arrow {
+  display: none !important;
 }

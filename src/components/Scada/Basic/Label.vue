@@ -2,12 +2,15 @@
   <svg>
     <g>
       <rect
-        :fill="fill"
+        :fill="bgColor"
         width="100%"
         height="100%"
       />
-      <text x="50%" y="50%" alignment-baseline="middle"
-            style="font-size:14px; font-weight: bold; fill:#000000; text-anchor: middle;"
+      <text x="50%" y="55%" alignment-baseline="middle"
+            :fill="params.fill"
+            :font-size="params.fontSize"
+            :font-family="fontFamily"
+            style="text-anchor: middle"
       >{{labelText}}
       </text>
     </g>
@@ -24,12 +27,20 @@
         type: Object,
         default: function () {
           return {
-            val1: 'label'
+            val1: '9999'
           }
         }
       },
-      fill: {
-        default: 'none'
+      params: {
+        type: Object,
+        default: function () {
+          return {
+            fill: '#333',
+            background: '#FFF',
+            fontSize: 24,
+            fontFamily: 'default'
+          }
+        }
       }
     },
     data() {
@@ -38,6 +49,17 @@
     computed: {
       labelText() {
         return (this.value.val1 || '[LABEL]')
+      },
+      bgColor() {
+        return (this.params.background || 'none')
+      },
+      fontFamily() {
+        switch (this.params.fontFamily) {
+          case 'lcdmono':
+            return "'lcdmono2', Arial, sans-serif"
+          default:
+            return 'Arial, sans-serif'
+        }
       }
     }
   }

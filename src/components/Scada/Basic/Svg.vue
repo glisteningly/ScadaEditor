@@ -1,5 +1,5 @@
 <template>
-  <svg v-html="svg" width="100%" height="100%" :transform="valRotate"></svg>
+  <svg v-html="svg" width="100%" height="100%" ref="svgWrap"></svg>
 </template>
 <script>
   export default {
@@ -23,6 +23,26 @@
     computed: {
       valRotate() {
         return `rotate(${this.params.rotate})`
+      }
+    },
+    methods: {
+      initParams() {
+        const s = this.$el.getElementsByTagName('svg')
+        const t = s[0].getAttribute('viewBox').split(' ')
+        console.log(t)
+        const g = this.$el.getElementsByTagName('g')
+        if (g) {
+          g[0].setAttribute('transform', `rotate(${this.params.rotate} ${t[2] / 2} ${t[3] / 2})`)
+        }
+      }
+    },
+    mounted() {
+      this.initParams()
+    },
+    watch: {
+      params() {
+//        console.log('params changed!')
+        this.initParams()
       }
     }
   }
