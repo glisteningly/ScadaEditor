@@ -3,8 +3,8 @@ export default {
     {
       id: 0,
       name: 'ex-comp-1',
-      label: '管接头1',
       config: {
+        label: '管接头',
         compType: 'svg',
         compSource: '/static/img/scada/svg/ex-comp-1.svg',
         width: 27,
@@ -18,8 +18,8 @@ export default {
     {
       id: 1,
       name: 'tube_h',
-      label: '管横1',
       config: {
+        label: '管横',
         compType: 'svg',
         compSource: '/static/img/scada/svg/tube_h.svg',
         width: 50,
@@ -33,8 +33,8 @@ export default {
     {
       id: 2,
       name: 'tube_v',
-      label: '管竖1',
       config: {
+        label: '管竖',
         compType: 'svg',
         compSource: '/static/img/scada/svg/tube_v.svg',
         width: 10,
@@ -48,8 +48,8 @@ export default {
     {
       id: 100,
       name: 'ex-comp-2',
-      label: '元件1',
       config: {
+        label: '元件A',
         compType: 'svg',
         compSource: '/static/img/scada/svg/ex-comp-2.svg',
         width: 56,
@@ -63,8 +63,8 @@ export default {
     {
       id: 101,
       name: 'ex-comp-3',
-      label: '元件2',
       config: {
+        label: '元件B',
         compType: 'svg',
         compSource: '/static/img/scada/svg/ex-comp-3.svg',
         width: 49,

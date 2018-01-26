@@ -1,25 +1,22 @@
 <template>
-  <section>
-    <div class="title-label">组件库</div>
-    <div class="panel-content">
-      <div class="panel-subtitle">基础组件</div>
-      <div class="comp-list">
-        <drag v-for="tool in compTools" class="comp-item" :key="tool.id"
-              :transferData="{type:tool.name, config:tool.config, attrs:tool.attrs, params:tool.params }">
-          <img class="comp-icon"
-               :src="`http://10.0.0.126/static/img/scada/${tool.name}.png`" :alt="tool.type">
-        </drag>
-      </div>
-      <div class="panel-subtitle">扩展组件库1</div>
-      <div class="comp-list">
-        <drag v-for="tool in compToolsEx" class="comp-item" :key="tool.id"
-              :transferData="{type:tool.name, config:tool.config, attrs:[], params:tool.params }">
-          <img class="comp-icon comp-icon-svg"
-               :src="tool.imgUrl" :alt="tool.type">
-        </drag>
-      </div>
+  <collapse-panel label="组件库">
+    <div class="panel-subtitle">基础组件</div>
+    <div class="comp-list">
+      <drag v-for="tool in compTools" class="comp-item" :key="tool.id"
+            :transferData="{type:tool.name, config:tool.config, attrs:tool.attrs, params:tool.params }">
+        <img class="comp-icon"
+             :src="`http://10.0.0.126/static/img/scada/${tool.name}.png`" :alt="tool.type">
+      </drag>
     </div>
-  </section>
+    <div class="panel-subtitle">扩展组件库1</div>
+    <div class="comp-list">
+      <drag v-for="tool in compToolsEx" class="comp-item" :key="tool.id"
+            :transferData="{type:tool.name, config:tool.config, attrs:[], params:tool.params }">
+        <img class="comp-icon comp-icon-svg"
+             :src="tool.imgUrl" :alt="tool.type">
+      </drag>
+    </div>
+  </collapse-panel>
 </template>
 <script>
   import { Drag } from 'vue-drag-drop'
@@ -47,7 +44,7 @@
 <style lang="scss">
   .panel-subtitle {
     margin: 4px 0;
-    padding: 3px 3px 0 4px;
+    padding: 4px 4px 2px 4px;
     line-height: 16px;
     background-color: #CCC;
   }
@@ -69,6 +66,10 @@
       border: 1px solid #DDD;
       color: #20a0ff;
     }
+  }
+
+  .collapse-btn {
+    float: right;
   }
 
   .comp-icon {

@@ -16,8 +16,8 @@
     <div class="main">
       <div id="left_panel" class="tools_panel">
         <tools-panel v-show="isShowEditor"/>
+        <complist-panel :components="components"/>
       </div>
-
       <preview-code v-if="isShowCode" :scadaTemplate="scadaTemplate"/>
       <preview-scada v-if="isShowPreview" :tplStr="scadaTplStr" :initiated="isSvgViewInitiated"
                      :testData="testBindData"/>
@@ -62,6 +62,7 @@
   import AttrsPanel from './attrsPanel.vue'
   import ParamsPanel from './paramsPanel.vue'
   import TestPanel from './testPanel.vue'
+  import ComplistPanel from './complistPanel.vue'
 
   export default {
     components: {
@@ -73,7 +74,8 @@
       LayoutPanel,
       AttrsPanel,
       ParamsPanel,
-      TestPanel
+      TestPanel,
+      ComplistPanel
     },
     data() {
       return {
@@ -109,11 +111,14 @@
             value: 'field4',
             label: 'field4'
           }]
-        }]
+        }],
+        compLabelState: {}
       }
     },
     methods: {
-      addComp(compName, layout = { x: 0, y: 0, width: 100, height: 100, ratio: 0 }, attrs = [], params = [], innerSvg) {
+      addComp(compName, label,
+              layout = { x: 0, y: 0, width: 100, height: 100, ratio: 0 },
+              attrs = [], params = [], innerSvg) {
         const guid = Guid()
         this.onActivate(guid)
         const v = {}
@@ -127,6 +132,7 @@
         })
         const newComp = {
           id: guid,
+          label: label,
           type: compName,
           active: true,
           layout: layout,
@@ -139,24 +145,38 @@
         if (innerSvg) {
           Object.assign(newComp, { innerSvg })
         }
-        this.components.push(newComp)
+//        this.components.push(newComp)
+        this.components.unshift(newComp)
+      },
+      getCompLabel(label) {
+        if (this.compLabelState[label]) {
+          this.compLabelState[label] += 1
+        } else {
+          Object.assign(this.compLabelState, { [label]: 1 })
+        }
+        return label + `-${this.compLabelState[label]}`
       },
       onAddDropedComp(d) {
-        this.addComp(d.type, d.layout, d.attrs, d.params)
-//        console.log(d.layout)
+        const label = this.getCompLabel(d.config.label)
+        this.addComp(d.type, label, d.layout, d.attrs, d.params)
       },
       onAddDropedCompSvg(d) {
-//        console.log(d.config.compSource)
         if (d.config.rotatable) {
           d.params.push({ name: 'rotate', label: '旋转角度', type: 'Number', value: '0' })
         }
-        axios.get(d.config.compSource).then((response) => {
-          this.addComp('scada-svg', d.layout, [], d.params, response.data)
-        })
+        try {
+          axios.get(d.config.compSource).then((response) => {
+            const label = this.getCompLabel(d.config.label)
+            this.addComp('scada-svg', label, d.layout, [], d.params, response.data)
+          })
+        } catch (e) {
+          console.log(e)
+        }
       },
-      addStaticSvg(layout = { x: 100, y: 100, width: 400, height: 400 }, svgStr) {
+      addStaticSvg(layout = { x: 200, y: 200, width: 300, height: 300 }, svgStr) {
         const params = [{ name: 'rotate', label: '旋转角度', type: 'Number', value: '0' }]
-        this.addComp('scada-svg', layout, [], params, svgStr)
+        const label = this.getCompLabel('imported-svg')
+        this.addComp('scada-svg', label, layout, [], params, svgStr)
       },
       onRemoveCurrentComp() {
         if (this.isCompEditing) {
@@ -180,14 +200,16 @@
         if (this.currentCompIndex !== -1) {
           const c = this.components[this.currentCompIndex]
           this.components.splice(this.currentCompIndex, 1)
-          this.components.push(c)
+//          this.components.push(c)
+          this.components.unshift(c)
         }
       },
       onMoveToBack() {
         if (this.currentCompIndex !== -1) {
           const c = this.components[this.currentCompIndex]
           this.components.splice(this.currentCompIndex, 1)
-          this.components.unshift(c)
+//          this.components.unshift(c)
+          this.components.push(c)
         }
       },
       onActivate(guid) {
@@ -444,22 +466,6 @@
     width: 100%;
     display: flex;
     flex-grow: 1;
-  }
-
-  .tools_panel {
-    font-size: 12px;
-    color: #333;
-    .title-label {
-      font-size: 12px;
-      background-color: #888;
-      padding: 8px 8px 6px 8px;
-      color: #FFF;
-      letter-spacing: 1px;
-    }
-    .panel-content {
-      padding: 6px 6px 6px 6px;
-      border-bottom: 1px solid #BBB;
-    }
   }
 
   #left_panel {

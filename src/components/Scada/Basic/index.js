@@ -4,6 +4,7 @@ export default {
       id: 0,
       name: 'scada-label',
       config: {
+        label: 'scada-label',
         width: 60,
         height: 28,
         keepRatio: false
@@ -25,6 +26,7 @@ export default {
       id: 1,
       name: 'scada-guage',
       config: {
+        label: 'scada-guage',
         width: 100,
         height: 75,
         keepRatio: true
@@ -38,6 +40,7 @@ export default {
       id: 2,
       name: 'scada-levelbar',
       config: {
+        label: 'scada-levelbar',
         width: 60,
         height: 100,
         keepRatio: false

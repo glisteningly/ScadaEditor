@@ -1,7 +1,7 @@
 <template>
   <div id="workarea" @mousedown.stop="onCancle">
-    <drop id="canvas" :style="canvasStyle" @drop="handleCompDrop" >
-      <dragger v-for="component in components"
+    <drop id="canvas" :style="canvasStyle" @drop="handleCompDrop">
+      <dragger v-for="component in components.slice().reverse()"
                :id="component.id"
                :key="component.id"
                :active.sync="component.active"

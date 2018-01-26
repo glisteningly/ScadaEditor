@@ -9,12 +9,16 @@ import locale from 'element-ui/lib/locale/lang/zh-CN'
 import 'element-ui/lib/theme-chalk/index.css'
 import VueHighlightJS from 'vue-highlightjs'
 import pretty from 'pretty'
+import CollapsePanel from '@/components/CollapsePanel/collapsePanel.vue'
+import VueDND from 'awe-dnd'
 
+Vue.use(VueDND)
 // import AsUI from './components'
 
 // Vue.use(AsUI)
 Vue.use(ElementUI, { locale, size: 'mini' })
 // Vue.component('icon-svg', IconSvg)
+Vue.component('CollapsePanel', CollapsePanel)
 Vue.config.productionTip = false
 
 // 为代码文本提供高亮、缩进

@@ -1,7 +1,5 @@
 <template>
-  <section id="layout_panel">
-    <div class="title-label">位置尺寸</div>
-    <div class="panel-content">
+  <collapse-panel label="位置尺寸" id="layout_panel">
       <el-row>
         <el-col :span="6">
           <el-input-number :controls=false v-model="compLayout.x"></el-input-number>
@@ -30,8 +28,7 @@
           <div>H<span v-if="layout.ratio>0"> ]</span></div>
         </el-col>
       </el-row>
-    </div>
-  </section>
+  </collapse-panel>
 </template>
 <script>
   export default {
@@ -74,9 +71,7 @@
 
 <style lang="scss">
   #layout_panel {
-    .panel-content {
-      margin-top: 4px;
-    }
+
     input {
       text-align: center !important;
     }
