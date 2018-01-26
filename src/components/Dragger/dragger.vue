@@ -401,6 +401,7 @@
     background: #66b1ff;
     border: 1px solid #f5f7fa;
     box-shadow: 0px 0px 2px #666;
+    z-index: 999;
   }
 
   .handle-tl {

@@ -16,7 +16,9 @@
     <div class="main">
       <div id="left_panel" class="tools_panel">
         <tools-panel v-show="isShowEditor"/>
-        <complist-panel :components="components"/>
+        <complist-panel v-show="isShowEditor"
+                        :components="components"
+                        @compSelected="onActivate"/>
       </div>
       <preview-code v-if="isShowCode" :scadaTemplate="scadaTemplate"/>
       <preview-scada v-if="isShowPreview" :tplStr="scadaTplStr" :initiated="isSvgViewInitiated"
@@ -120,6 +122,7 @@
               layout = { x: 0, y: 0, width: 100, height: 100, ratio: 0 },
               attrs = [], params = [], innerSvg) {
         const guid = Guid()
+        const newLabel = this.getCompLabel(label)
         this.onActivate(guid)
         const v = {}
         attrs.forEach((attr) => {
@@ -132,7 +135,7 @@
         })
         const newComp = {
           id: guid,
-          label: label,
+          label: newLabel,
           type: compName,
           active: true,
           layout: layout,
@@ -157,8 +160,7 @@
         return label + `-${this.compLabelState[label]}`
       },
       onAddDropedComp(d) {
-        const label = this.getCompLabel(d.config.label)
-        this.addComp(d.type, label, d.layout, d.attrs, d.params)
+        this.addComp(d.type, d.config.label, d.layout, d.attrs, d.params)
       },
       onAddDropedCompSvg(d) {
         if (d.config.rotatable) {
@@ -166,8 +168,7 @@
         }
         try {
           axios.get(d.config.compSource).then((response) => {
-            const label = this.getCompLabel(d.config.label)
-            this.addComp('scada-svg', label, d.layout, [], d.params, response.data)
+            this.addComp('scada-svg', d.config.label, d.layout, [], d.params, response.data)
           })
         } catch (e) {
           console.log(e)
@@ -175,8 +176,7 @@
       },
       addStaticSvg(layout = { x: 200, y: 200, width: 300, height: 300 }, svgStr) {
         const params = [{ name: 'rotate', label: '旋转角度', type: 'Number', value: '0' }]
-        const label = this.getCompLabel('imported-svg')
-        this.addComp('scada-svg', label, layout, [], params, svgStr)
+        this.addComp('scada-svg', '导入svg', layout, [], params, svgStr)
       },
       onRemoveCurrentComp() {
         if (this.isCompEditing) {
@@ -193,7 +193,9 @@
           const layout = clonedComp.layout
           layout.x += 10
           layout.y += 10
-          this.addComp(clonedComp.type, layout, clonedComp.attrs, clonedComp.paramControls, clonedComp.innerSvg)
+          const i = clonedComp.label.lastIndexOf('-')
+          const newLabel = (i > -1) ? clonedComp.label.slice(0, i) : clonedComp.label
+          this.addComp(clonedComp.type, newLabel, layout, clonedComp.attrs, clonedComp.paramControls, clonedComp.innerSvg)
         }
       },
       onMoveToFront() {
@@ -218,9 +220,12 @@
           this.syncCompValues(this.components[this.currentCompIndex])
         }
         this.components.forEach((item) => {
-          if (item.guid !== guid) {
-            item.active = false
-          }
+//          if (item.guid === guid) {
+//            item.active = true
+//          } else {
+//            item.active = false
+//          }
+          item.active = (item.id === guid)
         })
         this.isCompEditing = true
         this.curActivedId = guid
