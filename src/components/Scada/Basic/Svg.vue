@@ -28,11 +28,14 @@
     methods: {
       initParams() {
         const s = this.$el.getElementsByTagName('svg')
-        const t = s[0].getAttribute('viewBox').split(' ')
-        console.log(t)
-        const g = this.$el.getElementsByTagName('g')
-        if (g) {
-          g[0].setAttribute('transform', `rotate(${this.params.rotate} ${t[2] / 2} ${t[3] / 2})`)
+        const strVb = s[0].getAttribute('viewBox')
+        if (strVb) {
+//        console.log(t)
+          const v = strVb.split(' ')
+          const g = this.$el.getElementsByTagName('g')
+          if (g) {
+            g[0].setAttribute('transform', `rotate(${this.params.rotate} ${v[2] / 2} ${v[3] / 2})`)
+          }
         }
       }
     },

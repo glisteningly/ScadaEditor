@@ -3,7 +3,7 @@ export default {
     {
       id: 0,
       name: 'scada-label',
-      defaultSize: {
+      config: {
         width: 60,
         height: 28,
         keepRatio: false
@@ -24,7 +24,7 @@ export default {
     {
       id: 1,
       name: 'scada-guage',
-      defaultSize: {
+      config: {
         width: 100,
         height: 75,
         keepRatio: true
@@ -37,7 +37,7 @@ export default {
     {
       id: 2,
       name: 'scada-levelbar',
-      defaultSize: {
+      config: {
         width: 60,
         height: 100,
         keepRatio: false

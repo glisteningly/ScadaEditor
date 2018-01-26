@@ -43,14 +43,14 @@
       },
       minw: {
         type: Number,
-        default: 10,
+        default: 4,
         validator(val) {
           return val > 0
         }
       },
       minh: {
         type: Number,
-        default: 10,
+        default: 4,
         validator(val) {
           return val > 0
         }
@@ -158,7 +158,6 @@
         enabled: this.active,
         handle: null,
         zIndex: this.z
-//        ratio: 0.75
       }
     },
     methods: {

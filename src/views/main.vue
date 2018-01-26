@@ -25,7 +25,9 @@
                  :components="components"
                  :canvasStyle="canvasStyle"
                  @addDropedComp="onAddDropedComp"
+                 @addDropedCompSvg="onAddDropedCompSvg"
                  @activated="onActivate"
+                 @compSelCanceled="unSelCurComp"
                  @compLayoutChanged="onDraggerChanged"/>
       <div id="right_panel" class="tools_panel">
         <div v-show="(this.currentCompIndex !== -1) && isShowEditor">
@@ -48,6 +50,7 @@
 <script>
   import Guid from '@/utils/guid'
   import _ from 'lodash'
+  import axios from 'axios'
 
   import ScadaVueTpl from '@/utils/scadaVueTpl'
   import ActionBar from './actionBar.vue'
@@ -142,6 +145,19 @@
         this.addComp(d.type, d.layout, d.attrs, d.params)
 //        console.log(d.layout)
       },
+      onAddDropedCompSvg(d) {
+//        console.log(d.config.compSource)
+        if (d.config.rotatable) {
+          d.params.push({ name: 'rotate', label: '旋转角度', type: 'Number', value: '0' })
+        }
+        axios.get(d.config.compSource).then((response) => {
+          this.addComp('scada-svg', d.layout, [], d.params, response.data)
+        })
+      },
+      addStaticSvg(layout = { x: 100, y: 100, width: 400, height: 400 }, svgStr) {
+        const params = [{ name: 'rotate', label: '旋转角度', type: 'Number', value: '0' }]
+        this.addComp('scada-svg', layout, [], params, svgStr)
+      },
       onRemoveCurrentComp() {
         if (this.isCompEditing) {
           const index = _.findIndex(this.components, { id: this.curActivedId })
@@ -210,6 +226,12 @@
           this.components[index].layout.height = d.h
         }
       },
+      unSelCurComp() {
+        if (this.currentCompIndex !== -1) {
+          this.components[this.currentCompIndex].active = false
+        }
+        this.curActivedId = -1
+      },
       onShowEditor() {
         this.isShowPreview = false
         this.isShowCode = false
@@ -228,8 +250,43 @@
         ScadaVueTpl.initScadaComp(this.components, { w: this.canvasW, h: this.canvasH })
         this.isSvgViewInitiated = true
       },
+      moveCompPos(direction) {
+        if (this.currentCompIndex !== -1) {
+          switch (direction) {
+            case 'up':
+              this.components[this.currentCompIndex].layout.y -= 1
+              break
+            case 'down':
+              this.components[this.currentCompIndex].layout.y += 1
+              break
+            case 'left':
+              this.components[this.currentCompIndex].layout.x -= 1
+              break
+            case 'right':
+              this.components[this.currentCompIndex].layout.x += 1
+              break
+          }
+        }
+      },
       handleKeyup(e) {
+//        console.log(e.which)
         switch (e.which) {
+          case 37: {
+            this.moveCompPos('left')
+            break
+          }
+          case 39: {
+            this.moveCompPos('right')
+            break
+          }
+          case 38: {
+            this.moveCompPos('up')
+            break
+          }
+          case 40: {
+            this.moveCompPos('down')
+            break
+          }
           case 8:
           case 46: {
             this.onRemoveCurrentComp()
@@ -237,13 +294,8 @@
           }
         }
       },
-      addCompSvg(layout = { x: 100, y: 100, width: 400, height: 400 }, svgStr) {
-        layout.ratio = 1
-        const params = [{ name: 'rotate', label: '旋转角度', type: 'Number', value: '0' }]
-        this.addComp('scada-svg', layout, [], params, svgStr)
-      },
       onActionImportSvg(svgStr) {
-        this.addCompSvg({ x: 100, y: 100, width: 400, height: 400 }, svgStr)
+        this.addStaticSvg({ x: 100, y: 100, width: 400, height: 400 }, svgStr)
       },
       onInputFocus(e) {
         if (e.target.nodeName === 'INPUT') {
@@ -254,10 +306,18 @@
         this.isCompEditing = true
       },
       onActionSaveDoc() {
-        localStorage.setItem('savedComps', JSON.stringify(this.components))
+        const saveSlot = {
+          curActivedId: this.curActivedId,
+          componentList: this.components
+        }
+        localStorage.setItem('saveSlot', JSON.stringify(saveSlot))
       },
       onActionLoadDoc() {
-        this.components = JSON.parse(localStorage.getItem('savedComps'))
+        const saveSlot = JSON.parse(localStorage.getItem('saveSlot'))
+        if (saveSlot) {
+          this.components = saveSlot.componentList
+          this.curActivedId = saveSlot.curActivedId
+        }
       },
       syncCompValues(comp) {
         const p = {}
@@ -391,12 +451,13 @@
     color: #333;
     .title-label {
       font-size: 12px;
-      background-color: #CCC;
-      padding: 6px;
-      color: #333;
+      background-color: #888;
+      padding: 8px 8px 6px 8px;
+      color: #FFF;
+      letter-spacing: 1px;
     }
     .panel-content {
-      padding: 6px 6px 12px 6px;
+      padding: 6px 6px 6px 6px;
       border-bottom: 1px solid #BBB;
     }
   }

@@ -1,6 +1,6 @@
 <template>
-  <div id="workarea">
-    <drop id="canvas" :style="canvasStyle" @drop="handleCompDrop">
+  <div id="workarea" @mousedown.stop="onCancle">
+    <drop id="canvas" :style="canvasStyle" @drop="handleCompDrop" >
       <dragger v-for="component in components"
                :id="component.id"
                :key="component.id"
@@ -60,20 +60,28 @@
     methods: {
       handleCompDrop(data, e) {
         const d = _.cloneDeep(data)
-        const r = (d.size.keepRatio) ? (d.size.height / d.size.width) : 0
+        const r = (d.config.keepRatio) ? (d.config.height / d.config.width) : 0
         const layout = {
           x: e.offsetX,
           y: e.offsetY,
-          width: d.size.width,
-          height: d.size.height,
+          width: d.config.width,
+          height: d.config.height,
           ratio: r
         }
         d.layout = layout
-//        this.addComp(d.type, layout, d.attrs, d.params)
+        if (d.config.compType) {
+          if (d.config.compType === 'svg') {
+            this.$emit('addDropedCompSvg', d)
+            return
+          }
+        }
         this.$emit('addDropedComp', d)
       },
       onDraggerChanged(guid, x, y, w, h) {
         this.$emit('compLayoutChanged', { guid, x, y, w, h })
+      },
+      onCancle() {
+        this.$emit('compSelCanceled')
       }
     }
   }
@@ -99,6 +107,9 @@
 
   .drag-box {
     border: 1px solid transparent;
+    svg {
+      position: absolute;
+    }
   }
 
   .active {
