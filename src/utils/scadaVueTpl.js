@@ -7,7 +7,7 @@ import scadaLabel from '@/components/Scada/Basic/Label.vue'
 export default {
   getCompStr(components) {
     const comps = []
-    components.forEach((item) => {
+    components.slice().reverse().forEach((item) => {
       if (item.type === 'scada-svg') {
         const el = document.getElementById(item.id)
         if (!el) {

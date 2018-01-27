@@ -2,8 +2,8 @@
   <section>
     <div class="title-label"><span>{{label}}</span>
       <span class="collapse-btn">
-        <i class="el-icon-caret-bottom" v-if="!collapsed" @click="collapsed=true"></i>
-        <i class="el-icon-caret-right" v-if="collapsed" @click="collapsed=false"></i>
+        <i class="el-icon-caret-bottom" v-if="!collapsed" @click="collapsePanel"></i>
+        <i class="el-icon-caret-right" v-if="collapsed" @click="openPanel"></i>
         </span>
     </div>
     <div class="panel-content" v-show="!collapsed">
@@ -25,7 +25,19 @@
       }
     },
     computed: {},
-    methods: {},
+    methods: {
+      collapsePanel() {
+        this.collapsed = true
+      },
+      openPanel() {
+        this.collapsed = false
+      }
+    },
+    watch: {
+      collapsed() {
+        this.$events.emit('PanelCollapseChanged')
+      }
+    },
     mounted() {
 
     }

@@ -474,8 +474,10 @@
   }
 
   #left_panel {
+    display: flex;
     width: 180px;
     flex: 0 0 180px;
+    flex-direction: column;
     background-color: #EEE;
     border-right: 1px solid #AAA;
   }

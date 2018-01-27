@@ -1,6 +1,6 @@
 <template>
-  <collapse-panel label="页面组件">
-    <div id="complist_panel" v-show="components.length>0">
+  <collapse-panel label="页面组件" class="fill-parent-h">
+    <div id="complist_panel" v-show="components.length>0" :style="listHeight" :class="{isHide:clientVisable}">
       <div class="page-list">
         <div v-for="comp in components"
              :key="comp.id"
@@ -21,21 +21,48 @@
       components: null
     },
     data() {
-      return {}
+      return {
+        clientHeight: 0,
+        clientVisable: false
+      }
     },
-    computed: {},
+    computed: {
+      listHeight() {
+        return {
+          maxHeight: `${this.clientHeight - 38}px`
+        }
+      }
+    },
     methods: {
       compSelected(id) {
         console.log(id)
         this.$emit('compSelected', id)
+      },
+      onPanelSizeChang() {
+        setTimeout(() => {
+          this.clientHeight = this.$el.clientHeight
+        }, 100)
+        this.clientVisable = true
+        setTimeout(() => {
+          this.clientVisable = false
+        }, 100)
+        console.log(this.clientHeight)
       }
     },
     mounted() {
+      this.onPanelSizeChang()
+      this.$events.on('PanelCollapseChanged', this.onPanelSizeChang)
     }
   }
 </script>
 
 <style lang="scss">
+  @import "../styles/mixin.scss";
+
+  .fill-parent-h {
+    flex-grow: 1;
+  }
+
   ul, li {
     list-style: none;
     margin: 0;
@@ -43,8 +70,9 @@
   }
 
   #complist_panel {
-    max-height: 460px;
+    /*max-height: 460px;*/
     overflow-y: auto;
+    @include scrollBar;
   }
 
   .page-list {
@@ -59,6 +87,10 @@
 
   .isActive {
     background-color: rgba(67, 181, 255, 0.3);
+  }
+
+  .isHide {
+    display: none;
   }
 
 

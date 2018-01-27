@@ -11,8 +11,10 @@ import VueHighlightJS from 'vue-highlightjs'
 import pretty from 'pretty'
 import CollapsePanel from '@/components/CollapsePanel/collapsePanel.vue'
 import VueDND from 'awe-dnd'
+import VueEvents from 'vue-event-handler'
 
 Vue.use(VueDND)
+Vue.use(VueEvents)
 // import AsUI from './components'
 
 // Vue.use(AsUI)
