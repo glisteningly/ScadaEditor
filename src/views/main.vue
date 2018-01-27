@@ -332,6 +332,9 @@
       onInputBlur() {
         this.isCompEditing = true
       },
+      onWindowResized() {
+        this.$events.emit('windowResized')
+      },
       onActionSaveDoc() {
         const saveSlot = {
           curActivedId: this.curActivedId,
@@ -437,6 +440,7 @@
       document.documentElement.addEventListener('keyup', this.handleKeyup)
       document.documentElement.addEventListener('focus', this.onInputFocus, true)
       document.documentElement.addEventListener('blur', this.onInputBlur, true)
+      window.addEventListener('resize', this.onWindowResized)
     },
     beforeMount() {
     },
@@ -444,6 +448,7 @@
       document.documentElement.removeEventListener('keyup', this.handleKeyup)
       document.documentElement.removeEventListener('focus', this.onInputFocus, true)
       document.documentElement.removeEventListener('blur', this.onInputBlur, true)
+      window.removeEventListener('resize', this.onWindowResized)
     },
     watch: {}
   }

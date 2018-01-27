@@ -1,6 +1,6 @@
 <template>
   <div id="workarea" @mousedown.stop="onCancle">
-    <drop id="canvas" :style="canvasStyle" @drop="handleCompDrop">
+    <drop id="canvas" :style="canvasStyle" @drop="handleCompDrop" ref="canvas">
       <dragger v-for="component in components.slice().reverse()"
                :id="component.id"
                :key="component.id"
@@ -59,11 +59,18 @@
     computed: {},
     methods: {
       handleCompDrop(data, e) {
+        if (!data) {
+          return
+        }
+        const canvasX = document.getElementById('canvas').offsetLeft
+        const canvasY = document.getElementById('canvas').offsetTop
+        const scrollX = document.getElementById('workarea').scrollLeft
+        const scrollY = document.getElementById('workarea').scrollTop
         const d = _.cloneDeep(data)
         const r = (d.config.keepRatio) ? (d.config.height / d.config.width) : 0
         const layout = {
-          x: e.offsetX,
-          y: e.offsetY,
+          x: e.clientX - canvasX + scrollX,
+          y: e.clientY - canvasY + scrollY,
           width: d.config.width,
           height: d.config.height,
           ratio: r

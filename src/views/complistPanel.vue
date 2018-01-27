@@ -35,10 +35,9 @@
     },
     methods: {
       compSelected(id) {
-        console.log(id)
         this.$emit('compSelected', id)
       },
-      onPanelSizeChang() {
+      resizePanel() {
         setTimeout(() => {
           this.clientHeight = this.$el.clientHeight
         }, 100)
@@ -46,12 +45,22 @@
         setTimeout(() => {
           this.clientVisable = false
         }, 100)
-        console.log(this.clientHeight)
+      },
+      onPanelSizeChang(label) {
+        if (label === '组件库') {
+          this.resizePanel()
+        }
       }
     },
     mounted() {
-      this.onPanelSizeChang()
-      this.$events.on('PanelCollapseChanged', this.onPanelSizeChang)
+      this.resizePanel()
+      this.$events.on('PanelCollapseChanged', (label) => {
+        this.onPanelSizeChang(label)
+      })
+      this.$events.on('windowResized', this.resizePanel)
+    },
+    beforeDestroy() {
+      this.$events.off('PanelCollapseChanged')
     }
   }
 </script>

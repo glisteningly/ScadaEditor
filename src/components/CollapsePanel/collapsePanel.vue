@@ -35,7 +35,7 @@
     },
     watch: {
       collapsed() {
-        this.$events.emit('PanelCollapseChanged')
+        this.$events.emit('PanelCollapseChanged', this.label)
       }
     },
     mounted() {
