@@ -12,7 +12,8 @@
         type: Object,
         default: function () {
           return {
-            rotate: 0
+            rotate: 0,
+            colorMask: ''
           }
         }
       }
@@ -28,13 +29,25 @@
     methods: {
       initParams() {
         const s = this.$el.getElementsByTagName('svg')
-        const strVb = s[0].getAttribute('viewBox')
-        if (strVb) {
-//        console.log(t)
-          const v = strVb.split(' ')
+        if (this.params.colorMask && this.params.colorMask !== '') {
+          s[0].setAttribute('filter', `url(#${this.params.colorMask})`)
+        } else {
+          s[0].removeAttribute('filter')
+        }
+        if (this.params.rotate !== 0) {
+          const strVb = s[0].getAttribute('viewBox')
+          if (strVb) {
+//            console.log(this.params.rotate)
+            const v = strVb.split(' ')
+            const g = this.$el.getElementsByTagName('g')
+            if (g) {
+              g[0].setAttribute('transform', `rotate(${this.params.rotate} ${v[2] / 2} ${v[3] / 2})`)
+            }
+          }
+        } else {
           const g = this.$el.getElementsByTagName('g')
           if (g) {
-            g[0].setAttribute('transform', `rotate(${this.params.rotate} ${v[2] / 2} ${v[3] / 2})`)
+            g[0].removeAttribute('transform')
           }
         }
       }
@@ -44,7 +57,6 @@
     },
     watch: {
       params() {
-//        console.log('params changed!')
         this.initParams()
       }
     }

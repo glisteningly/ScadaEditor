@@ -46,6 +46,7 @@
       </div>
     </div>
     <div id="bottom_bar"></div>
+    <color-plate/>
   </div>
 </template>
 
@@ -53,6 +54,7 @@
   import Guid from '@/utils/guid'
   import _ from 'lodash'
   import axios from 'axios'
+  import compParamsConfig from '@/components/Scada/config'
 
   import ScadaVueTpl from '@/utils/scadaVueTpl'
   import ActionBar from './actionBar.vue'
@@ -65,6 +67,7 @@
   import ParamsPanel from './paramsPanel.vue'
   import TestPanel from './testPanel.vue'
   import ComplistPanel from './complistPanel.vue'
+  import ColorPlate from '@/components/Scada/ColorPlate.vue'
 
   export default {
     components: {
@@ -77,7 +80,8 @@
       AttrsPanel,
       ParamsPanel,
       TestPanel,
-      ComplistPanel
+      ComplistPanel,
+      ColorPlate
     },
     data() {
       return {
@@ -164,7 +168,10 @@
       },
       onAddDropedCompSvg(d) {
         if (d.config.rotatable) {
-          d.params.push({ name: 'rotate', label: '旋转角度', type: 'Number', value: '0' })
+          d.params.push(Object.assign({}, compParamsConfig.rotateParam))
+        }
+        if (d.config.colorMask) {
+          d.params.push(Object.assign({}, compParamsConfig.colorMaskParam))
         }
         try {
           axios.get(d.config.compSource).then((response) => {
@@ -175,7 +182,7 @@
         }
       },
       addStaticSvg(layout = { x: 200, y: 200, width: 300, height: 300 }, svgStr) {
-        const params = [{ name: 'rotate', label: '旋转角度', type: 'Number', value: '0' }]
+        const params = [Object.assign({}, compParamsConfig.rotateParam)]
         this.addComp('scada-svg', '导入svg', layout, [], params, svgStr)
       },
       onRemoveCurrentComp() {

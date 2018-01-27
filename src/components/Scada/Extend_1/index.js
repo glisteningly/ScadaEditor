@@ -10,7 +10,8 @@ export default {
         width: 27,
         height: 27,
         keepRatio: true,
-        rotatable: true
+        rotatable: true,
+        colorMask: true
       },
       imgUrl: 'http://10.0.0.126/static/img/scada/svg/ex-comp-1.svg',
       params: []
@@ -25,7 +26,8 @@ export default {
         width: 50,
         height: 10,
         keepRatio: false,
-        rotatable: false
+        rotatable: false,
+        colorMask: true
       },
       imgUrl: 'http://10.0.0.126/static/img/scada/svg/tube_h_pre.svg',
       params: []
@@ -40,7 +42,8 @@ export default {
         width: 10,
         height: 50,
         keepRatio: false,
-        rotatable: false
+        rotatable: false,
+        colorMask: true
       },
       imgUrl: 'http://10.0.0.126/static/img/scada/svg/tube_v_pre.svg',
       params: []
