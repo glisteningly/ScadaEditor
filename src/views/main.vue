@@ -14,6 +14,7 @@
                 @actionMoveToFront="onMoveToFront"
                 @actionMoveToBack="onMoveToBack"/>
     <div class="main">
+      <scada-defs/>
       <div id="left_panel" class="tools_panel">
         <tools-panel v-show="isShowEditor"/>
         <complist-panel v-show="isShowEditor"
@@ -46,7 +47,6 @@
       </div>
     </div>
     <div id="bottom_bar"></div>
-    <color-plate/>
   </div>
 </template>
 
@@ -67,7 +67,7 @@
   import ParamsPanel from './paramsPanel.vue'
   import TestPanel from './testPanel.vue'
   import ComplistPanel from './complistPanel.vue'
-  import ColorPlate from '@/components/Scada/ColorPlate.vue'
+  import ScadaDefs from './scadaDefs.vue'
 
   export default {
     components: {
@@ -81,7 +81,7 @@
       ParamsPanel,
       TestPanel,
       ComplistPanel,
-      ColorPlate
+      ScadaDefs
     },
     data() {
       return {

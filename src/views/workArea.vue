@@ -35,6 +35,7 @@
   import Dragger from '../components/Dragger/dragger.vue'
   import { Drop } from 'vue-drag-drop'
   import _ from 'lodash'
+  import ColorPlate from '@/components/Scada/ColorPlate.vue'
 
   import scadaGuage from '@/components/Scada/Basic/Guage.vue'
   import scadaLevelbar from '@/components/Scada/Basic/LevelBar.vue'
@@ -44,6 +45,7 @@
   export default {
     components: {
       Dragger, Drop,
+      ColorPlate,
       scadaGuage,
       scadaLevelbar,
       scadaLabel,

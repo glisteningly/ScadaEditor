@@ -12,6 +12,6 @@ export default {
     label: '色彩覆盖',
     type: 'Enum',
     value: '',
-    opts: [{ label: '无', value: '' }, { label: '绿色', value: 'colorGreen' }, { label: '蓝色', value: 'colorBlue' }]
+    opts: [{ label: '无', value: '' }, { label: '绿色', value: 'cf-green' }, { label: '蓝色', value: 'cf-blue' }]
   }
 }
