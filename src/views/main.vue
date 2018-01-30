@@ -5,6 +5,7 @@
                 :isShowEditor="isShowEditor"
                 @actionSaveDoc="onActionSaveDoc"
                 @actionLoadDoc="onActionLoadDoc"
+                @actionSettings="onActionSettings"
                 @actionImportSvg="onActionImportSvg"
                 @actionShowEditor="onShowEditor"
                 @actionShowPreview="onShowPreview"
@@ -14,7 +15,7 @@
                 @actionMoveToFront="onMoveToFront"
                 @actionMoveToBack="onMoveToBack"/>
     <div class="main">
-      <scada-defs/>
+      <scada-defs :svgSymbols="compSymbols"/>
       <div id="left_panel" class="tools_panel">
         <tools-panel v-show="isShowEditor"/>
         <complist-panel v-show="isShowEditor"
@@ -46,6 +47,10 @@
         <test-panel v-show="isShowPreview" :bindData="testBindData"/>
       </div>
     </div>
+    <settings-dialog :isShowDialog.sync="isShowSettingsDialog"
+                     @dialogClose="isShowSettingsDialog=false"
+                     @settingsChanged="onSettingsChanged"
+                     :config="canvasConfig"/>
     <div id="bottom_bar"></div>
   </div>
 </template>
@@ -68,11 +73,13 @@
   import TestPanel from './testPanel.vue'
   import ComplistPanel from './complistPanel.vue'
   import ScadaDefs from './scadaDefs.vue'
+  import SettingsDialog from './settingsDialog.vue'
 
   export default {
     components: {
       ActionBar,
       ToolsPanel,
+      SettingsDialog,
       PreviewCode,
       PreviewScada,
       WorkArea,
@@ -86,6 +93,7 @@
     data() {
       return {
         components: [],
+        compSymbols: [],
         curActivedId: -1,
         scadaTemplate: '',
         isShowCode: false,
@@ -94,9 +102,12 @@
         isCompEditing: false,
         isSvgViewInitiated: false,
         scadaTplStr: null,
-        canvasW: 1000,
-        canvasH: 600,
-        color1: '#409EFF',
+        canvasConfig: {
+          width: 1000,
+          height: 600,
+          bgColor: '#FFF',
+          showGrid: true
+        },
         bindField: 'value',
         testBindData: { datamodel1: { field1: 33, field2: 44 }, datamodel2: { field3: 55, field4: 66 } },
         optionsDemo: [{
@@ -118,11 +129,12 @@
             label: 'field4'
           }]
         }],
-        compLabelState: {}
+        compLabelState: {},
+        isShowSettingsDialog: false
       }
     },
     methods: {
-      addComp(compName, label,
+      addComp(compType, name = '', label,
               layout = { x: 0, y: 0, width: 100, height: 100, ratio: 0 },
               attrs = [], params = [], innerSvg) {
         const guid = Guid()
@@ -139,8 +151,9 @@
         })
         const newComp = {
           id: guid,
+          name: name,
           label: newLabel,
-          type: compName,
+          type: compType,
           active: true,
           layout: layout,
           attrs: attrs,
@@ -155,6 +168,14 @@
 //        this.components.push(newComp)
         this.components.unshift(newComp)
       },
+      addSymbol(id, content) {
+        if (!document.getElementById(id)) {
+          this.compSymbols.push({
+            id: id,
+            content: content
+          })
+        }
+      },
       getCompLabel(label) {
         if (this.compLabelState[label]) {
           this.compLabelState[label] += 1
@@ -164,7 +185,7 @@
         return label + `-${this.compLabelState[label]}`
       },
       onAddDropedComp(d) {
-        this.addComp(d.type, d.config.label, d.layout, d.attrs, d.params)
+        this.addComp(d.type, d.name, d.config.label, d.layout, d.attrs, d.params)
       },
       onAddDropedCompSvg(d) {
         if (d.config.rotatable) {
@@ -175,7 +196,10 @@
         }
         try {
           axios.get(d.config.compSource).then((response) => {
-            this.addComp('scada-svg', d.config.label, d.layout, [], d.params, response.data)
+            this.addSymbol(d.name, response.data)
+            this.$nextTick(() => {
+              this.addComp('scada-svg-comp', d.name, d.config.label, d.layout, [], d.params)
+            })
           })
         } catch (e) {
           console.log(e)
@@ -183,7 +207,13 @@
       },
       addStaticSvg(layout = { x: 200, y: 200, width: 300, height: 300 }, svgStr) {
         const params = [Object.assign({}, compParamsConfig.rotateParam)]
-        this.addComp('scada-svg', '导入svg', layout, [], params, svgStr)
+        this.addComp('scada-svg', '', '导入svg', layout, [], params, svgStr)
+      },
+      onActionSettings() {
+        this.isShowSettingsDialog = true
+      },
+      onSettingsChanged(config) {
+        this.canvasConfig = Object.assign({}, config)
       },
       onRemoveCurrentComp() {
         if (this.isCompEditing) {
@@ -202,7 +232,7 @@
           layout.y += 10
           const i = clonedComp.label.lastIndexOf('-')
           const newLabel = (i > -1) ? clonedComp.label.slice(0, i) : clonedComp.label
-          this.addComp(clonedComp.type, newLabel, layout, clonedComp.attrs, clonedComp.paramControls, clonedComp.innerSvg)
+          this.addComp(clonedComp.type, clonedComp.name, newLabel, layout, clonedComp.attrs, clonedComp.paramControls, clonedComp.innerSvg)
         }
       },
       onMoveToFront() {
@@ -281,7 +311,7 @@
         this.isShowCode = false
         this.isShowEditor = false
         this.isShowPreview = true
-        ScadaVueTpl.initScadaComp(this.components, { w: this.canvasW, h: this.canvasH })
+        ScadaVueTpl.initScadaComp(this.components, { w: this.canvasConfig.width, h: this.canvasConfig.height, bgColor: this.canvasConfig.bgColor })
         this.isSvgViewInitiated = true
       },
       moveCompPos(direction) {
@@ -345,6 +375,7 @@
       onActionSaveDoc() {
         const saveSlot = {
           curActivedId: this.curActivedId,
+          compSymbols: this.compSymbols,
           componentList: this.components
         }
         localStorage.setItem('saveSlot', JSON.stringify(saveSlot))
@@ -352,8 +383,11 @@
       onActionLoadDoc() {
         const saveSlot = JSON.parse(localStorage.getItem('saveSlot'))
         if (saveSlot) {
-          this.components = saveSlot.componentList
-          this.curActivedId = saveSlot.curActivedId
+          this.compSymbols = saveSlot.compSymbols
+          this.$nextTick(() => {
+            this.components = saveSlot.componentList
+            this.curActivedId = saveSlot.curActivedId
+          })
         }
       },
       syncCompValues(comp) {
@@ -395,8 +429,8 @@
     computed: {
       canvasStyle() {
         return {
-          width: this.canvasW + 'px',
-          height: this.canvasH + 'px'
+          width: this.canvasConfig.width + 'px',
+          height: this.canvasConfig.height + 'px'
         }
       },
       currentCompIndex() {

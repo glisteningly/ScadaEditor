@@ -7,34 +7,42 @@ import scadaLabel from '@/components/Scada/Basic/Label.vue'
 export default {
   getCompStr(components) {
     const comps = []
+    const svgDefs = document.getElementById('scada-defs').innerHTML
+    comps.push({
+      _name: 'defs',
+      _content: svgDefs
+    })
     components.slice().reverse().forEach((item) => {
-      if (item.type === 'scada-svg') {
+      const attrs = {
+        'x': item.layout.x,
+        'y': item.layout.y,
+        'width': item.layout.width,
+        'height': item.layout.height
+      }
+      if ((item.type === 'scada-svg') || (item.type === 'scada-svg-comp')) {
         const el = document.getElementById(item.id)
         if (!el) {
           return
         }
         const elSvg = el.getElementsByTagName('svg')
         const innerSvg = elSvg[0].innerHTML
+        if (item.type === 'scada-svg-comp') {
+          Object.assign(attrs, { 'viewBox': elSvg[0].getAttribute('viewBox') })
+        }
         comps.push({
           _name: 'svg',
-          _attrs: {
-            'x': item.layout.x,
-            'y': item.layout.y,
-            'width': item.layout.width,
-            'height': item.layout.height
-            // 'viewBox': elSvg[0].getAttribute('viewBox')
-            // 'transform': elSvg[0].getAttribute('transform')
-          },
+          _attrs: attrs,
+          // _attrs: {
+          //   'x': item.layout.x,
+          //   'y': item.layout.y,
+          //   'width': item.layout.width,
+          //   'height': item.layout.height
+          // 'viewBox': elSvg[0].getAttribute('viewBox'),
+          //   'transform': elSvg[0].getAttribute('transform')
+          // },
           _content: innerSvg
         })
       } else {
-        const attrs = {
-          'x': item.layout.x,
-          'y': item.layout.y,
-          'width': item.layout.width,
-          'height': item.layout.height
-//              ':params': JSON.stringify(item.params).replace(/\"/g, "'")
-        }
         if (Object.getOwnPropertyNames(item.params).length > 1) {
           Object.assign(attrs, { ':params': JSON.stringify(item.params).replace(/\"/g, "'") })
         }
@@ -50,20 +58,20 @@ export default {
     // return comps
     return jstoxml.toXML(comps)
   },
-  getTplStr(components, svgSize) {
+  getTplStr(components, svgConfig) {
     const compStr = this.getCompStr(components)
-    const tplStr = `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svgSize.w} ${svgSize.h}" preserveAspectRatio="xMidYMid meet"
-	                          >${compStr}</svg>`
+    const tplStr = `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svgConfig.w} ${svgConfig.h}"  preserveAspectRatio="xMidYMid meet"
+	                          ><rect width="100%" height="100%" fill="${svgConfig.bgColor}"></rect>${compStr}</svg>`
     return tplStr
   },
-  initScadaComp(components, svgSize = { w: 1000, h: 600 }) {
+  initScadaComp(components, svgConfig = { w: 1000, h: 600, bgColor: '#FFF' }) {
     Vue.component('ScadaView', {
       props: {
         value: {
           type: Object
         }
       },
-      template: this.getTplStr(components, svgSize),
+      template: this.getTplStr(components, svgConfig),
       components: { scadaGuage, scadaLevelbar, scadaLabel }
     })
   }

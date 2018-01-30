@@ -22,7 +22,7 @@
 <style lang="scss">
   #pre_code {
     flex-grow: 1;
-    padding-bottom: 6em;
+    /*padding-bottom: 6em;*/
     background-color: #fafafa;
     overflow: auto;
     /*height: 100px;*/

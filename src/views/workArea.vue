@@ -1,6 +1,6 @@
 <template>
   <div id="workarea" @mousedown.stop="onCancle">
-    <drop id="canvas" :style="canvasStyle" @drop="handleCompDrop" ref="canvas">
+    <drop id="canvas" :style="canvasStyle" @drop="handleCompDrop" ref="canvas" class="grid-bg">
       <dragger v-for="component in components.slice().reverse()"
                :id="component.id"
                :key="component.id"
@@ -21,6 +21,11 @@
                    class="scada-svg-wrapper"
                    :svg="component.innerSvg"
                    :params="component.params"/>
+        <component v-else-if="component.type === 'scada-svg-comp'"
+                   :is="'scada-svg-comp'"
+                   class="scada-svg-wrapper"
+                   :name="component.name"
+                   :params="component.params"/>
         <component v-else
                    :is="component.type"
                    :value="component.value"
@@ -35,21 +40,21 @@
   import Dragger from '../components/Dragger/dragger.vue'
   import { Drop } from 'vue-drag-drop'
   import _ from 'lodash'
-  import ColorPlate from '@/components/Scada/ColorPlate.vue'
 
   import scadaGuage from '@/components/Scada/Basic/Guage.vue'
   import scadaLevelbar from '@/components/Scada/Basic/LevelBar.vue'
   import scadaLabel from '@/components/Scada/Basic/Label.vue'
   import scadaSvg from '@/components/Scada/Basic/Svg.vue'
+  import scadaSvgComp from '@/components/Scada/Basic/SvgComp.vue'
 
   export default {
     components: {
       Dragger, Drop,
-      ColorPlate,
       scadaGuage,
       scadaLevelbar,
       scadaLabel,
-      scadaSvg
+      scadaSvg,
+      scadaSvgComp
     },
     props: {
       components: null,
@@ -123,5 +128,12 @@
 
   .active {
     border: 1px dashed #43b5ff;
+  }
+
+  .grid-bg{
+    background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%202%202%22%3E%3Cpath%20d%3D%22M1%202V0h1v1H0v1z%22%20fill-opacity%3D%22.05%22%2F%3E%3C%2Fsvg%3E");
+    background-size: 16px 16px;
+    /*background-color: #f2f2f2;*/
+    transition: background-color 0.2s ease-in-out;
   }
 </style>

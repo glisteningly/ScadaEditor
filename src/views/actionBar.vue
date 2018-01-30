@@ -10,7 +10,7 @@
               <el-dropdown-item command="load">读取</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <el-button plain size="small" @click="" icon="el-icon-setting"></el-button>
+          <el-button plain size="small" @click="$emit('actionSettings')" icon="el-icon-setting"></el-button>
         </div>
       </el-col>
       <el-col :span="2">

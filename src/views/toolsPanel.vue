@@ -11,7 +11,7 @@
     <div class="panel-subtitle">扩展组件库1</div>
     <div class="comp-list">
       <drag v-for="tool in compToolsEx" class="comp-item" :key="tool.id"
-            :transferData="{type:tool.name, config:tool.config, attrs:[], params:tool.params }">
+            :transferData="{type:tool.name, name:tool.name, config:tool.config, attrs:[], params:tool.params }">
         <img class="comp-icon comp-icon-svg"
              :src="tool.imgUrl" :alt="tool.type">
       </drag>
