@@ -8,16 +8,25 @@
       <div class="setting-item">
         <label class="setting-title">画布设置</label>
         <div class="setting-content">
-          <label>宽度:</label>
+          <label>宽度: </label>
           <el-input-number :controls=false :max="3000" v-model="canvasConfig.width"
                            style="float: left"></el-input-number>
-          <label>高度:</label>
+          <label>高度: </label>
           <el-input-number :controls=false :max="2000" v-model="canvasConfig.height"
                            style="float: left"></el-input-number>
         </div>
         <div class="setting-content">
-          <label>背景色:</label>
+          <label>背景色: </label>
           <el-color-picker size="small" v-model="canvasConfig.bgColor"/>
+        </div>
+      </div>
+      <div class="setting-item">
+        <label class="setting-title">界面设置</label>
+        <div class="setting-content">
+          <label>背景栅格: </label>
+          <el-switch
+            v-model="canvasConfig.showGrid">
+          </el-switch>
         </div>
       </div>
       <span slot="footer" class="dialog-footer">
@@ -81,6 +90,9 @@
         float: left;
         margin-right: 4px;
         margin-top: 3px;
+      }
+      .el-switch {
+        margin:4px 0 0 4px
       }
     }
     .el-color-picker--small .el-color-picker__trigger {

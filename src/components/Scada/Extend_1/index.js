@@ -148,7 +148,7 @@ export default {
       id: 204,
       name: 'pumpA',
       config: {
-        label: '压缩机',
+        label: '增压泵-卧式',
         compType: 'svg',
         compSource: '/static/img/scada/svg/pumpA.svg',
         width: 80,

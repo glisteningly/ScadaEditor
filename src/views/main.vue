@@ -16,7 +16,7 @@
                 @actionMoveToBack="onMoveToBack"/>
     <div class="main">
       <scada-defs :svgSymbols="compSymbols"/>
-      <div id="left_panel" class="tools_panel">
+      <div id="left_panel" class="tools-panel">
         <tools-panel v-show="isShowEditor"/>
         <complist-panel v-show="isShowEditor"
                         :components="components"
@@ -28,12 +28,13 @@
       <work-area v-show="isShowEditor"
                  :components="components"
                  :canvasStyle="canvasStyle"
+                 :isShowBgGrid="canvasConfig.showGrid"
                  @addDropedComp="onAddDropedComp"
                  @addDropedCompSvg="onAddDropedCompSvg"
                  @activated="onActivate"
                  @compSelCanceled="unSelCurComp"
                  @compLayoutChanged="onDraggerChanged"/>
-      <div id="right_panel" class="tools_panel">
+      <div id="right_panel" class="tools-panel">
         <div v-show="(this.currentCompIndex !== -1) && isShowEditor">
           <attrs-panel v-show="isShowAttrPanel"
                        :compAttrs="currentAttrs"
@@ -311,7 +312,11 @@
         this.isShowCode = false
         this.isShowEditor = false
         this.isShowPreview = true
-        ScadaVueTpl.initScadaComp(this.components, { w: this.canvasConfig.width, h: this.canvasConfig.height, bgColor: this.canvasConfig.bgColor })
+        ScadaVueTpl.initScadaComp(this.components, {
+          w: this.canvasConfig.width,
+          h: this.canvasConfig.height,
+          bgColor: this.canvasConfig.bgColor
+        })
         this.isSvgViewInitiated = true
       },
       moveCompPos(direction) {
@@ -376,7 +381,8 @@
         const saveSlot = {
           curActivedId: this.curActivedId,
           compSymbols: this.compSymbols,
-          componentList: this.components
+          componentList: this.components,
+          canvasConfig: this.canvasConfig
         }
         localStorage.setItem('saveSlot', JSON.stringify(saveSlot))
       },
@@ -387,6 +393,7 @@
           this.$nextTick(() => {
             this.components = saveSlot.componentList
             this.curActivedId = saveSlot.curActivedId
+            this.canvasConfig = saveSlot.canvasConfig
           })
         }
       },
@@ -430,7 +437,8 @@
       canvasStyle() {
         return {
           width: this.canvasConfig.width + 'px',
-          height: this.canvasConfig.height + 'px'
+          height: this.canvasConfig.height + 'px',
+          background: this.canvasConfig.bgColor
         }
       },
       currentCompIndex() {

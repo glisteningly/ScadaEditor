@@ -27,6 +27,7 @@
   .svg-defs-container {
     width: 0;
     height: 0;
+    z-index: -9999;
   }
 </style>
 

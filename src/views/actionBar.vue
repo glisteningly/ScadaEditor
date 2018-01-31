@@ -10,18 +10,10 @@
               <el-dropdown-item command="load">读取</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <el-button plain size="small" @click="$emit('actionSettings')" icon="el-icon-setting"></el-button>
+          <el-button plain size="small" @click="$emit('actionSettings')" icon="el-icon-setting">设置</el-button>
         </div>
       </el-col>
-      <el-col :span="2">
-        <div>
-          <div class="upload-btn-wrapper">
-            <el-button type="prime" size="small" icon="el-icon-plus">导入svg</el-button>
-            <input type="file" name="myfile" @change="onImportSvg" ref="uploadSvg"/>
-          </div>
-        </div>
-      </el-col>
-      <el-col :span="15">
+      <el-col :span="4">
         <div>
           <el-button-group>
             <el-button plain size="small" @click="$emit('actionShowEditor')" :class="{isActiveBtn: isShowEditor}">
@@ -34,6 +26,16 @@
               <i class="el-icon-tickets"></i> 代码
             </el-button>
           </el-button-group>
+        </div>
+      </el-col>
+      <el-col :span="2">
+        <div class="upload-btn-wrapper">
+          <el-button type="prime" size="small" icon="el-icon-plus">导入svg</el-button>
+          <input type="file" name="myfile" @change="onImportSvg" ref="uploadSvg"/>
+        </div>
+      </el-col>
+      <el-col :span="10">
+        <div>
           <el-button-group>
             <el-button plain type="danger" size="small" @click="$emit('actionRemoveCurrentComp')"
                        icon="el-icon-delete"></el-button>

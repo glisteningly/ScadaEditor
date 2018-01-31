@@ -35,6 +35,7 @@
     },
     watch: {
       collapsed() {
+        this.$emit('panelCollapse', this.collapsed)
         this.$events.emit('PanelCollapseChanged', this.label)
       }
     },
@@ -45,7 +46,7 @@
 </script>
 
 <style lang="scss">
-  .tools_panel {
+  .tools-panel {
     font-size: 12px;
     color: #333;
     .title-label {

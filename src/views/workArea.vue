@@ -1,6 +1,6 @@
 <template>
   <div id="workarea" @mousedown.stop="onCancle">
-    <drop id="canvas" :style="canvasStyle" @drop="handleCompDrop" ref="canvas" class="grid-bg">
+    <drop id="canvas" :style="canvasStyle" @drop="handleCompDrop" ref="canvas" :class="{'grid-bg':isShowBgGrid}">
       <dragger v-for="component in components.slice().reverse()"
                :id="component.id"
                :key="component.id"
@@ -58,7 +58,8 @@
     },
     props: {
       components: null,
-      canvasStyle: null
+      canvasStyle: null,
+      isShowBgGrid: true
     },
     data() {
       return {}
@@ -130,10 +131,9 @@
     border: 1px dashed #43b5ff;
   }
 
-  .grid-bg{
-    background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%202%202%22%3E%3Cpath%20d%3D%22M1%202V0h1v1H0v1z%22%20fill-opacity%3D%22.05%22%2F%3E%3C%2Fsvg%3E");
-    background-size: 16px 16px;
-    /*background-color: #f2f2f2;*/
+  .grid-bg {
+    background:#fff url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%202%202%22%3E%3Cpath%20d%3D%22M1%202V0h1v1H0v1z%22%20fill-opacity%3D%22.05%22%2F%3E%3C%2Fsvg%3E") !important;
+    background-size: 16px 16px !important;
     transition: background-color 0.2s ease-in-out;
   }
 </style>

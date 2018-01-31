@@ -32,14 +32,6 @@ export default {
         comps.push({
           _name: 'svg',
           _attrs: attrs,
-          // _attrs: {
-          //   'x': item.layout.x,
-          //   'y': item.layout.y,
-          //   'width': item.layout.width,
-          //   'height': item.layout.height
-          // 'viewBox': elSvg[0].getAttribute('viewBox'),
-          //   'transform': elSvg[0].getAttribute('transform')
-          // },
           _content: innerSvg
         })
       } else {
