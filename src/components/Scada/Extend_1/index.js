@@ -159,6 +159,22 @@ export default {
       },
       imgUrl: 'http://10.0.0.126/static/img/scada/svg/pumpA_pre.svg',
       params: []
+    },
+    {
+      id: 205,
+      name: 'valveA',
+      config: {
+        label: '增压泵-卧式',
+        compType: 'svg',
+        compSource: '/static/img/scada/svg/valveA.svg',
+        width: 70,
+        height: 70,
+        keepRatio: true,
+        rotatable: true,
+        colorMask: false
+      },
+      imgUrl: 'http://10.0.0.126/static/img/scada/svg/valveA_pre.svg',
+      params: []
     }
   ]
 }

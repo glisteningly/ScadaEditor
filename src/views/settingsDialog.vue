@@ -49,7 +49,8 @@
           width: 1000,
           height: 600,
           bgColor: '#FFF',
-          showGrid: true
+          showGrid: true,
+          zoom: 1
         }
       }
     },
@@ -92,7 +93,7 @@
         margin-top: 3px;
       }
       .el-switch {
-        margin:4px 0 0 4px
+        margin: 4px 0 0 4px
       }
     }
     .el-color-picker--small .el-color-picker__trigger {

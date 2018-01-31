@@ -14,10 +14,10 @@ export default {
     })
     components.slice().reverse().forEach((item) => {
       const attrs = {
-        'x': item.layout.x,
-        'y': item.layout.y,
-        'width': item.layout.width,
-        'height': item.layout.height
+        'x': item.layout.x + 1,
+        'y': item.layout.y + 1,
+        'width': item.layout.width - 2,
+        'height': item.layout.height - 2
       }
       if ((item.type === 'scada-svg') || (item.type === 'scada-svg-comp')) {
         const el = document.getElementById(item.id)
