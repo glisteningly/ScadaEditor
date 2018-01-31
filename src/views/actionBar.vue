@@ -34,7 +34,7 @@
           <input type="file" name="myfile" @change="onImportSvg" ref="uploadSvg"/>
         </div>
       </el-col>
-      <el-col :span="10">
+      <el-col :span="11">
         <div>
           <el-button-group>
             <el-button plain type="danger" size="small" @click="$emit('actionRemoveCurrentComp')"
@@ -48,8 +48,9 @@
         </div>
       </el-col>
       <el-col :span="4">
-        <el-button plain size="small" @click="" icon="el-icon-news">数据源</el-button>
-        <el-button plain type="primary" size="small" @click="" icon="el-icon-upload">发布</el-button>
+        <el-button plain type="primary" size="small" @click="" icon="el-icon-upload" class="fl-right">发布</el-button>
+        <el-button plain size="small" @click="" icon="el-icon-news" class="fl-right" style="margin-right: 6px;">数据源
+        </el-button>
       </el-col>
     </el-row>
   </div>
@@ -98,6 +99,7 @@
   #top_bar {
     width: 100%;
     height: 54px;
+    flex: 0 0 54px;
     background-color: #EEE;
     border-bottom: 1px solid #AAA;
     padding: 10px;
@@ -124,5 +126,11 @@
     opacity: 0;
     height: 28px;
     width: 100px
+  }
+
+  .el-dropdown-menu {
+    left: 5px;
+    width: 170px;
+    border: 1px solid #AAA;
   }
 </style>

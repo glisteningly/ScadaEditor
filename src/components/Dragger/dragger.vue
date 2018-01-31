@@ -104,10 +104,10 @@
       },
       ratio: {
         type: Number, default: 0
+      },
+      zoom: {
+        type: Number, default: 1
       }
-//      guid: {
-//        type: String
-//      }
     },
     created() {
       this.parentX = 0
@@ -237,8 +237,8 @@
         this.mouseX = e.pageX || e.clientX + document.documentElement.scrollLeft
         this.mouseY = e.pageY || e.clientY + document.documentElement.scrollTop
 
-        let diffX = this.mouseX - this.lastMouseX + this.mouseOffX
-        let diffY = this.mouseY - this.lastMouseY + this.mouseOffY
+        let diffX = Math.round((this.mouseX - this.lastMouseX + this.mouseOffX) / this.zoom)
+        let diffY = Math.round((this.mouseY - this.lastMouseY + this.mouseOffY) / this.zoom)
 
         this.mouseOffX = this.mouseOffY = 0
 

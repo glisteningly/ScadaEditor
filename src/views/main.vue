@@ -27,7 +27,7 @@
                      :testData="testBindData"/>
       <work-area v-show="isShowEditor"
                  :components="components"
-                 :canvasStyle="canvasStyle"
+                 :canvasConfig="canvasConfig"
                  :isShowBgGrid="canvasConfig.showGrid"
                  @addDropedComp="onAddDropedComp"
                  @addDropedCompSvg="onAddDropedCompSvg"
@@ -52,7 +52,20 @@
                      @dialogClose="isShowSettingsDialog=false"
                      @settingsChanged="onSettingsChanged"
                      :config="canvasConfig"/>
-    <div id="bottom_bar"></div>
+    <div id="bottom_bar">
+      <input id="focus-key-hack" type="text">
+      <div id="zoom-hint">{{formatTooltip(canvasConfig.zoom)}}</div>
+      <div id="zoom-control">
+        <el-slider
+          v-model="canvasConfig.zoom"
+          :min="0.5" :max="2"
+          :format-tooltip="formatTooltip"
+          :step="0.1">
+        </el-slider>
+      </div>
+      <div id="zoom-label">画布缩放</div>
+    </div>
+
   </div>
 </template>
 
@@ -107,7 +120,8 @@
           width: 1000,
           height: 600,
           bgColor: '#FFF',
-          showGrid: true
+          showGrid: true,
+          zoom: 1
         },
         bindField: 'value',
         testBindData: { datamodel1: { field1: 33, field2: 44 }, datamodel2: { field3: 55, field4: 66 } },
@@ -253,6 +267,7 @@
         }
       },
       onActivate(guid) {
+        this.focusHacking()
         // 同步之前选中组件的数值
         if (this.currentCompIndex !== -1) {
           this.syncCompValues(this.components[this.currentCompIndex])
@@ -336,6 +351,11 @@
               break
           }
         }
+      },
+      focusHacking() {
+        setTimeout(() => {
+          (document.getElementById('focus-key-hack')).focus()
+        }, 50)
       },
       handleKeyup(e) {
 //        console.log(e.which)
@@ -431,6 +451,9 @@
         if (this.currentCompIndex !== -1) {
           this.syncCompValues(this.components[this.currentCompIndex])
         }
+      },
+      formatTooltip(val) {
+        return Math.round(val * 100) + '%'
       }
     },
     computed: {
@@ -438,7 +461,8 @@
         return {
           width: this.canvasConfig.width + 'px',
           height: this.canvasConfig.height + 'px',
-          background: this.canvasConfig.bgColor
+          background: this.canvasConfig.bgColor,
+          transform: `scale(${this.canvasZoom})`
         }
       },
       currentCompIndex() {
@@ -516,9 +540,10 @@
   #bottom_bar {
     width: 100%;
     height: 24px;
+    flex: 0 0 24px;
     background-color: #EEE;
     border-top: 1px solid #AAA;
-    padding: 4px;
+    padding: 4px 20px 4px 4px;
   }
 
   .main {
@@ -541,5 +566,39 @@
     flex: 0 0 250px;
     background-color: #EEE;
     border-left: 1px solid #AAA;
+  }
+
+  #focus-key-hack {
+    position: absolute;
+    left: -888px;
+    width: 8px;
+    height: 8px;
+  }
+
+  #zoom-hint, #zoom-label {
+    float: right;
+    font-size: 12px;
+    color: #333;
+    margin-top: 1px;
+  }
+
+  #zoom-control {
+    float: right;
+    margin: 3px 15px 0 15px;
+    width: 100px;
+    .el-slider__runway {
+      background-color: #ccc;
+      margin: 0;
+      .el-slider__bar {
+        background-color: #ccc;
+      }
+      .el-slider__button-wrapper {
+        height: 0;
+        top: -6px;
+        .el-slider__button {
+          border-color: #888;
+        }
+      }
+    }
   }
 </style>
