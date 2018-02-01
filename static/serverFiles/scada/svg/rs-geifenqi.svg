@@ -1,0 +1,65 @@
+<symbol id="rs-geifenqi" viewBox="0 0 70 31.22">
+    <defs>
+        <linearGradient id="rs-geifenqi_a" x1="-600.5" y1="-275.68" x2="-600.5" y2="-276.6" gradientTransform="matrix(9 0 0 10 5443 2788)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#696969"/>
+            <stop offset="1" stop-color="#171717"/>
+        </linearGradient>
+        <linearGradient id="rs-geifenqi_d" data-name="未命名的渐变 2" x1="-600.5" y1="-213.58" x2="-600.5" y2="-214.5" gradientTransform="matrix(9 0 0 4 5419 885.22)" xlink:href="#rs-geifenqi_a"/>
+        <linearGradient id="rs-geifenqi_b" data-name="未命名的渐变 3" x1="-653" y1="-299.86" x2="-653" y2="-299.2" gradientTransform="matrix(30 0 0 23 19617 6902.22)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#9b9b9b"/>
+            <stop offset=".34" stop-color="#d9d9d9"/>
+            <stop offset=".52" stop-color="#f3f3f3"/>
+            <stop offset=".69" stop-color="#d9d9d9"/>
+            <stop offset="1" stop-color="#a2a2a2"/>
+        </linearGradient>
+        <linearGradient id="rs-geifenqi_e" data-name="未命名的渐变 4" x1="757.14" y1="-298.14" x2="757.14" y2="-297.48" gradientTransform="matrix(15 0 0 21 -11309.77 6267.22)" xlink:href="#rs-geifenqi_b"/>
+        <linearGradient id="rs-geifenqi_c" data-name="未命名的渐变 5" x1="754.33" y1="-299.31" x2="754.33" y2="-298.31" gradientTransform="matrix(16 0 0 22.15 -12021.91 6634.16)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#454545"/>
+            <stop offset=".5" stop-color="#858585"/>
+            <stop offset="1" stop-color="#404040"/>
+        </linearGradient>
+        <linearGradient id="rs-geifenqi_f" data-name="未命名的渐变 6" x1="-644.82" y1="-271.08" x2="-644.82" y2="-272" gradientTransform="matrix(22 0 0 9 14212 2465)" xlink:href="#rs-geifenqi_a"/>
+        <linearGradient id="rs-geifenqi_g" data-name="未命名的渐变 7" x1="-653.73" y1="-276.6" x2="-653.73" y2="-275.6" gradientTransform="matrix(31 0 0 10 20287 2770)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="gray"/>
+            <stop offset=".14" stop-color="#fff"/>
+            <stop offset=".26" stop-color="#939393"/>
+            <stop offset=".45" stop-color="#fff"/>
+            <stop offset=".62" stop-color="#7b7b7b"/>
+            <stop offset=".8" stop-color="#f7f7f7"/>
+            <stop offset=".93" stop-color="#565656"/>
+            <stop offset="1" stop-color="#fff"/>
+        </linearGradient>
+        <linearGradient id="rs-geifenqi_h" data-name="未命名的渐变 8" x1="-626.47" y1="-302.41" x2="-626.47" y2="-301.75" gradientTransform="matrix(13.77 0 0 26.79 8633.5 8107.19)" xlink:href="#rs-geifenqi_b"/>
+        <linearGradient id="rs-geifenqi_i" data-name="未命名的渐变 9" x1="-629.79" y1="-303.27" x2="-629.79" y2="-302.27" gradientTransform="matrix(14.77 0 0 28.1 9309 8522.35)" xlink:href="#rs-geifenqi_c"/>
+        <linearGradient id="rs-geifenqi_j" data-name="未命名的渐变 10" x1="-623.58" y1="-258.71" x2="-623.58" y2="-258.06" gradientTransform="matrix(13 0 0 7 8133 1832.22)" xlink:href="#rs-geifenqi_b"/>
+        <linearGradient id="rs-geifenqi_k" data-name="未命名的渐变 11" x1="-627.29" y1="-266.25" x2="-627.29" y2="-265.25" gradientTransform="matrix(14 0 0 8 8808.5 2149.72)" xlink:href="#rs-geifenqi_c"/>
+        <linearGradient id="rs-geifenqi_l" data-name="未命名的渐变 12" x1="-633.31" y1="-258.71" x2="-633.31" y2="-258.06" gradientTransform="matrix(16 0 0 7 10195 1822.22)" xlink:href="#rs-geifenqi_b"/>
+        <linearGradient id="rs-geifenqi_m" data-name="未命名的渐变 13" x1="-630.5" y1="-249" x2="-630.5" y2="-248" gradientTransform="matrix(15 0 0 6 9519.5 1504.72)" xlink:href="#rs-geifenqi_c"/>
+        <linearGradient id="rs-geifenqi_n" data-name="未命名的渐变 14" x1="-700.75" y1="-650.14" x2="-700.75" y2="-651.96" gradientTransform="matrix(0 -2 21 0 13709 -1398.28)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#9b9b9b"/>
+            <stop offset=".43" stop-color="#d9d9d9"/>
+            <stop offset="1" stop-color="#a2a2a2"/>
+        </linearGradient>
+        <linearGradient id="rs-geifenqi_o" data-name="未命名的渐变 15" x1="-540.5" y1="-299.86" x2="-540.5" y2="-299.2" gradientTransform="matrix(5 0 0 23 2743 6902.22)" xlink:href="#rs-geifenqi_b"/>
+    </defs>
+    <path d="M40 28.6l3 3.4h-9l2-2v-8h4z" transform="translate(0 -.78)" fill="url(#rs-geifenqi_a)"/>
+    <path fill="url(#rs-geifenqi_d)" d="M13.5 27.22l1.8.3 3.7 3.7h-9l3.5-4z"/>
+    <path fill="url(#rs-geifenqi_b)" d="M12 2.22h30v23H12z"/>
+    <path fill="url(#rs-geifenqi_e)" d="M54.84 5.42v16.7l-15 2.1v-21l15 2.2z"/>
+    <path d="M55.34 5.8l-16-2.3v22.2l16-2.2z" transform="translate(0 -.78)" fill="none" stroke="url(#rs-geifenqi_c)"/>
+    <path d="M17 17h18a2 2 0 0 1 2 2v7H15v-7a2 2 0 0 1 2-2z" transform="translate(0 -.78)" fill="url(#rs-geifenqi_f)"/>
+    <path d="M8.2 14h26.6a2.22 2.22 0 0 0 2.2-2.2V4H6v7.8A2.22 2.22 0 0 0 8.2 14z" transform="translate(0 -.78)" fill="url(#rs-geifenqi_g)"/>
+    <path fill="url(#rs-geifenqi_h)" d="M1 4.32v19.4l13.8 4.3V1.22L1 4.32z"/>
+    <path d="M.5 4.7l14.8-3.3v28.1L.5 24.9z" transform="translate(0 -.78)" fill="none" stroke="url(#rs-geifenqi_i)"/>
+    <path data-name="path-7" fill="url(#rs-geifenqi_j)" d="M20 20.22h13v7H20z"/>
+    <path fill="none" stroke="url(#rs-geifenqi_k)" d="M19.5 19.72h14v8h-14z"/>
+    <g>
+        <path fill="url(#rs-geifenqi_l)" d="M54 10.22h16v7H54z"/>
+        <path fill="none" stroke="url(#rs-geifenqi_m)" d="M54.5 10.72h15v6h-15z"/>
+    </g>
+    <g>
+        <path fill="url(#rs-geifenqi_n)" d="M55 3.22h2-2z"/>
+        <path fill="none" stroke="#484848" d="M54.5 2.72h3-3z"/>
+    </g>
+    <path fill="url(#rs-geifenqi_o)" d="M38 2.22h5v23h-5z"/>
+</symbol>

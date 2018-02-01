@@ -1,0 +1,54 @@
+<svg data-name="图层 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 36 63">
+    <defs>
+        <linearGradient id="rs-yalibiansong_c" x1="-684.5" y1="-363.31" x2="-684.5" y2="-362.14" gradientTransform="matrix(0 16 -16 0 -5787 10983)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#4d4d4d"/>
+            <stop offset=".37" stop-color="#9f9f9f"/>
+            <stop offset="1" stop-color="#1d1d1d"/>
+        </linearGradient>
+        <linearGradient id="rs-yalibiansong_a" data-name="未命名的渐变 2" x1="-631.7" y1="-460.8" x2="-631.7" y2="-459.8" gradientTransform="matrix(0 5 -5 0 -2273 3219)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#555"/>
+            <stop offset=".45" stop-color="#b2b2b2"/>
+            <stop offset="1" stop-color="#434343"/>
+        </linearGradient>
+        <linearGradient id="rs-yalibiansong_d" data-name="未命名的渐变 3" x1="-631.7" y1="-460.8" x2="-631.7" y2="-459.8" gradientTransform="matrix(0 5 -5 0 -2294 3219)" xlink:href="#rs-yalibiansong_a"/>
+        <linearGradient id="rs-yalibiansong_e" data-name="未命名的渐变 4" x1="-684.5" y1="-356.32" x2="-684.5" y2="-355.32" gradientTransform="matrix(0 16 -19 0 -6742 10999)" xlink:href="#rs-yalibiansong_a"/>
+        <linearGradient id="rs-yalibiansong_f" data-name="未命名的渐变 5" x1="-683.64" y1="-344.76" x2="-684.95" y2="-344.76" gradientTransform="matrix(0 16 -27 0 -9290 11002)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#393939"/>
+            <stop offset="1" stop-color="#d8d8d8"/>
+        </linearGradient>
+        <linearGradient id="rs-yalibiansong_g" data-name="未命名的渐变 6" x1="-632.2" y1="-340.66" x2="-631.2" y2="-340.66" gradientTransform="matrix(0 5 -32 0 -10883 3216)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#8c8c8c"/>
+            <stop offset=".35" stop-color="#9f9f9f"/>
+            <stop offset="1" stop-color="#1d1d1d"/>
+        </linearGradient>
+        <linearGradient id="rs-yalibiansong_h" data-name="未命名的渐变 7" x1="-632.2" y1="-352.26" x2="-631.2" y2="-352.26" gradientTransform="matrix(0 5 -21 0 -7379 3210)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fff"/>
+            <stop offset="1" stop-color="#a7a7a7"/>
+        </linearGradient>
+        <linearGradient id="rs-yalibiansong_b" data-name="未命名的渐变 8" x1="-644.05" y1="-295" x2="-644.05" y2="-294" gradientTransform="matrix(11 0 0 16 7091 4726)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#1e1e1e"/>
+            <stop offset=".38" stop-color="#7c7c7c"/>
+            <stop offset=".65" stop-color="#535353"/>
+            <stop offset="1" stop-color="#1d1d1d"/>
+        </linearGradient>
+        <linearGradient id="rs-yalibiansong_i" data-name="未命名的渐变 9" x1="-644.05" y1="-295" x2="-644.05" y2="-294" gradientTransform="matrix(11 0 0 16 7114 4726)" xlink:href="#rs-yalibiansong_b"/>
+        <linearGradient id="rs-yalibiansong_j" data-name="未命名的渐变 10" x1="-669.11" y1="-301.55" x2="-669.11" y2="-300.55" gradientTransform="matrix(18 0 0 22 12062 6637)" xlink:href="#rs-yalibiansong_b"/>
+        <radialGradient id="rs-yalibiansong_k" data-name="未命名的渐变 11" cx="-607.47" cy="-263.99" r="1.06" gradientTransform="matrix(7 0 0 7 4269 1850)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#c5c5c5"/>
+            <stop offset="1"/>
+        </radialGradient>
+    </defs>
+    <path fill="url(#rs-yalibiansong_c)" d="M10 23h16v16H10z"/>
+    <path d="M28 5h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6v1a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-1H2a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" fill="#181818"/>
+    <path d="M31 59v3a.94.94 0 0 1-1 1h-3a.94.94 0 0 1-1-1v-3a.94.94 0 0 1 1-1h3a.94.94 0 0 1 1 1z" fill="url(#rs-yalibiansong_a)"/>
+    <path d="M10 59v3a.94.94 0 0 1-1 1H6a.94.94 0 0 1-1-1v-3a.94.94 0 0 1 1-1h3a.94.94 0 0 1 1 1z" fill="url(#rs-yalibiansong_d)"/>
+    <path d="M28 40v14a.94.94 0 0 1-1 1H10a.94.94 0 0 1-1-1V40a.94.94 0 0 1 1-1h17a.94.94 0 0 1 1 1z" fill="url(#rs-yalibiansong_e)"/>
+    <path d="M32 43v14a.94.94 0 0 1-1 1H6a.94.94 0 0 1-1-1V43a.94.94 0 0 1 1-1h25a.94.94 0 0 1 1 1z" fill="url(#rs-yalibiansong_f)"/>
+    <path fill="url(#rs-yalibiansong_g)" d="M2 55h32v5H2z"/>
+    <path fill="url(#rs-yalibiansong_h)" d="M8 49h21v5H8z"/>
+    <path d="M2 6h9a.94.94 0 0 1 1 1v14a.94.94 0 0 1-1 1H2a.94.94 0 0 1-1-1V7a.94.94 0 0 1 1-1z" fill="url(#rs-yalibiansong_b)"/>
+    <path d="M25 6h9a.94.94 0 0 1 1 1v14a.94.94 0 0 1-1 1h-9a.94.94 0 0 1-1-1V7a.94.94 0 0 1 1-1z" fill="url(#rs-yalibiansong_i)"/>
+    <path d="M10 3h16a.94.94 0 0 1 1 1v20a.94.94 0 0 1-1 1H10a.94.94 0 0 1-1-1V4a.94.94 0 0 1 1-1z" fill="url(#rs-yalibiansong_j)"/>
+    <circle cx="18.5" cy="4.5" r="3.5" fill="url(#rs-yalibiansong_k)"/>
+    <circle cx="18.5" cy="4.5" r="4" fill="none" stroke="#1c1c1c"/>
+</svg>

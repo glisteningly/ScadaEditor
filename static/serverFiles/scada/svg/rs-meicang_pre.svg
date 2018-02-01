@@ -1,0 +1,35 @@
+<svg data-name="图层 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 223.07 408">
+    <defs>
+        <linearGradient id="rs-meicang_b" x1="-518.5" y1="448.84" x2="-517.53" y2="448.84" gradientTransform="matrix(117 0 0 114 60720 -50817)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#1e1e1e"/>
+            <stop offset=".16" stop-color="#929292"/>
+            <stop offset=".44" stop-color="#2a2a2a"/>
+            <stop offset=".58"/>
+            <stop offset=".81" stop-color="#959595"/>
+            <stop offset=".9" stop-color="#a8a8a8"/>
+            <stop offset="1" stop-color="#1d1d1d"/>
+        </linearGradient>
+        <linearGradient id="rs-meicang_c" data-name="未命名的渐变 2" x1="-520.62" y1="448.66" x2="-519.64" y2="448.66" gradientTransform="matrix(222 0 0 245 115583 -109769)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#3c3c3c"/>
+            <stop offset=".16" stop-color="#ededed"/>
+            <stop offset=".58" stop-color="#616161"/>
+            <stop offset=".89" stop-color="#f4f4f4"/>
+            <stop offset="1" stop-color="#2b2b2b"/>
+        </linearGradient>
+        <linearGradient id="rs-meicang_a" data-name="未命名的渐变 3" x1="-520.15" y1="449.9" x2="-520.15" y2="448.8" gradientTransform="matrix(223 0 0 56 116106 -24857)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#787878"/>
+            <stop offset=".45" stop-color="#5a5a5a"/>
+            <stop offset="1" stop-color="#202020"/>
+        </linearGradient>
+        <linearGradient id="rs-meicang_d" data-name="未命名的渐变 4" x1="-520.15" y1="-697.91" x2="-520.15" y2="-696.81" gradientTransform="matrix(223 0 0 30 116106 20931)" xlink:href="#rs-meicang_a"/>
+    </defs>
+    <path d="M60 408h101a8 8 0 0 0 8-8v-98a8 8 0 0 0-8-8H60a8 8 0 0 0-8 8v98a8 8 0 0 0 8 8z" fill="url(#rs-meicang_b)"/>
+    <path d="M0 275h222V38a8 8 0 0 0-8-8H8a8 8 0 0 0-8 8z" fill="url(#rs-meicang_c)"/>
+    <path d="M1.5 273.5V38A6.49 6.49 0 0 1 8 31.5h206a6.49 6.49 0 0 1 6.5 6.5v235.5z" fill="none" stroke="#000" stroke-width="3"/>
+    <path d="M132.4 326h33.3c6.4 0 13.3-2 15.5-4.5l41.1-46.9c2.2-2.5-1.2-4.5-7.6-4.5h-75.1a14.77 14.77 0 0 0-2.1.1c-.4 0-.9-.1-1.3-.1H86.7a5.7 5.7 0 0 0-1.3.1c-.7 0-1.3-.1-2-.1H8.3c-6.4 0-9.8 2-7.6 4.5l41.1 46.9c1.5 1.7 5.1 3.2 9.3 3.9a8.62 8.62 0 0 0 3.4.6h77.9z" fill="url(#rs-meicang_a)"/>
+    <path data-name="path-6" d="M132.4 326h33.3c6.4 0 13.3-2 15.5-4.5l41.1-46.9c2.2-2.5-1.2-4.5-7.6-4.5h-75.1a14.77 14.77 0 0 0-2.1.1c-.4 0-.9-.1-1.3-.1H86.7a5.7 5.7 0 0 0-1.3.1c-.7 0-1.3-.1-2-.1H8.3c-6.4 0-9.8 2-7.6 4.5l41.1 46.9c1.5 1.7 5.1 3.2 9.3 3.9a8.62 8.62 0 0 0 3.4.6h77.9z"/>
+    <g>
+        <path d="M132.7 0h32.9c6.4 0 13.4 1.1 15.6 2.4l41.2 25.2c2.2 1.3-1.2 2.4-7.6 2.4H8.3c-6.4 0-9.8-1.1-7.6-2.4L41.9 2.4c1.4-.9 5-1.7 9-2.1a17.25 17.25 0 0 1 3.6-.3h78.2z" fill="url(#rs-meicang_d)"/>
+        <path data-name="path-8" d="M132.7 0h32.9c6.4 0 13.4 1.1 15.6 2.4l41.2 25.2c2.2 1.3-1.2 2.4-7.6 2.4H8.3c-6.4 0-9.8-1.1-7.6-2.4L41.9 2.4c1.4-.9 5-1.7 9-2.1a17.25 17.25 0 0 1 3.6-.3h78.2z"/>
+    </g>
+</svg>

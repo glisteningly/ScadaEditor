@@ -1,0 +1,120 @@
+<svg data-name="图层 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 167 117">
+    <defs>
+        <linearGradient id="rs-xichenqi_c" x1="-386.5" y1="-297" x2="-386.5" y2="-296" gradientTransform="matrix(3 0 0 15 1162 4462)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#1e1e1e"/>
+            <stop offset=".38" stop-color="#7c7c7c"/>
+            <stop offset=".65" stop-color="#535353"/>
+            <stop offset="1" stop-color="#1d1d1d"/>
+        </linearGradient>
+        <linearGradient id="rs-xichenqi_d" data-name="未命名的渐变 2" x1="-434.75" y1="-298.38" x2="-434.75" y2="-297.38" gradientTransform="matrix(4 0 0 16 1741.5 4780.5)" gradientUnits="userSpaceOnUse">
+            <stop offset="0"/>
+            <stop offset=".51" stop-color="#333"/>
+            <stop offset="1" stop-color="#1a1a1a"/>
+        </linearGradient>
+        <linearGradient id="rs-xichenqi_a" data-name="未命名的渐变 3" x1="-566.91" y1="-307.07" x2="-566.91" y2="-306.41" gradientTransform="matrix(46 0 0 28 26214 8638)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#9b9b9b"/>
+            <stop offset=".34" stop-color="#d9d9d9"/>
+            <stop offset=".52" stop-color="#f3f3f3"/>
+            <stop offset=".69" stop-color="#d9d9d9"/>
+            <stop offset="1" stop-color="#a2a2a2"/>
+        </linearGradient>
+        <linearGradient id="rs-xichenqi_b" data-name="未命名的渐变 4" x1="-567.48" y1="-307.75" x2="-567.48" y2="-306.75" gradientTransform="matrix(48.18 0 0 29.33 27479.36 9062.54)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#454545"/>
+            <stop offset=".5" stop-color="#858585"/>
+            <stop offset="1" stop-color="#404040"/>
+        </linearGradient>
+        <linearGradient id="rs-xichenqi_h" data-name="未命名的渐变 5" x1="-574.09" y1="-315.31" x2="-574.09" y2="-314.65" gradientTransform="matrix(107 0 0 93 61493 29360)" xlink:href="#rs-xichenqi_a"/>
+        <linearGradient id="rs-xichenqi_i" data-name="未命名的渐变 6" x1="-574.14" y1="-315.49" x2="-574.14" y2="-314.49" gradientTransform="matrix(108 0 0 94 62072.5 29678.5)" xlink:href="#rs-xichenqi_b"/>
+        <linearGradient id="rs-xichenqi_j" data-name="未命名的渐变 7" x1="-574.68" y1="-298.23" x2="-574.67" y2="-297.57" gradientTransform="matrix(120 0 0 16 69026 4874)" xlink:href="#rs-xichenqi_a"/>
+        <linearGradient id="rs-xichenqi_k" data-name="未命名的渐变 8" x1="-574.71" y1="-299.59" x2="-574.71" y2="-298.59" gradientTransform="matrix(121 0 0 17 69605.5 5192.5)" xlink:href="#rs-xichenqi_b"/>
+        <linearGradient id="rs-xichenqi_l" data-name="未命名的渐变 9" x1="-574.68" y1="-307.21" x2="-574.68" y2="-306.21" gradientTransform="matrix(120 0 0 28 69026 8604)" xlink:href="#rs-xichenqi_c"/>
+        <linearGradient id="rs-xichenqi_m" data-name="未命名的渐变 10" x1="-574.71" y1="-307.62" x2="-574.71" y2="-306.62" gradientTransform="matrix(121 0 0 29 69605.5 8922.5)" xlink:href="#rs-xichenqi_d"/>
+        <linearGradient id="rs-xichenqi_e" data-name="未命名的渐变 11" x1="-573.59" y1="-297.38" x2="-573.59" y2="-298.38" gradientTransform="matrix(98 0 0 16 56278 4810)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#24286b"/>
+            <stop offset=".26" stop-color="#474c8a"/>
+            <stop offset=".49" stop-color="#656ba4"/>
+            <stop offset="1" stop-color="#242d6f"/>
+        </linearGradient>
+        <linearGradient id="rs-xichenqi_f" data-name="未命名的渐变 12" x1="-573.65" y1="-299.59" x2="-573.65" y2="-298.59" gradientTransform="matrix(99 0 0 17 56857.5 5128.5)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#121846"/>
+            <stop offset=".51" stop-color="#333"/>
+            <stop offset="1" stop-color="#1a1a1a"/>
+        </linearGradient>
+        <linearGradient id="rs-xichenqi_n" data-name="未命名的渐变 13" x1="-650.12" y1="-295.52" x2="-650.12" y2="-294.64" gradientTransform="matrix(8 0 0 17 5349 5034)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#828282"/>
+            <stop offset=".34" stop-color="#c9c9c9"/>
+            <stop offset=".63" stop-color="#c3c3c3"/>
+            <stop offset="1" stop-color="#6d6d6d"/>
+        </linearGradient>
+        <linearGradient id="rs-xichenqi_o" data-name="未命名的渐变 14" x1="-650.12" y1="-295.59" x2="-650.12" y2="-294.59" gradientTransform="matrix(8 0 0 17 5363 5034)" xlink:href="#rs-xichenqi_e"/>
+        <linearGradient id="rs-xichenqi_p" data-name="未命名的渐变 15" x1="-658.17" y1="-296.67" x2="-658.17" y2="-295.67" gradientTransform="matrix(9 0 0 18 6085.5 5348.5)" xlink:href="#rs-xichenqi_f"/>
+        <linearGradient id="rs-xichenqi_q" data-name="未命名的渐变 16" x1="-650.13" y1="-301.25" x2="-650.13" y2="-300.25" gradientTransform="matrix(8 0 0 24 5356 7235)" xlink:href="#rs-xichenqi_c"/>
+        <linearGradient id="rs-xichenqi_r" data-name="未命名的渐变 17" x1="-658.17" y1="-301.8" x2="-658.17" y2="-300.8" gradientTransform="matrix(9 0 0 25 6078.5 7549.5)" xlink:href="#rs-xichenqi_d"/>
+        <linearGradient id="rs-xichenqi_s" data-name="未命名的渐变 18" x1="-581.35" y1="-275.73" x2="-581.35" y2="-274.73" gradientTransform="matrix(4.1 0 0 8.4 2547.7 2330.1)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#8488ba"/>
+            <stop offset=".5" stop-color="#b5b9e6"/>
+            <stop offset="1" stop-color="#7479c2"/>
+        </linearGradient>
+        <linearGradient id="rs-xichenqi_t" data-name="未命名的渐变 19" x1="-665.4" y1="-307.5" x2="-666.4" y2="-307.5" gradientTransform="matrix(15 0 0 30 10125 9241)" xlink:href="#rs-xichenqi_e"/>
+        <linearGradient id="rs-xichenqi_u" data-name="未命名的渐变 20" x1="-668.31" y1="-308.35" x2="-668.31" y2="-307.35" gradientTransform="matrix(16 0 0 31 10829.5 9559.5)" xlink:href="#rs-xichenqi_f"/>
+        <linearGradient id="rs-xichenqi_v" data-name="未命名的渐变 21" x1="-588.7" y1="-304" x2="-588.7" y2="-303" gradientTransform="matrix(5 0 0 22 3081 6693)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#dee0fa"/>
+            <stop offset=".5" stop-color="#b5b9e6"/>
+            <stop offset="1" stop-color="#d0d3ff"/>
+        </linearGradient>
+        <linearGradient id="rs-xichenqi_g" data-name="未命名的渐变 22" x1="528" y1="-445.25" x2="526.88" y2="-445.25" gradientTransform="matrix(0 8 -4 0 -1757 -4191)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#7c7c7c"/>
+            <stop offset=".48" stop-color="#1e1e1e"/>
+            <stop offset="1" stop-color="#535353"/>
+        </linearGradient>
+        <linearGradient id="rs-xichenqi_w" data-name="未命名的渐变 23" x1="583" y1="-500.25" x2="581.88" y2="-500.25" gradientTransform="matrix(0 8 -4 0 -1922 -4631)" xlink:href="#rs-xichenqi_g"/>
+        <linearGradient id="rs-xichenqi_x" data-name="未命名的渐变 24" x1="556" y1="-473.25" x2="554.88" y2="-473.25" gradientTransform="matrix(0 8 -4 0 -1841 -4415)" xlink:href="#rs-xichenqi_g"/>
+        <linearGradient id="rs-xichenqi_y" data-name="未命名的渐变 25" x1="610" y1="-527.25" x2="608.88" y2="-527.25" gradientTransform="matrix(0 8 -4 0 -2003 -4847)" xlink:href="#rs-xichenqi_g"/>
+    </defs>
+    <path fill="url(#rs-xichenqi_c)" d="M1 7h3v15H1z"/>
+    <path fill="none" stroke="url(#rs-xichenqi_d)" d="M.5 6.5h4v16h-4z"/>
+    <path fill="gray" d="M104 35h62v4h-62z"/>
+    <path fill="url(#rs-xichenqi_a)" d="M159 36l-43.2 28-2.8-16.5 2.4-11.5H159z"/>
+    <path d="M160.7 35.5l-45.2 29.3-3-17.3v-.2l2.5-11.9h45.7z" fill="none" stroke="url(#rs-xichenqi_b)"/>
+    <path fill="url(#rs-xichenqi_h)" d="M12 23h107v93H12z"/>
+    <path fill="none" stroke="url(#rs-xichenqi_i)" d="M11.5 22.5h108v94h-108z"/>
+    <path data-name="path-8" fill="url(#rs-xichenqi_j)" d="M5 100h120v16H5z"/>
+    <path fill="none" stroke="url(#rs-xichenqi_k)" d="M4.5 99.5h121v17H4.5z"/>
+    <path fill="url(#rs-xichenqi_l)" d="M5 2h120v28H5z"/>
+    <path fill="none" stroke="url(#rs-xichenqi_m)" d="M4.5 1.5h121v29H4.5z"/>
+    <path fill="url(#rs-xichenqi_e)" d="M17 36h98v16H17z"/>
+    <path fill="none" stroke="url(#rs-xichenqi_f)" d="M16.5 35.5h99v17h-99z"/>
+    <path fill="url(#rs-xichenqi_n)" d="M144 9h8v17h-8z"/>
+    <path fill="none" stroke="#4d4d4d" d="M144.5 9.5h7v16h-7z"/>
+    <path fill="url(#rs-xichenqi_o)" d="M158 9h8v17h-8z"/>
+    <path fill="none" stroke="url(#rs-xichenqi_p)" d="M157.5 8.5h9v18h-9z"/>
+    <g>
+        <path fill="url(#rs-xichenqi_q)" d="M151 5h8v24h-8z"/>
+        <path fill="none" stroke="url(#rs-xichenqi_r)" d="M150.5 4.5h9v25h-9z"/>
+    </g>
+    <path data-name="Path-6" fill="url(#rs-xichenqi_s)" d="M165.1 13l-4.1 1.4V20l4.1 1.4V13z"/>
+    <g>
+        <path fill="url(#rs-xichenqi_t)" d="M129 1h15v30h-15z"/>
+        <path fill="none" stroke="url(#rs-xichenqi_u)" d="M128.5.5h16v31h-16z"/>
+    </g>
+    <path fill="#2c2ea1" d="M126 4h14v24h-14z"/>
+    <path fill="url(#rs-xichenqi_v)" d="M135 5h5v22h-5z"/>
+    <g>
+        <path fill="url(#rs-xichenqi_g)" d="M20 31h8v4h-8z"/>
+        <path fill="none" stroke="#363636" d="M19.5 30.5h9v5h-9z"/>
+    </g>
+    <g>
+        <path fill="url(#rs-xichenqi_w)" d="M75 31h8v4h-8z"/>
+        <path fill="none" stroke="#363636" d="M74.5 30.5h9v5h-9z"/>
+    </g>
+    <g>
+        <path fill="url(#rs-xichenqi_x)" d="M48 31h8v4h-8z"/>
+        <path fill="none" stroke="#363636" d="M47.5 30.5h9v5h-9z"/>
+    </g>
+    <g>
+        <path fill="url(#rs-xichenqi_y)" d="M102 31h8v4h-8z"/>
+        <path fill="none" stroke="#363636" d="M101.5 30.5h9v5h-9z"/>
+    </g>
+    <path fill="#9b9b9b" d="M31 53h3v46h-3zM93 53h3v46h-3z"/>
+    <path fill="#fff" d="M31 53h1v46h-1zM93 53h1v46h-1z"/>
+</svg>

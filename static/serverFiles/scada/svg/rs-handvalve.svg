@@ -1,0 +1,43 @@
+<symbol id="rs-handvalve" viewBox="0 0 50 48">
+    <defs>
+        <linearGradient id="rs-handvalve_a" x1="-680.6" y1="-356.18" x2="-680.6" y2="-355.18" gradientTransform="matrix(50 0 0 -11 34055 -3896)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#1e1e1e"/>
+            <stop offset=".38" stop-color="#7c7c7c"/>
+            <stop offset=".65" stop-color="#535353"/>
+            <stop offset="1" stop-color="#1d1d1d"/>
+        </linearGradient>
+        <linearGradient id="rs-handvalve_b" data-name="未命名的渐变 2" x1="-641.54" y1="-355.68" x2="-640.54" y2="-355.68" gradientTransform="matrix(13 0 0 -11 8358 -3882)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#575757"/>
+            <stop offset=".51" stop-color="#c2c2c2"/>
+            <stop offset="1" stop-color="#434343"/>
+        </linearGradient>
+        <linearGradient id="rs-handvalve_c" data-name="未命名的渐变 3" x1="-657.92" y1="-338.97" x2="-657.92" y2="-339.84" gradientTransform="matrix(19 0 0 -20 12525 -6772)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#2b2b2b"/>
+            <stop offset=".51" stop-color="#676767"/>
+            <stop offset="1" stop-color="#383838"/>
+        </linearGradient>
+        <linearGradient id="rs-handvalve_d" data-name="未命名的渐变 4" x1="-653.62" y1="-342.11" x2="-653.62" y2="-341.11" gradientTransform="matrix(17 0 0 -18 11136 -6133)" xlink:href="#rs-handvalve_a"/>
+        <linearGradient id="rs-handvalve_e" data-name="未命名的渐变 5" x1="-672.58" y1="-288.88" x2="-671.58" y2="-288.88" gradientTransform="matrix(31 0 0 13 20859 3794)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#575757"/>
+            <stop offset=".23" stop-color="#bababa"/>
+            <stop offset=".81" stop-color="#c2c2c2"/>
+            <stop offset="1" stop-color="#434343"/>
+        </linearGradient>
+        <linearGradient id="rs-handvalve_f" data-name="未命名的渐变 6" x1="-664.28" y1="-297.89" x2="-664.28" y2="-296.89" gradientTransform="matrix(23 0 0 18 15303 5392)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#575757"/>
+            <stop offset=".47" stop-color="#bababa"/>
+            <stop offset="1" stop-color="#434343"/>
+        </linearGradient>
+        <radialGradient id="rs-handvalve_g" data-name="未命名的渐变 7" cx="-631.4" cy="-283.82" r="1" gradientTransform="matrix(11 0 0 11 6969 3122)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#666"/>
+            <stop offset="1" stop-color="#1d1d1d"/>
+        </radialGradient>
+    </defs>
+    <path d="M1 22h48a.94.94 0 0 0 1-1v-9a.94.94 0 0 0-1-1H1a.94.94 0 0 0-1 1v9a.94.94 0 0 0 1 1z" fill="url(#rs-handvalve_a)"/>
+    <path d="M19 36h11a.94.94 0 0 0 1-1v-9a.94.94 0 0 0-1-1H19a.94.94 0 0 0-1 1v9a.94.94 0 0 0 1 1z" fill="url(#rs-handvalve_b)"/>
+    <path d="M16 26h17a.94.94 0 0 0 1-1V7a.94.94 0 0 0-1-1H16a.94.94 0 0 0-1 1v18a.94.94 0 0 0 1 1z" fill="url(#rs-handvalve_c)"/>
+    <path d="M17 25h15a.94.94 0 0 0 1-1V8a.94.94 0 0 0-1-1H17a.94.94 0 0 0-1 1v16a.94.94 0 0 0 1 1z" fill="url(#rs-handvalve_d)"/>
+    <path d="M10 32h29a.94.94 0 0 1 1 1v11a.94.94 0 0 1-1 1H10a.94.94 0 0 1-1-1V33a.94.94 0 0 1 1-1z" fill="url(#rs-handvalve_e)"/>
+    <path d="M14 30h21a.94.94 0 0 1 1 1v16a.94.94 0 0 1-1 1H14a.94.94 0 0 1-1-1V31a.94.94 0 0 1 1-1z" fill="url(#rs-handvalve_f)"/>
+    <circle cx="24.5" cy="5.5" r="5.5" fill="url(#rs-handvalve_g)"/>
+</symbol>

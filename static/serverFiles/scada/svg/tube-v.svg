@@ -1,0 +1,12 @@
+<symbol id="tube-v">
+    <defs>
+        <linearGradient id="tube_v_01">
+            <stop offset="0" stop-color="#8b8b8b"/>
+            <stop offset="0.5" stop-color="#fff"/>
+            <stop offset="1" stop-color="#888"/>
+        </linearGradient>
+    </defs>
+    <g id="tube">
+        <rect id="tube_h" width="100%" height="100%" fill="url(#tube_v_01)"/>
+    </g>
+</symbol>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 10">
+    <defs>
+        <linearGradient id="tube_h_01" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0" stop-color="#8b8b8b"/>
+            <stop offset="0.5" stop-color="#fff"/>
+            <stop offset="1" stop-color="#888"/>
+        </linearGradient>
+    </defs>
+    <title>tube_h</title>
+    <g id="tube">
+        <rect id="tube_h" width="40" height="10" fill="url(#tube_h_01)"/>
+    </g>
+</svg>

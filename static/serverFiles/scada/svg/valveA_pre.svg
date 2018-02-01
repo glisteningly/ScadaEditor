@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 141">
+    <linearGradient id="valveA_a" gradientUnits="userSpaceOnUse" x1="-1808.959" y1="-945.291" x2="-1808.959" y2="-946.06" gradientTransform="matrix(85 0 0 54 153811 51171)">
+        <stop offset="0" stop-color="#707070"/>
+        <stop offset=".516" stop-color="#bcbcbc"/>
+        <stop offset="1" stop-color="#585858"/>
+    </linearGradient>
+    <path d="M30.8 125c-4.7-2.2-8.2-3.3-10.5-3.3H7V83.4h11.4c2.8 0 6.9 1.2 12.4 3.5 4.9-4.9 11.7-8 19.2-8s14.3 3.1 19.2 8c4.5 2.9 8 4.4 10.5 4.4H92v36.3c-5.3.6-9.3.9-12 .9-2.4 0-6-1.2-10.8-3.7-4.9 4.9-11.7 8-19.2 8s-14.3-2.9-19.2-7.8z" fill="url(#valveA_a)"/>
+    <linearGradient id="valveA_b" gradientUnits="userSpaceOnUse" x1="-1647.4" y1="-945.972" x2="-1647.4" y2="-945.312" gradientTransform="matrix(10 0 0 70 16479 66299)">
+        <stop offset="0" stop-color="#9b9b9b"/>
+        <stop offset=".339" stop-color="#d9d9d9"/>
+        <stop offset=".516" stop-color="#f3f3f3"/>
+        <stop offset=".686" stop-color="#d9d9d9"/>
+        <stop offset="1" stop-color="#a2a2a2"/>
+    </linearGradient>
+    <path fill="url(#valveA_b)" d="M0 71h10v70H0z"/>
+    <linearGradient id="valveA_c" gradientUnits="userSpaceOnUse" x1="-1734.552" y1="-945.921" x2="-1733.783" y2="-945.921" gradientTransform="matrix(19 0 0 19 32999 18008)">
+        <stop offset="0" stop-color="#797979"/>
+        <stop offset=".514" stop-color="#c2c2c2"/>
+        <stop offset="1" stop-color="#7b7b7b"/>
+    </linearGradient>
+    <path fill="url(#valveA_c)" d="M45.1 26h10.8L60 45H41z"/>
+    <linearGradient id="valveA_d" gradientUnits="userSpaceOnUse" x1="-1791.116" y1="-945.833" x2="-1790.347" y2="-945.833" gradientTransform="matrix(46 0 0 24 82422 22754)">
+        <stop offset="0" stop-color="#797979"/>
+        <stop offset=".512" stop-color="#dadada"/>
+        <stop offset="1" stop-color="#7b7b7b"/>
+    </linearGradient>
+    <path fill="url(#valveA_d)" d="M37 42h26l10 24H27z"/>
+    <linearGradient id="valveA_e" gradientUnits="userSpaceOnUse" x1="-1647.4" y1="-945.972" x2="-1647.4" y2="-945.312" gradientTransform="matrix(10 0 0 70 16569 66299)">
+        <stop offset="0" stop-color="#9b9b9b"/>
+        <stop offset=".339" stop-color="#d9d9d9"/>
+        <stop offset=".516" stop-color="#f3f3f3"/>
+        <stop offset=".686" stop-color="#d9d9d9"/>
+        <stop offset="1" stop-color="#a2a2a2"/>
+    </linearGradient>
+    <path fill="url(#valveA_e)" d="M90 71h10v70H90z"/>
+    <linearGradient id="valveA_f" gradientUnits="userSpaceOnUse" x1="-1803.178" y1="-945.921" x2="-1802.518" y2="-945.921" gradientTransform="matrix(66 0 0 19 119032 18047)">
+        <stop offset="0" stop-color="#797979"/>
+        <stop offset=".525" stop-color="#f3f3f3"/>
+        <stop offset="1" stop-color="#7b7b7b"/>
+    </linearGradient>
+    <path fill="url(#valveA_f)" d="M17 65h66v19H17z"/>
+    <linearGradient id="valveA_g" gradientUnits="userSpaceOnUse" x1="-1569.422" y1="-945.716" x2="-1568.45" y2="-945.716" gradientTransform="matrix(7 0 0 37 11061 35082)">
+        <stop offset="0" stop-color="#cbb35b"/>
+        <stop offset=".501" stop-color="#f0d973"/>
+        <stop offset="1" stop-color="#c4ab56"/>
+    </linearGradient>
+    <path d="M81 103.1c.6.6 1 1.5 1 2.4 0 1.9-1.6 3.5-3.5 3.5s-3.5-1.6-3.5-3.5c0-1 .4-1.8 1-2.4V72h5v31.1z" fill="url(#valveA_g)"/>
+    <linearGradient id="valveA_h" gradientUnits="userSpaceOnUse" x1="-1569.422" y1="-945.716" x2="-1568.45" y2="-945.716" gradientTransform="matrix(7 0 0 37 11004 35082)">
+        <stop offset="0" stop-color="#cbb35b"/>
+        <stop offset=".501" stop-color="#f0d973"/>
+        <stop offset="1" stop-color="#c4ab56"/>
+    </linearGradient>
+    <path d="M24 103.1c.6.6 1 1.5 1 2.4 0 1.9-1.6 3.5-3.5 3.5s-3.5-1.6-3.5-3.5c0-1 .4-1.8 1-2.4V72h5v31.1z" fill="url(#valveA_h)"/>
+    <linearGradient id="valveA_i" gradientUnits="userSpaceOnUse" x1="-1716.534" y1="-945.833" x2="-1715.604" y2="-945.833" gradientTransform="matrix(16 0 0 24 27482 22712)">
+        <stop offset="0" stop-color="#89805d"/>
+        <stop offset=".501" stop-color="#ffe77d"/>
+        <stop offset="1" stop-color="#95844b"/>
+    </linearGradient>
+    <path fill="url(#valveA_i)" d="M19 0h12l2 24H17z"/>
+    <circle cx="50" cy="52" r="5" fill="#737373"/>
+    <linearGradient id="valveA_j" gradientUnits="userSpaceOnUse" x1="-1734.603" y1="-945.944" x2="-1733.673" y2="-945.944" gradientTransform="matrix(19 0 0 18 32973 17072)">
+        <stop offset="0" stop-color="#89805d"/>
+        <stop offset=".501" stop-color="#d3be60"/>
+        <stop offset="1" stop-color="#95844b"/>
+    </linearGradient>
+    <path fill="url(#valveA_j)" d="M15 36h19v18H15z"/>
+    <linearGradient id="valveA_k" gradientUnits="userSpaceOnUse" x1="-1762.685" y1="-947.035" x2="-1762.685" y2="-947.965" gradientTransform="matrix(27 0 0 4 47631 3842)">
+        <stop offset="0" stop-color="#89805d"/>
+        <stop offset=".501" stop-color="#ffe77d"/>
+        <stop offset="1" stop-color="#95844b"/>
+    </linearGradient>
+    <path fill="url(#valveA_k)" d="M25 50h27v4H25z"/>
+    <linearGradient id="valveA_l" gradientUnits="userSpaceOnUse" x1="-1767.833" y1="-945.944" x2="-1766.904" y2="-945.944" gradientTransform="matrix(29 0 0 18 51278 17058)">
+        <stop offset="0" stop-color="#89805d"/>
+        <stop offset=".501" stop-color="#ffe77d"/>
+        <stop offset="1" stop-color="#95844b"/>
+    </linearGradient>
+    <path fill="url(#valveA_l)" d="M10 22h29v18H10z"/>
+    <g transform="translate(67 57)">
+        <linearGradient id="valveA_m" gradientUnits="userSpaceOnUse" x1="-1885.3" y1="-946.04" x2="-1884.397" y2="-945.615" gradientTransform="matrix(23 0 0 23 43364 21766)">
+            <stop offset="0" stop-color="#4a4a4a"/>
+            <stop offset=".499" stop-color="#a3a3a3"/>
+            <stop offset="1" stop-color="#4a4a4a"/>
+        </linearGradient>
+        <circle cx="11.5" cy="11.5" r="11.5" fill="url(#valveA_m)"/>
+        <circle cx="11.5" cy="11.5" r="9.5" fill="#efefef"/>
+        <path d="M12 9.6c.6.2 1 .8 1 1.4s-.4 1.1-.9 1.4l.1 1.6h-1.5l.1-1.6c-.5-.2-.9-.8-.9-1.4 0-.7.4-1.2 1-1.4l.5-6.6.6 6.6z" fill="#4a4a4a"/>
+    </g>
+    <g transform="translate(10 57)">
+        <linearGradient id="valveA_n" gradientUnits="userSpaceOnUse" x1="-1771.3" y1="-946.04" x2="-1770.397" y2="-945.615" gradientTransform="matrix(23 0 0 23 40742 21766)">
+            <stop offset="0" stop-color="#4a4a4a"/>
+            <stop offset=".499" stop-color="#a3a3a3"/>
+            <stop offset="1" stop-color="#4a4a4a"/>
+        </linearGradient>
+        <circle cx="11.5" cy="11.5" r="11.5" fill="url(#valveA_n)"/>
+        <circle cx="11.5" cy="11.5" r="9.5" fill="#efefef"/>
+        <path d="M12 9.6c.6.2 1 .8 1 1.4s-.4 1.1-.9 1.4l.1 1.6h-1.5l.1-1.6c-.5-.2-.9-.8-.9-1.4 0-.7.4-1.2 1-1.4l.5-6.6.6 6.6z" fill="#4a4a4a"/>
+    </g>
+</svg>

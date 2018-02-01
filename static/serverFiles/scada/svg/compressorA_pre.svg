@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 309 154">
+    <g transform="translate(13 55)">
+        <linearGradient id="compressorA_a" gradientUnits="userSpaceOnUse" x1="-1449.563" y1="-940.855" x2="-1449.563" y2="-942.02" gradientTransform="matrix(16 0 0 16 23481 15096)">
+            <stop offset="0" stop-color="#8b8b8b"/>
+            <stop offset=".495" stop-color="#d7d7d7"/>
+            <stop offset="1" stop-color="#888"/>
+        </linearGradient>
+        <path fill="url(#compressorA_a)" d="M280 25h16v16h-16z"/>
+        <linearGradient id="compressorA_b" gradientUnits="userSpaceOnUse" x1="-1449.563" y1="-940.855" x2="-1449.563" y2="-942.02" gradientTransform="matrix(16 0 0 16 23481 15119)">
+            <stop offset="0" stop-color="#8b8b8b"/>
+            <stop offset=".495" stop-color="#d7d7d7"/>
+            <stop offset="1" stop-color="#888"/>
+        </linearGradient>
+        <path fill="url(#compressorA_b)" d="M280 48h16v16h-16z"/>
+        <linearGradient id="compressorA_c" gradientUnits="userSpaceOnUse" x1="-1539.226" y1="-941.297" x2="-1539.226" y2="-940.134" gradientTransform="matrix(288 0 0 70 443441 65893)">
+            <stop offset="0" stop-color="#737373"/>
+            <stop offset=".514" stop-color="#c7c7c7"/>
+            <stop offset="1" stop-color="#6d6d6d"/>
+        </linearGradient>
+        <path d="M21 8h246c11.6 0 21 9.4 21 21v28c0 11.6-9.4 21-21 21H21C9.4 78 0 68.6 0 57V29C0 17.4 9.4 8 21 8z" fill="url(#compressorA_c)"/>
+        <path fill="#d0d0d0" d="M264 0h8v88h-8z"/>
+        <linearGradient id="compressorA_d" gradientUnits="userSpaceOnUse" x1="-1038.167" y1="-940.156" x2="-1038.167" y2="-941.271" gradientTransform="matrix(3 0 0 70 3364 65893)">
+            <stop offset="0" stop-color="#545454"/>
+            <stop offset=".505" stop-color="#9f9f9f"/>
+            <stop offset="1" stop-color="#535353"/>
+        </linearGradient>
+        <path fill="url(#compressorA_d)" d="M248 8h3v70h-3z"/>
+        <linearGradient id="compressorA_e" gradientUnits="userSpaceOnUse" x1="-1038.156" y1="-940.156" x2="-1038.156" y2="-941.271" gradientTransform="matrix(3 0 0 70 3299.667 65893)">
+            <stop offset="0" stop-color="#545454"/>
+            <stop offset=".505" stop-color="#9f9f9f"/>
+            <stop offset="1" stop-color="#535353"/>
+        </linearGradient>
+        <path fill="url(#compressorA_e)" d="M183.7 8h3v70h-3z"/>
+        <linearGradient id="compressorA_f" gradientUnits="userSpaceOnUse" x1="-1038.178" y1="-940.156" x2="-1038.178" y2="-941.271" gradientTransform="matrix(3 0 0 70 3235.333 65893)">
+            <stop offset="0" stop-color="#545454"/>
+            <stop offset=".505" stop-color="#9f9f9f"/>
+            <stop offset="1" stop-color="#535353"/>
+        </linearGradient>
+        <path fill="url(#compressorA_f)" d="M119.3 8h3v70h-3z"/>
+        <linearGradient id="compressorA_g" gradientUnits="userSpaceOnUse" x1="-1038.167" y1="-940.156" x2="-1038.167" y2="-941.271" gradientTransform="matrix(3 0 0 70 3171 65893)">
+            <stop offset="0" stop-color="#545454"/>
+            <stop offset=".505" stop-color="#9f9f9f"/>
+            <stop offset="1" stop-color="#535353"/>
+        </linearGradient>
+        <path fill="url(#compressorA_g)" d="M55 8h3v70h-3z"/>
+        <path fill="#d0d0d0" d="M16 0h8v88h-8z"/>
+    </g>
+    <linearGradient id="compressorA_h" gradientUnits="userSpaceOnUse" x1="-1471.031" y1="-941.321" x2="-1471.031" y2="-940.158" gradientTransform="matrix(32 0 0 63 47187 59303)">
+        <stop offset="0" stop-color="#a6a6a6"/>
+        <stop offset=".514" stop-color="#e5e5e5"/>
+        <stop offset="1" stop-color="#989898"/>
+    </linearGradient>
+    <ellipse cx="114" cy="36.5" rx="16" ry="31.5" fill="url(#compressorA_h)"/>
+    <g transform="translate(127 21)">
+        <radialGradient id="compressorA_i" cx="-1736.606" cy="-940.466" r="1.309" gradientTransform="translate(72672.625 39394) scale(41.8421)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#888"/>
+            <stop offset=".232" stop-color="#2f2f2f"/>
+            <stop offset=".476" stop-color="#afafaf"/>
+            <stop offset=".835" stop-color="#888"/>
+            <stop offset="1" stop-color="#4b4b4b"/>
+        </radialGradient>
+        <path d="M5.6 5.6c23.1 0 41.8 18.7 41.8 41.8H22.8c0-9.5-7.7-17.2-17.2-17.2V5.6z" fill="url(#compressorA_i)"/>
+        <linearGradient id="compressorA_j" gradientUnits="userSpaceOnUse" x1="-1818.455" y1="-941.846" x2="-1817.29" y2="-941.846" gradientTransform="matrix(-33.4737 0 0 11.1579 -60814.84 10556.42)">
+            <stop offset="0" stop-color="#8b8b8b"/>
+            <stop offset=".505" stop-color="#f3f3f3"/>
+            <stop offset="1" stop-color="#888"/>
+        </linearGradient>
+        <path fill="url(#compressorA_j)" d="M19.5 41.8H53V53H19.5z"/>
+        <linearGradient id="compressorA_k" gradientUnits="userSpaceOnUse" x1="-1773.524" y1="-804.361" x2="-1772.359" y2="-804.361" gradientTransform="matrix(0 33.4737 11.1579 0 8980.578 59363.84)">
+            <stop offset="0" stop-color="#8b8b8b"/>
+            <stop offset=".505" stop-color="#f3f3f3"/>
+            <stop offset="1" stop-color="#888"/>
+        </linearGradient>
+        <path fill="url(#compressorA_k)" d="M0 0h11.2v33.5H0z"/>
+    </g>
+    <linearGradient id="compressorA_l" gradientUnits="userSpaceOnUse" x1="-1483.977" y1="-941.566" x2="-1483.977" y2="-940.404" gradientTransform="matrix(44 0 0 31 65359 29207)">
+        <stop offset="0" stop-color="#737373"/>
+        <stop offset=".514" stop-color="#c7c7c7"/>
+        <stop offset="1" stop-color="#6d6d6d"/>
+    </linearGradient>
+    <path fill="url(#compressorA_l)" d="M42 21h44v31H42z"/>
+    <linearGradient id="compressorA_m" gradientUnits="userSpaceOnUse" x1="-1462.241" y1="-941.291" x2="-1462.241" y2="-940.128" gradientTransform="matrix(27 0 0 72 39580 67767)">
+        <stop offset="0" stop-color="#737373"/>
+        <stop offset=".514" stop-color="#c7c7c7"/>
+        <stop offset="1" stop-color="#6d6d6d"/>
+    </linearGradient>
+    <path fill="url(#compressorA_m)" d="M86 0h27v72H86z"/>
+    <g transform="translate(0 66)">
+        <linearGradient id="compressorA_n" gradientUnits="userSpaceOnUse" x1="-1423.563" y1="-940.855" x2="-1423.563" y2="-942.02" gradientTransform="matrix(16 0 0 16 23065 15096)">
+            <stop offset="0" stop-color="#8b8b8b"/>
+            <stop offset=".495" stop-color="#d7d7d7"/>
+            <stop offset="1" stop-color="#888"/>
+        </linearGradient>
+        <path fill="url(#compressorA_n)" d="M280 25h16v16h-16z"/>
+        <linearGradient id="compressorA_o" gradientUnits="userSpaceOnUse" x1="-1423.563" y1="-940.855" x2="-1423.563" y2="-942.02" gradientTransform="matrix(16 0 0 16 23065 15119)">
+            <stop offset="0" stop-color="#8b8b8b"/>
+            <stop offset=".495" stop-color="#d7d7d7"/>
+            <stop offset="1" stop-color="#888"/>
+        </linearGradient>
+        <path fill="url(#compressorA_o)" d="M280 48h16v16h-16z"/>
+        <linearGradient id="compressorA_p" gradientUnits="userSpaceOnUse" x1="-1513.226" y1="-941.297" x2="-1513.226" y2="-940.134" gradientTransform="matrix(288 0 0 70 435953 65893)">
+            <stop offset="0" stop-color="#737373"/>
+            <stop offset=".514" stop-color="#c7c7c7"/>
+            <stop offset="1" stop-color="#6d6d6d"/>
+        </linearGradient>
+        <path d="M21 8h246c11.6 0 21 9.4 21 21v28c0 11.6-9.4 21-21 21H21C9.4 78 0 68.6 0 57V29C0 17.4 9.4 8 21 8z" fill="url(#compressorA_p)"/>
+        <path fill="#d0d0d0" d="M264 0h8v88h-8z"/>
+        <linearGradient id="compressorA_q" gradientUnits="userSpaceOnUse" x1="-1012.167" y1="-940.156" x2="-1012.167" y2="-941.271" gradientTransform="matrix(3 0 0 70 3286 65893)">
+            <stop offset="0" stop-color="#545454"/>
+            <stop offset=".505" stop-color="#9f9f9f"/>
+            <stop offset="1" stop-color="#535353"/>
+        </linearGradient>
+        <path fill="url(#compressorA_q)" d="M248 8h3v70h-3z"/>
+        <linearGradient id="compressorA_r" gradientUnits="userSpaceOnUse" x1="-1012.156" y1="-940.156" x2="-1012.156" y2="-941.271" gradientTransform="matrix(3 0 0 70 3221.667 65893)">
+            <stop offset="0" stop-color="#545454"/>
+            <stop offset=".505" stop-color="#9f9f9f"/>
+            <stop offset="1" stop-color="#535353"/>
+        </linearGradient>
+        <path fill="url(#compressorA_r)" d="M183.7 8h3v70h-3z"/>
+        <linearGradient id="compressorA_s" gradientUnits="userSpaceOnUse" x1="-1012.178" y1="-940.156" x2="-1012.178" y2="-941.271" gradientTransform="matrix(3 0 0 70 3157.333 65893)">
+            <stop offset="0" stop-color="#545454"/>
+            <stop offset=".505" stop-color="#9f9f9f"/>
+            <stop offset="1" stop-color="#535353"/>
+        </linearGradient>
+        <path fill="url(#compressorA_s)" d="M119.3 8h3v70h-3z"/>
+        <linearGradient id="compressorA_t" gradientUnits="userSpaceOnUse" x1="-1012.167" y1="-940.156" x2="-1012.167" y2="-941.271" gradientTransform="matrix(3 0 0 70 3093 65893)">
+            <stop offset="0" stop-color="#545454"/>
+            <stop offset=".505" stop-color="#9f9f9f"/>
+            <stop offset="1" stop-color="#535353"/>
+        </linearGradient>
+        <path fill="url(#compressorA_t)" d="M55 8h3v70h-3z"/>
+        <path fill="#d0d0d0" d="M16 0h8v88h-8z"/>
+    </g>
+    <path fill="#c3c3c3" d="M0 21h58v43H0z"/>
+    <path fill="#4f4f4f" d="M9 38h41v19H9z"/>
+    <path fill="#d0021b" d="M9 31h5v5H9z"/>
+    <path fill="#7ed321" d="M27 31h5v5h-5z"/>
+    <path fill="#f5a623" d="M17 31h5v5h-5z"/>
+    <path fill="#4a90e2" d="M35 31h5v5h-5z"/>
+</svg>

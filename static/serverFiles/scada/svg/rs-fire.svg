@@ -1,0 +1,20 @@
+<symbol id="rs-fire" viewBox="0 0 103 131">
+    <defs>
+        <radialGradient id="rs-fire_a" cx="-650.9" cy="-311.45" r="1.01" gradientTransform="matrix(0 -93 247.46 0 77121.91 -60412.85)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#db2b34"/>
+            <stop offset="1" stop-color="#010101"/>
+        </radialGradient>
+        <linearGradient id="rs-fire_b" data-name="未命名的渐变 2" x1="-640.94" y1="-312.49" x2="-640.94" y2="-311.49" gradientTransform="matrix(98 0 0 126 62863.5 39376.5)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#373737"/>
+            <stop offset=".54" stop-color="#909090"/>
+            <stop offset="1" stop-color="#393939"/>
+        </linearGradient>
+        <linearGradient id="rs-fire_c" data-name="未命名的渐变 3" x1="-629.64" y1="-307.45" x2="-629.64" y2="-306.65" gradientTransform="matrix(36 0 0 43 22719 13268)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#ffdc67"/>
+            <stop offset="1" stop-color="#f59323"/>
+        </linearGradient>
+    </defs>
+    <path d="M98 79.5V116a10 10 0 0 1-10 10H15a10 10 0 0 1-10-10V51.5a46.5 46.5 0 0 1 93 0z" fill="url(#rs-fire_a)"/>
+    <path d="M100.5 51.5V116A12.5 12.5 0 0 1 88 128.5H15A12.5 12.5 0 0 1 2.5 116V51.5a49 49 0 0 1 98 0z" fill="none" stroke-width="5" stroke="url(#rs-fire_b)"/>
+    <path d="M47.1 81.5a8.1 8.1 0 0 1-4.4-6.7c-.1-5.4 3.9-8 6.2-11.6 3.4-5.2 2.5-8.4 2.5-8.4s2.8 1.5 4.5 7a13.34 13.34 0 0 1 .5 4.8 22.05 22.05 0 0 1-2.1 7.4s3.1-.6 4-5.9a9 9 0 0 1 2.9 5.5 8.57 8.57 0 0 1-5.6 8.4 17.62 17.62 0 0 0 11.9-9.6c1.9-4.4 1.4-8.3 1.1-11.7a16.91 16.91 0 0 1 1.3-8.1 11.3 11.3 0 0 0-5.8 4.7 14.44 14.44 0 0 0-1.6 4.3s.3-2.2-1.3-6.4c-1.6-4-3-5.4-3.9-8.4-1.1-4 1.4-7.8 1.4-7.8s-10 1.7-14.5 9.8c-4 7.2-2.4 11.5-2.4 11.5a11.76 11.76 0 0 1-2.6-3.5 8.5 8.5 0 0 1-.7-3.9s-7.1 7.3-3.6 16.4c2.4 6.3 6.8 10.5 12.2 12.2" fill="url(#rs-fire_c)"/>
+</symbol>

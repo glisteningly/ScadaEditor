@@ -1,0 +1,15 @@
+<symbol id="ex1-ac0" viewBox="0 0 185 39">
+    <linearGradient id="ex1-ac0_a" gradientUnits="userSpaceOnUse" x1="-1695.748" y1="-995.677" x2="-1694.803" y2="-995.108" gradientTransform="matrix(185 0 0 39 313720 38840)">
+        <stop offset="0" stop-color="#cacaca"/>
+        <stop offset=".496" stop-color="#e9e9e9"/>
+        <stop offset="1" stop-color="#bebebe"/>
+    </linearGradient>
+    <path fill="url(#ex1-ac0_a)" d="M0 0h185v39H0z"/>
+    <path fill="#4a4a4a" d="M5 6h176v26H5z"/>
+    <linearGradient id="ex1-ac0_b" gradientUnits="userSpaceOnUse" x1="-1694.813" y1="-986.25" x2="-1694.813" y2="-985.27" gradientTransform="matrix(176 0 0 4 298380 3971)">
+        <stop offset="0" stop-color="#d3d3d3"/>
+        <stop offset="1" stop-color="#5d5d5d"/>
+    </linearGradient>
+    <path fill="url(#ex1-ac0_b)" d="M5 26h176v4H5z"/>
+    <path fill="#9b9b9b" d="M5 21h176v2H5zM5 17h176v2H5zM5 13h176v2H5zM5 9h176v2H5z"/>
+</symbol>

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 48">
+    <linearGradient id="pumpA_a" gradientUnits="userSpaceOnUse" x1="-1813.975" y1="-994.091" x2="-1813.975" y2="-993.431" gradientTransform="matrix(40 0 0 -30 72604 -29785)">
+        <stop offset="0" stop-color="#9b9b9b"/>
+        <stop offset=".339" stop-color="#d9d9d9"/>
+        <stop offset=".516" stop-color="#f3f3f3"/>
+        <stop offset=".686" stop-color="#d9d9d9"/>
+        <stop offset="1" stop-color="#a2a2a2"/>
+    </linearGradient>
+    <path fill="url(#pumpA_a)" d="M25 12h40v30H25z"/>
+    <linearGradient id="pumpA_b" gradientUnits="userSpaceOnUse" x1="-1798.467" y1="-993.2" x2="-1798.467" y2="-994.121" gradientTransform="matrix(30 0 0 -33 54000 -32761)">
+        <stop offset="0" stop-color="#525252"/>
+        <stop offset=".491" stop-color="#8a8a8a"/>
+        <stop offset="1" stop-color="#171717"/>
+    </linearGradient>
+    <path d="M33 45h26c1.1 0 2-.9 2-2V12H31v31c0 1.1.9 2 2 2z" fill="url(#pumpA_b)"/>
+    <linearGradient id="pumpA_c" gradientUnits="userSpaceOnUse" x1="-1815.112" y1="-996.083" x2="-1815.112" y2="-995.083" gradientTransform="matrix(41 0 0 -12 74472.5 -11928.5)">
+        <stop offset="0" stop-color="gray"/>
+        <stop offset=".143" stop-color="#fff"/>
+        <stop offset=".264" stop-color="#939393"/>
+        <stop offset=".446" stop-color="#fff"/>
+        <stop offset=".617" stop-color="#7b7b7b"/>
+        <stop offset=".795" stop-color="#f7f7f7"/>
+        <stop offset=".929" stop-color="#565656"/>
+        <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <path d="M35.4 12.5h35.1c1.6 0 2.9 1.2 2.9 2.7v9.3h-41v-9.3c.1-1.5 1.4-2.7 3-2.7z" fill="url(#pumpA_c)"/>
+    <linearGradient id="pumpA_d" gradientUnits="userSpaceOnUse" x1="-1958.447" y1="-991.8" x2="-1958.447" y2="-991.141" gradientTransform="matrix(-19 0 0 35 -37140 34728)">
+        <stop offset="0" stop-color="#9b9b9b"/>
+        <stop offset=".339" stop-color="#d9d9d9"/>
+        <stop offset=".516" stop-color="#f3f3f3"/>
+        <stop offset=".686" stop-color="#d9d9d9"/>
+        <stop offset="1" stop-color="#a2a2a2"/>
+    </linearGradient>
+    <path fill="url(#pumpA_d)" d="M80 14v25.3L61 45V10z"/>
+    <linearGradient id="pumpA_e" gradientUnits="userSpaceOnUse" x1="-1751.03" y1="-994.972" x2="-1751.029" y2="-994.312" gradientTransform="matrix(17 0 0 -17.5 29814 -17369)">
+        <stop offset="0" stop-color="#9b9b9b"/>
+        <stop offset=".339" stop-color="#d9d9d9"/>
+        <stop offset=".516" stop-color="#f3f3f3"/>
+        <stop offset=".686" stop-color="#d9d9d9"/>
+        <stop offset="1" stop-color="#a2a2a2"/>
+    </linearGradient>
+    <path fill="url(#pumpA_e)" d="M38 28h17v17.5H38z"/>
+    <linearGradient id="pumpA_f" gradientUnits="userSpaceOnUse" x1="-1858.383" y1="-1159.285" x2="-1859.49" y2="-1159.285" gradientTransform="matrix(0 24.5 -11.1579 0 -12919.79 45573.5)">
+        <stop offset="0" stop-color="#9b9b9b"/>
+        <stop offset=".433" stop-color="#d9d9d9"/>
+        <stop offset="1" stop-color="#a2a2a2"/>
+    </linearGradient>
+    <path fill="url(#pumpA_f)" d="M9.8 16H21v24.5H9.8z"/>
+    <path fill="#bebebe" d="M21 11h4v34h-4z"/>
+    <linearGradient id="pumpA_g" gradientUnits="userSpaceOnUse" x1="-1859.595" y1="-1113.818" x2="-1859.595" y2="-1113.159" gradientTransform="matrix(0 40.8082 -15.3851 0 -17122.059 75910.117)">
+        <stop offset="0" stop-color="#9b9b9b"/>
+        <stop offset=".339" stop-color="#d9d9d9"/>
+        <stop offset=".686" stop-color="#d9d9d9"/>
+        <stop offset="1" stop-color="#a2a2a2"/>
+    </linearGradient>
+    <path fill="url(#pumpA_g)" d="M16.4 3l-1.1 5.6-4.7 6.9v28.3H1V16.3l6.7-7.7L4.4 3z"/>
+    <linearGradient id="pumpA_h" gradientUnits="userSpaceOnUse" x1="-1958.948" y1="-1001.75" x2="-1957.841" y2="-1001.75" gradientTransform="matrix(-19 0 0 -4 -37200.156 -4005)">
+        <stop offset="0" stop-color="#9b9b9b"/>
+        <stop offset=".465" stop-color="#e6e6e6"/>
+        <stop offset="1" stop-color="#a2a2a2"/>
+    </linearGradient>
+    <path fill="url(#pumpA_h)" d="M.8 0h19v4H.8z"/>
+    <path fill="#9b9b9b" d="M34 45h24v3H34z"/>
+</svg>

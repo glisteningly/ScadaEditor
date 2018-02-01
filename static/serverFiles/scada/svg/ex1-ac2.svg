@@ -1,0 +1,13 @@
+<symbol id="ex1-ac2" viewBox="0 0 140 208">
+    <linearGradient id="ex1-ac2_a" gradientUnits="userSpaceOnUse" x1="-1759.307" y1="-913.981" x2="-1758.362" y2="-913.413" gradientTransform="matrix(140 0 0 208 246308 190154)">
+        <stop offset="0" stop-color="#cacaca"/>
+        <stop offset=".496" stop-color="#e9e9e9"/>
+        <stop offset="1" stop-color="#bebebe"/>
+    </linearGradient>
+    <path fill="url(#ex1-ac2_a)" d="M0 0h140v208H0z"/>
+    <path fill="#4a4a4a" d="M10 12h59v39H10zM70 12h59v39H70zM74 86h17v78H74zM10 86h17v78H10zM93 86h17v78H93zM29 86h17v78H29zM112 86h17v78h-17zM48 86h17v78H48z"/>
+    <g fill="#d8d8d8">
+        <path d="M10 88h118v2H10zM10 108h118v2H10zM10 124h118v2H10zM10 140h118v2H10zM10 92h118v2H10zM10 112h118v2H10zM10 128h118v2H10zM10 144h118v2H10zM10 96h118v2H10zM10 100h118v2H10zM10 116h118v2H10zM10 132h118v2H10zM10 148h118v2H10zM10 156h118v2H10zM10 104h118v2H10zM10 120h118v2H10zM10 136h118v2H10zM10 152h118v2H10zM10 160h118v2H10z"/>
+    </g>
+    <path fill="#4a4a4a" d="M124 67h6v11h-6z"/>
+</symbol>

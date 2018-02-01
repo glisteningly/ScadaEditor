@@ -1,0 +1,44 @@
+<symbol id="rs-youbeng" viewBox="0 0 43.5 56">
+    <defs>
+        <linearGradient id="rs-youbeng_a" x1="-642.56" y1="-303.25" x2="-641.58" y2="-303.25" gradientTransform="matrix(12 0 0 24 7714 7294)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#1e1e1e"/>
+            <stop offset=".24" stop-color="#7c7c7c"/>
+            <stop offset=".49" stop-color="#535353"/>
+            <stop offset=".82"/>
+            <stop offset="1" stop-color="#1d1d1d"/>
+        </linearGradient>
+        <linearGradient id="rs-youbeng_b" data-name="未命名的渐变 2" x1="-662.03" y1="-241.5" x2="-661.06" y2="-241.5" gradientTransform="matrix(18 0 0 5 11917 1210)" xlink:href="#rs-youbeng_a"/>
+        <radialGradient id="rs-youbeng_c" data-name="未命名的渐变 3" cx="-682.97" cy="-310.08" r=".83" gradientTransform="matrix(40 0 0 40 27342 12419)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#939393"/>
+            <stop offset="1" stop-color="#262626"/>
+        </radialGradient>
+        <linearGradient id="rs-youbeng_d" data-name="未命名的渐变 4" x1="-682.97" y1="-310.25" x2="-682.97" y2="-309.25" gradientTransform="matrix(40 0 0 40 27342 12419)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#a8a8a8"/>
+            <stop offset="1" stop-color="#6f6f6f"/>
+        </linearGradient>
+        <linearGradient id="rs-youbeng_e" data-name="未命名的渐变 5" x1="-673.54" y1="-305" x2="-673.54" y2="-304.11" gradientTransform="matrix(26 0 0 26 17535 7946)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#464646"/>
+            <stop offset=".58" stop-color="#585858"/>
+            <stop offset="1" stop-color="#262626"/>
+        </linearGradient>
+        <linearGradient id="rs-youbeng_f" data-name="未命名的渐变 6" x1="-668.64" y1="-301.66" x2="-668.64" y2="-302.27" gradientTransform="matrix(22 0 0 22 14733 6668)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#ffc300"/>
+            <stop offset="1" stop-color="#b28200"/>
+        </linearGradient>
+        <linearGradient id="rs-youbeng_g" data-name="未命名的渐变 7" x1="-654.24" y1="-270.75" x2="-653.27" y2="-270.75" gradientTransform="matrix(15 0 0 8 9830 2216)" xlink:href="#rs-youbeng_a"/>
+        <linearGradient id="rs-youbeng_h" data-name="未命名的渐变 8" x1="-672.93" y1="-241.5" x2="-671.96" y2="-241.5" gradientTransform="matrix(25 0 0 5 16835 1261)" xlink:href="#rs-youbeng_a"/>
+        <linearGradient id="rs-youbeng_i" data-name="未命名的渐变 9" x1="-630.4" y1="-289.13" x2="-630.4" y2="-289.91" gradientTransform="matrix(10 0 0 13 6327 3792)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#252525"/>
+            <stop offset="1" stop-color="#8a8a8a"/>
+        </linearGradient>
+    </defs>
+    <path fill="url(#rs-youbeng_a)" d="M3 4h12v24H3z"/>
+    <path fill="url(#rs-youbeng_b)" d="M0 0h18v5H0z"/>
+    <circle cx="23" cy="29" r="20" fill="url(#rs-youbeng_c)" stroke="url(#rs-youbeng_d)"/>
+    <circle cx="23" cy="29" r="13" fill="url(#rs-youbeng_e)"/>
+    <circle cx="23" cy="29" r="11" fill="url(#rs-youbeng_f)"/>
+    <path fill="url(#rs-youbeng_g)" d="M16 46h15v8H16z"/>
+    <path fill="url(#rs-youbeng_h)" d="M11 51h25v5H11z"/>
+    <path fill="#7a7a7a" d="M11 51h25v1H11zM16 45h15v1H16zM0 0h18v1H0zM3 5h12v1H3z"/>
+    <path d="M27.4 28.2L24 22.6a1.21 1.21 0 0 0-2 0l-3.4 5.6a4.75 4.75 0 0 0-.6 2.4 4.83 4.83 0 0 0 4.9 4.4 4.92 4.92 0 0 0 5.1-4.7 3.7 3.7 0 0 0-.6-2.1z" fill="url(#rs-youbeng_i)"/>
+</symbol>
