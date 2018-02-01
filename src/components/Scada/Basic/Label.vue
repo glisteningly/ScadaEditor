@@ -35,6 +35,7 @@
         type: Object,
         default: function () {
           return {
+            text: '',
             fill: '#333',
             background: '#FFF',
             fontSize: 24,
@@ -48,7 +49,11 @@
     },
     computed: {
       labelText() {
-        return (this.value.val1 || '[LABEL]')
+        if (this.params.text === '') {
+          return (this.value.val1 || '[LABEL]')
+        } else {
+          return this.params.text
+        }
       },
       bgColor() {
         return (this.params.background || 'none')

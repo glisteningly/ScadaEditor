@@ -8,6 +8,7 @@
             <component
               :is="getCtrlTyp(ctrl.type)"
               v-model="ctrl.value"
+              :placeholder="ctrl.hint"
               @change="compValInputChanged">
               <el-option v-if="ctrl.type === 'Enum'"
                          v-for="item in ctrl.opts"

@@ -3,6 +3,7 @@ import Vue from 'vue'
 import scadaGuage from '@/components/Scada/Basic/Guage.vue'
 import scadaLevelbar from '@/components/Scada/Basic/LevelBar.vue'
 import scadaLabel from '@/components/Scada/Basic/Label.vue'
+import scadaPanel from '@/components/Scada/Basic/Panel.vue'
 
 export default {
   getCompStr(components) {
@@ -27,7 +28,10 @@ export default {
         const elSvg = el.getElementsByTagName('svg')
         const innerSvg = elSvg[0].innerHTML
         if (item.type === 'scada-svg-comp') {
-          Object.assign(attrs, { 'viewBox': elSvg[0].getAttribute('viewBox') })
+          const vb = elSvg[0].getAttribute('viewBox')
+          if (vb) {
+            Object.assign(attrs, { 'viewBox': vb })
+          }
         }
         comps.push({
           _name: 'svg',
@@ -64,7 +68,7 @@ export default {
         }
       },
       template: this.getTplStr(components, svgConfig),
-      components: { scadaGuage, scadaLevelbar, scadaLabel }
+      components: { scadaGuage, scadaLevelbar, scadaLabel, scadaPanel }
     })
   }
 }

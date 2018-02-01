@@ -5,6 +5,8 @@
                 :isShowEditor="isShowEditor"
                 @actionSaveDoc="onActionSaveDoc"
                 @actionLoadDoc="onActionLoadDoc"
+                @actionOpenDoc="onActionOpenLocalDoc"
+                @actionDownload="onActionDownDoc"
                 @actionSettings="onActionSettings"
                 @actionImportSvg="onActionImportSvg"
                 @actionShowEditor="onShowEditor"
@@ -53,7 +55,8 @@
                      @settingsChanged="onSettingsChanged"
                      :config="canvasConfig"/>
     <status-bar :canvasConfig="canvasConfig"/>
-
+    <input type="file" id="tpl-uploader" style="width: 0;height: 0;overflow: hidden" @change="onOpenLocalTpl"
+           ref="tplUploader">
   </div>
 </template>
 
@@ -62,6 +65,7 @@
   import _ from 'lodash'
   import axios from 'axios'
   import compParamsConfig from '@/components/Scada/config'
+  import moment from 'moment'
 
   import ScadaVueTpl from '@/utils/scadaVueTpl'
   import ActionBar from './actionBar.vue'
@@ -263,11 +267,6 @@
           this.syncCompValues(this.components[this.currentCompIndex])
         }
         this.components.forEach((item) => {
-//          if (item.guid === guid) {
-//            item.active = true
-//          } else {
-//            item.active = false
-//          }
           item.active = (item.id === guid)
         })
         this.isCompEditing = true
@@ -377,7 +376,7 @@
         this.addStaticSvg({ x: 100, y: 100, width: 400, height: 400 }, svgStr)
       },
       onInputFocus(e) {
-        if (e.target.nodeName === 'INPUT') {
+        if ((e.target.nodeName === 'INPUT') && (e.target.id !== 'focus-key-hack')) {
           this.isCompEditing = false
         }
       },
@@ -387,17 +386,17 @@
       onWindowResized() {
         this.$events.emit('windowResized')
       },
-      onActionSaveDoc() {
+      getDocSaveStr() {
         const saveSlot = {
           curActivedId: this.curActivedId,
           compSymbols: this.compSymbols,
           componentList: this.components,
           canvasConfig: this.canvasConfig
         }
-        localStorage.setItem('saveSlot', JSON.stringify(saveSlot))
+        return JSON.stringify(saveSlot)
       },
-      onActionLoadDoc() {
-        const saveSlot = JSON.parse(localStorage.getItem('saveSlot'))
+      loadDocFromTplStr(str) {
+        const saveSlot = JSON.parse(str)
         if (saveSlot) {
           this.compSymbols = saveSlot.compSymbols
           this.$nextTick(() => {
@@ -406,6 +405,48 @@
             this.canvasConfig = saveSlot.canvasConfig
           })
         }
+      },
+      onActionSaveDoc() {
+        const saveSlot = this.getDocSaveStr()
+        localStorage.setItem('saveSlot', saveSlot)
+      },
+      onActionLoadDoc() {
+        this.loadDocFromTplStr(localStorage.getItem('saveSlot'))
+//        const saveSlot = JSON.parse(localStorage.getItem('saveSlot'))
+//        if (saveSlot) {
+//          this.compSymbols = saveSlot.compSymbols
+//          this.$nextTick(() => {
+//            this.components = saveSlot.componentList
+//            this.curActivedId = saveSlot.curActivedId
+//            this.canvasConfig = saveSlot.canvasConfig
+//          })
+//        }
+      },
+      onActionOpenLocalDoc() {
+        document.getElementById('tpl-uploader').click()
+      },
+      onOpenLocalTpl(e) {
+        const files = e.target.files || e.dataTransfer.files
+        if (!files.length) {
+          return
+        }
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          const tplStr = e.target.result
+          this.loadDocFromTplStr(tplStr)
+          this.$refs.tplUploader.value = ''
+        }
+        reader.readAsText(files[0])
+      },
+      onActionDownDoc() {
+        const saveSlot = this.getDocSaveStr()
+        const element = document.createElement('a')
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(saveSlot))
+        element.setAttribute('download', `scada_${moment().format('YYYY-MM-DD_HH-mm-ss')}.tpl`)
+        element.style.display = 'none'
+        document.body.appendChild(element)
+        element.click()
+        document.body.removeChild(element)
       },
       syncCompValues(comp) {
         const p = {}

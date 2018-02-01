@@ -6,8 +6,10 @@
           <el-dropdown size="medium" @command="handleMenuCommand">
             <el-button plain size="small" @click="" icon="el-icon-menu">文档</el-button>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="save">保存</el-dropdown-item>
+              <el-dropdown-item command="save">暂存</el-dropdown-item>
               <el-dropdown-item command="load">读取</el-dropdown-item>
+              <el-dropdown-item command="download">另存本地</el-dropdown-item>
+              <el-dropdown-item command="open">打开本地</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
           <el-button plain size="small" @click="$emit('actionSettings')" icon="el-icon-setting">设置</el-button>
@@ -74,6 +76,12 @@
             break
           case 'load':
             this.$emit('actionLoadDoc')
+            break
+          case 'download':
+            this.$emit('actionDownload')
+            break
+          case 'open':
+            this.$emit('actionOpenDoc')
             break
           default:
             break

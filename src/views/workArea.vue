@@ -49,6 +49,7 @@
   import scadaLabel from '@/components/Scada/Basic/Label.vue'
   import scadaSvg from '@/components/Scada/Basic/Svg.vue'
   import scadaSvgComp from '@/components/Scada/Basic/SvgComp.vue'
+  import scadaPanel from '@/components/Scada/Basic/Panel.vue'
 
   export default {
     components: {
@@ -57,6 +58,7 @@
       scadaLevelbar,
       scadaLabel,
       scadaSvg,
+      scadaPanel,
       scadaSvgComp
     },
     props: {
