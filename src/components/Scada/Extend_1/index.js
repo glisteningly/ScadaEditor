@@ -48,38 +48,6 @@ export default {
       imgUrl: 'http://10.0.0.126/static/img/scada/svg/tube_v_pre.svg',
       params: []
     },
-    // {
-    //   id: 100,
-    //   name: 'ex-comp-2',
-    //   config: {
-    //     label: '元件A',
-    //     compType: 'svg',
-    //     compSource: '/static/img/scada/svg/ex-comp-2.svg',
-    //     width: 56,
-    //     height: 56,
-    //     keepRatio: true,
-    //     rotatable: true,
-    //     colorMask: false
-    //   },
-    //   imgUrl: 'http://10.0.0.126/static/img/scada/svg/ex-comp-2_pre.svg',
-    //   params: []
-    // },
-    // {
-    //   id: 101,
-    //   name: 'ex-comp-3',
-    //   config: {
-    //     label: '元件B',
-    //     compType: 'svg',
-    //     compSource: '/static/img/scada/svg/ex-comp-3.svg',
-    //     width: 49,
-    //     height: 49,
-    //     keepRatio: true,
-    //     rotatable: true,
-    //     colorMask: false
-    //   },
-    //   imgUrl: 'http://10.0.0.126/static/img/scada/svg/ex-comp-3_pre.svg',
-    //   params: []
-    // },
     {
       id: 200,
       name: 'ex1-ac0',

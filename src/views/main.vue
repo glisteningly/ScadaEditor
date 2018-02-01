@@ -3,6 +3,7 @@
     <action-bar :isShowCode="isShowCode"
                 :isShowPreview="isShowPreview"
                 :isShowEditor="isShowEditor"
+                :comps="components"
                 @actionSaveDoc="onActionSaveDoc"
                 @actionLoadDoc="onActionLoadDoc"
                 @actionOpenDoc="onActionOpenLocalDoc"
@@ -287,6 +288,7 @@
 //        }
 //      },
       onDraggerChanged(d) {
+        this.focusHacking()
         const index = _.findIndex(this.components, { id: d.guid })
         if (index !== -1) {
           this.components[index].layout.x = d.x
@@ -341,6 +343,7 @@
           }
         }
       },
+      // 让焦点放在input上，避免键盘方向键操作滚动条滚动
       focusHacking() {
         setTimeout(() => {
           (document.getElementById('focus-key-hack')).focus()
